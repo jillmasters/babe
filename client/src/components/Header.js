@@ -1,22 +1,42 @@
 /** @jsx jsx */
 import React from 'react';
+import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
 
-const Header = () => {
+const Header = ({ app }) => {
   return (
     <header
       css={css`
-        flex: 3;
-        background: #e63946;
         width: 100%;
-        border-radius: 30px 30px 0 0;
+        height: 30%;
+        background: #e63946;
+        border-radius: 50px 50px 0 0;
+        border: solid #f1faee thick;
         display: flex;
         justify-content: space-around;
         align-items: center;
       `}
     >
-      <h1>Babe</h1>
-      <h2>Fast, unfussy bill-splitting for couples</h2>
+      <div
+        css={css`
+          flex: 1;
+          max-width: 25%;
+          text-align: center;
+        `}
+      >
+        <h1>
+          <Link to="/">{app.name}</Link>
+        </h1>
+      </div>
+      <div
+        css={css`
+          flex: 3;
+          max-width: 45%;
+          text-align: center;
+        `}
+      >
+        <h2>{app.description}</h2>
+      </div>
     </header>
   );
 };

@@ -1,14 +1,19 @@
 /** @jsx jsx */
 import React from 'react';
+import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
 
 export default function Footer() {
   return (
     <div
       css={css`
-        margin-top: 100px;
-        flex: 1;
-        height: 10%;
+        font-family: 'Poppins';
+        flex: 0 1 auto;
+        font-size: 4vw;
+        letter-spacing: 0.05em;
+        padding: 40px;
+        border-top: solid #f1faee thick;
+        height: 10vh;
         width: 100vw;
         color: #f1faee;
         background: #1d3557;
@@ -17,9 +22,9 @@ export default function Footer() {
         align-items: center;
       `}
     >
-      <a>About</a>
-      <a>Log In / Sign Up</a>
-      <a>Settings</a>
+      <Link to="/about">About</Link>
+      <Link to="/login">Log In / Sign Up</Link>
+      <Link to="/settings">Settings</Link>
     </div>
   );
 }

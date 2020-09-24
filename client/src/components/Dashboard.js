@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import React from 'react';
+import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
 
 export default function Dashboard({ users, currency, transactions }) {
   // reduce transactions into overall balance
   const balance = transactions.reduce((acc, transaction) => {
     if (transaction.lender === users.lead) return acc + transaction.amount;
-    if (transaction.lender === users.partner) return acc - transaction.amount;
+    else return acc - transaction.amount;
   }, 0);
 
   // determine overall lender
@@ -16,25 +17,34 @@ export default function Dashboard({ users, currency, transactions }) {
   const totalOwed = Math.abs(Math.round(balance));
 
   return (
-    <div
+    <section
       css={css`
-        flex: 5;
+        min-height: 90%;
         width: 100%;
-        border-radius: 0 0 30px 30px;
+        padding: 10% 0
+        flex: 2 1 auto;
+        border-radius: 0 0 50px 50px;
+        border: solid #f1faee thick;
+        border-top: none;
         background: #457b9d;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
       `}
     >
       <div
         css={css`
-          flex: 1;
-          font-size: 4rem;
+          flex: 1 1 auto;
+          font-size: 6vw;
           margin: auto;
-          display flex;
+          display: flex;
           align-items: center;
+          text-align: center;
+          max-width: 80%;
+          max-height: 30%;
+          padding: 5% 0;
         `}
       >
         <h2>
@@ -45,19 +55,24 @@ export default function Dashboard({ users, currency, transactions }) {
       </div>
       <div
         css={css`
-          flex: 1;
+          flex: 1 1 auto;
           display: flex;
           width: 100%;
+          max-height: 30%
           align-items: center;
           justify-content: space-evenly;
-          * {
-            margin-top: 0px;
-          }
+          padding: 5% 0;
         `}
       >
-        <button>Split A Bill</button>
-        <button>Call It Even</button>
+        <button>
+          <Link to="/bills">Split A Bill</Link>
+        </button>
+        <button>
+          <Link to="/settle-up">
+            {users.lead === overallLender ? 'Call It Even' : 'Settle Up'}
+          </Link>
+        </button>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { injectGlobal } from 'emotion';
 import { Global, css } from '@emotion/core';
 
@@ -66,8 +67,9 @@ ReactDOM.render(
           font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
             Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
             'Segoe UI Symbol';
-          font-size: 18px;
+          font-size: 3vw;
           line-height: 1.4;
+          overflow: hidden;
           }
 
           > div {
@@ -87,18 +89,21 @@ ReactDOM.render(
 
           h1 {
           font-family: 'Contrail One';
-          font-size: 50px;
+          font-size: 12vw;
           }
 
           button {
-            border-radius: 30px;
+            border-radius: 50px;
             border: solid thin #fff;
-            font-family: 'Poppins';
-            font-weight: 400;
-            font-size: 20px;
+            font-size: 4vw;
             background: #e63946;
-            color: #fff;
-            padding: 2rem;
+            padding: 1rem;
+          }
+
+          a {
+            text-decoration: none;
+            color: #f1faee;
+            font-family: 'Contrail One';
           }
 
         }
