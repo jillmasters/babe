@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { injectGlobal } from 'emotion';
+import { Global, css } from '@emotion/core';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -50,6 +51,59 @@ injectGlobal`
 
 ReactDOM.render(
   <React.StrictMode>
+    <Global
+      styles={css`
+        * {
+          box-sizing: border-box;
+          margin: 0;
+        }
+
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          color: #fff;
+          font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol';
+          font-size: 18px;
+          line-height: 1.4;
+          }
+
+          > div {
+            margin-top: 0;
+          }
+
+          h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins';
+            font-style: italic;
+            line-height: 1.1;
+            color: #f1faee;
+
+            + * {
+              margin-top: 0.5rem;
+            }
+          }
+
+          h1 {
+          font-family: 'Contrail One';
+          font-size: 50px;
+          }
+
+          button {
+            border-radius: 30px;
+            border: solid thin #fff;
+            font-family: 'Poppins';
+            font-weight: 400;
+            font-size: 20px;
+            background: #e63946;
+            color: #fff;
+            padding: 2rem;
+          }
+
+        }
+      `}
+    />
     <App />
   </React.StrictMode>,
   document.getElementById('root'),

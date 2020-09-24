@@ -6,8 +6,8 @@ const Header = () => {
   return (
     <header
       css={css`
-        flex: 1;
-        background: #ff9f1c;
+        flex: 3;
+        background: #e63946;
         width: 100%;
         border-radius: 30px 30px 0 0;
         display: flex;

@@ -18,10 +18,10 @@ export default function Dashboard({ users, currency, transactions }) {
   return (
     <div
       css={css`
-        flex: 3;
+        flex: 5;
         width: 100%;
         border-radius: 0 0 30px 30px;
-        background: #ffc971;
+        background: #457b9d;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -30,9 +30,11 @@ export default function Dashboard({ users, currency, transactions }) {
     >
       <div
         css={css`
-          align-self: center;
-          font-weight: bold;
+          flex: 1;
           font-size: 4rem;
+          margin: auto;
+          display flex;
+          align-items: center;
         `}
       >
         <h2>
@@ -48,6 +50,9 @@ export default function Dashboard({ users, currency, transactions }) {
           width: 100%;
           align-items: center;
           justify-content: space-evenly;
+          * {
+            margin-top: 0px;
+          }
         `}
       >
         <button>Split A Bill</button>
