@@ -14,9 +14,15 @@ const getHistory = async (req, res) => {
 
 const addTransaction = async (req, res) => {
   try {
-    const { lender, amount, item, date } = req.body;
-    if (lender && amount && item && date) {
-      const newTransaction = new Transaction({ lender, amount, item, date });
+    const { lender, amount, item, date, split } = req.body;
+    if (lender && amount && item && date && split) {
+      const newTransaction = new Transaction({
+        lender,
+        amount,
+        item,
+        date,
+        split,
+      });
       const savedTransaction = await Transaction.create(newTransaction);
       res.send(savedTransaction);
       res.status(201);

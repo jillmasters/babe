@@ -67,7 +67,6 @@ ReactDOM.render(
           overflow: hidden;
           font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
           font-size: 3vw;
-          line-height: 1.4;
           color: ${colors.white};
           }
 
@@ -77,7 +76,7 @@ ReactDOM.render(
 
           header {
             width: 100%;
-            height: 30%;
+            height: 15vh;
             border: solid ${colors.white} thick;
             border-radius: 50px 50px 0 0;
             display: flex;

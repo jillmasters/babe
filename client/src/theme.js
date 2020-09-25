@@ -9,19 +9,24 @@ const colors = {
 };
 
 const MainView = styled('section')`
-  min-height: 90%;
+  height: 65vh;
   width: 100%;
   flex: 2 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 10% 0;
+  margin: auto;
   border: solid ${colors.white} thick;
   border-top: none;
+  padding: 10% 0;
   border-radius: 0 0 50px 50px;
   background: ${colors.mid};
-  overflow: hidden;
+  overflow: scroll;
+
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
 `;
 
 const FormLabel = styled('label')`
@@ -33,11 +38,13 @@ const FormLabel = styled('label')`
 
 const FormInput = styled('input')`
   border: none;
+  border-radius: 50px;
   padding: 0.25em;
   background: ${colors.white};
   color: ${colors.dark};
   font-family: 'Poppins';
   font-size: 3vw;
+  text-indent: 10px;
 `;
 
 const FormRadio = styled('input')`
@@ -72,6 +79,24 @@ const FormSection = styled('div')`
   align-items: center;
 `;
 
+const FormSlider = styled('input')`
+  width: 100%;
+  appearance: none;
+  border-radius: 50px;
+  height: 25px;
+  background: ${colors.white};
+  outline: none;
+
+  ::-webkit-slider-thumb {
+    appearance: none;
+    height: 40px;
+    width: 16px;
+    border-radius: 5px;
+    background: ${colors.dark};
+    cursor: pointer;
+  }
+`;
+
 export {
   colors,
   MainView,
@@ -80,4 +105,5 @@ export {
   FormRadio,
   FormButton,
   FormSection,
+  FormSlider,
 };

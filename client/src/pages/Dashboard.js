@@ -8,8 +8,9 @@ import { MainView } from '../theme';
 export default function Dashboard({ users, currency, transactions }) {
   // reduce transactions into overall balance
   const balance = transactions.reduce((acc, transaction) => {
-    if (transaction.lender === users.lead) return acc + transaction.amount / 2;
-    else return acc - transaction.amount / 2;
+    if (transaction.lender === users.lead)
+      return acc + (transaction.amount * (100 - transaction.split)) / 100;
+    else return acc - (transaction.amount * (100 - transaction.split)) / 100;
   }, 0);
 
   // determine overall lender
@@ -29,8 +30,7 @@ export default function Dashboard({ users, currency, transactions }) {
           align-items: center;
           text-align: center;
           max-width: 80%;
-          max-height: 30%;
-          padding: 5% 0;
+          height: 40vh;
         `}
       >
         {totalOwed > 0 ? (
@@ -50,10 +50,9 @@ export default function Dashboard({ users, currency, transactions }) {
           flex: 1 1 auto;
           display: flex;
           width: 100%;
-          max-height: 30%
+          max-height: 20vh;
           align-items: center;
           justify-content: space-evenly;
-          padding: 5% 0;
         `}
       >
         <Link to="/bills">

@@ -20,7 +20,7 @@ function App() {
   // LOAD DASHBOARD INFO
   useEffect(() => {
     APIService.getTransactions()
-      .then(transactions => setTransactions(transactions))
+      .then(dbTransactions => setTransactions(dbTransactions))
       .catch(error => console.log('---> Error loading history', error)); // eslint-disable-line no-console
   }, []);
 
