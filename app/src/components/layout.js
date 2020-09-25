@@ -1,19 +1,12 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import React from 'react';
+import { Global, css } from '@emotion/core';
+import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-
 import Header from './header';
-import './layout.css';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query {
       site {
         siteMetadata {
           title
@@ -23,18 +16,71 @@ const Layout = ({ children }) => {
     }
   `);
 
+  const { title, description } = data.site.siteMetadata;
+
   return (
     <>
-      <Header metadata={data.site.siteMetadata} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
+      <Global
+        styles={css`
+        * {
+          box-sizing: border-box;
+          margin: 0;
+        }
+
+        * + * {
+          margin-top: 1rem;
+        }
+
+        html,
+        body {
+          margin: 0;
+          color: blue;
+          background: #f2a8d;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol';
+          font-size: 3vw;
+          line-height: 1.4;}
+
+          > div {
+            margin-top: 0;
+          }
+
+          h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            line-height: 1.1;
+
+            + * {
+              margin-top: 0.5rem;
+            }
+          }
+
+          strong {
+            color: #222;
+          }
+
+          li {
+            margin-top: 0.25rem;
+          }
+
+        }
+      `}
+      />
+      <Helmet>
+        <html lang="en" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+      <Header title={title} description={description} />
+      <main
+        css={css`
+          margin: 2rem auto 4rem;
+          max-width: 90vw;
+          width: 550px;
+        `}
       >
-        <main>{children}</main>
-      </div>
+        {children}
+      </main>
     </>
   );
 };
