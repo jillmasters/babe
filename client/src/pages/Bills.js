@@ -1,14 +1,33 @@
 /** @jsx jsx */
+/*eslint-disable-next-line no-unused-vars*/
 import React, { useState } from 'react';
-import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-const Bills = ({ users, currency }) => {
+import APIService from '../services/APIService';
+
+const Bills = ({ users, currency, setTransactions }) => {
   const [item, setItem] = useState('');
-  const [cost, setCost] = useState('');
-  // need to add percentage splitter
+  const [amount, setAmount] = useState('');
   const [lender, setLender] = useState('');
+  // need to add percentage splitter
+
+  // NOT SURE IF THIS IS WORKING
+  const saveTransaction = transaction => {
+    APIService.postTransaction(transaction).catch(error => {
+      console.log('---> error posting transaction to API', error); // eslint-disable-line no-console
+    });
+  };
+
+  const submitBill = event => {
+    event.preventDefault();
+    const date = new Date().toDateString();
+    const newTransaction = { item, amount, date, lender };
+    saveTransaction(newTransaction);
+    setItem('');
+    setAmount('');
+    setLender('');
+  };
 
   const FormLabel = styled('label')`
     color: #f1faee;
@@ -51,33 +70,51 @@ const Bills = ({ users, currency }) => {
         overflow: hidden;
       `}
     >
-      <form onSubmit={console.log('submitted')}>
+      <form onSubmit={submitBill}>
         <FormSection>
           <FormLabel htmlFor="billItem">What is it for?</FormLabel>
           <FormInput
             type="text"
             name="billItem"
             placeholder="Pints with Gesh 🍻"
-            onChange={(event) => setItem(event.target.value)}
+            onChange={event => setItem(event.target.value)}
             value={item}
+            required
           />
         </FormSection>
         <FormSection>
-          <FormLabel htmlFor="billCost">How much?</FormLabel>
+          <FormLabel htmlFor="billAmount">How much?</FormLabel>
           <span>{currency}</span>
           <FormInput
             type="number"
             min="0"
+            step="0.01"
             placeholder="18.50"
-            name="billCost"
-            onChange={(event) => setCost(event.target.value)}
-            value={cost}
+            name="billAmount"
+            onChange={event => setAmount(event.target.value)}
+            value={amount}
+            required
           />
         </FormSection>
-        <FormSection onChange={(event) => setLender(event.target.value)}>
-          <FormInput type="radio" name="billLender" value={lender} />
+        <FormSection onChange={event => setLender(event.target.value)}>
+          <FormInput
+            type="radio"
+            name="billLender"
+            value={users.lead}
+            css={css`
+              transform: scale(3);
+            `}
+            required
+          />
           <FormLabel htmlFor="billLender">I paid</FormLabel>
-          <FormInput type="radio" name="billLender" value={lender} />
+          <FormInput
+            type="radio"
+            name="billLender"
+            value={users.partner}
+            css={css`
+              transform: scale(3);
+            `}
+          />
           <FormLabel htmlFor="billLender">{users.partner} paid</FormLabel>
         </FormSection>
         <FormSection>

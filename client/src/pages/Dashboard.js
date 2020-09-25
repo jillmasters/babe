@@ -1,4 +1,5 @@
 /** @jsx jsx */
+/*eslint-disable-next-line no-unused-vars*/
 import React from 'react';
 import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
@@ -47,11 +48,17 @@ export default function Dashboard({ users, currency, transactions }) {
           padding: 5% 0;
         `}
       >
-        <h2>
-          {/* add an if clause if nothing is owed either way */}
-          {overallLender} gets {currency}
-          {totalOwed}
-        </h2>
+        {totalOwed > 0 ? (
+          <h2>
+            {overallLender} gets {currency}
+            {totalOwed}
+          </h2>
+        ) : (
+          <h2>
+            Welcome, {users.lead}!<br />
+            <br /> You and {users.partner} are squared up.
+          </h2>
+        )}
       </div>
       <div
         css={css`
@@ -64,14 +71,14 @@ export default function Dashboard({ users, currency, transactions }) {
           padding: 5% 0;
         `}
       >
-        <button>
-          <Link to="/bills">Split A Bill</Link>
-        </button>
-        <button>
-          <Link to="/settle-up">
+        <Link to="/bills">
+          <button>Split A Bill</button>
+        </Link>
+        <Link to="/settle-up">
+          <button>
             {users.lead === overallLender ? 'Call It Even' : 'Settle Up'}
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     </section>
   );

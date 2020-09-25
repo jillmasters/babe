@@ -1,4 +1,5 @@
 /** @jsx jsx */
+/*eslint-disable-next-line no-unused-vars*/
 import React from 'react';
 import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
@@ -22,7 +23,7 @@ export default function Footer() {
         align-items: center;
       `}
     >
-      <Link to="/about">About</Link>
+      <Link to="/history">History</Link>
       <Link to="/login">Log In / Sign Up</Link>
       <Link to="/settings">Settings</Link>
     </div>

@@ -76,6 +76,20 @@ ReactDOM.render(
             margin-top: 0;
           }
 
+          main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            width: 100vw;
+            min-width: 300px;
+            height: 100vh;
+            min-height: 300px;
+            background: #a8dadc;
+            padding: 5vw 5vw 0 5vw;
+          }
+
           h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins';
             font-style: italic;
@@ -97,6 +111,10 @@ ReactDOM.render(
             border: solid thin #fff;
             font-size: 4vw;
             background: #e63946;
+            color: #f1faee;
+            color: #f1faee;
+            font-family: 'Poppins';
+            font-style: italic;
             padding: 1rem;
           }
 

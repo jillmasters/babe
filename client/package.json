@@ -10,10 +10,11 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "emotion": "^10.0.27",
+    "moment": "^2.29.0",
     "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^1.0.7",
     "react-scripts": "3.4.3"
   },
   "scripts": {
