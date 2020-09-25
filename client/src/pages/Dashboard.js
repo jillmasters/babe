@@ -3,12 +3,13 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
+import { MainView } from '../theme';
 
 export default function Dashboard({ users, currency, transactions }) {
   // reduce transactions into overall balance
   const balance = transactions.reduce((acc, transaction) => {
-    if (transaction.lender === users.lead) return acc + transaction.amount;
-    else return acc - transaction.amount;
+    if (transaction.lender === users.lead) return acc + transaction.amount / 2;
+    else return acc - transaction.amount / 2;
   }, 0);
 
   // determine overall lender
@@ -18,23 +19,7 @@ export default function Dashboard({ users, currency, transactions }) {
   const totalOwed = Math.abs(Math.round(balance));
 
   return (
-    <section
-      css={css`
-        min-height: 90%;
-        width: 100%;
-        padding: 10% 0
-        flex: 2 1 auto;
-        border-radius: 0 0 50px 50px;
-        border: solid #f1faee thick;
-        border-top: none;
-        background: #457b9d;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      `}
-    >
+    <MainView>
       <div
         css={css`
           flex: 1 1 auto;
@@ -80,6 +65,6 @@ export default function Dashboard({ users, currency, transactions }) {
           </button>
         </Link>
       </div>
-    </section>
+    </MainView>
   );
 }

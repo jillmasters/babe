@@ -1,7 +1,8 @@
 import React from 'react';
+import { MainView } from '../theme';
 
 const SettleUp = () => {
-  return <h3>Page for settling up bills</h3>;
+  return <MainView>Page for settling up bills</MainView>;
 };
 
 export default SettleUp;

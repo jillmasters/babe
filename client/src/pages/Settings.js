@@ -1,7 +1,8 @@
 import React from 'react';
+import { MainView } from '../theme';
 
 const Settings = () => {
-  return <h3>Reconfigure settings</h3>;
+  return <MainView>Reconfigure settings</MainView>;
 };
 
 export default Settings;

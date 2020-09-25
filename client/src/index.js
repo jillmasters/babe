@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { injectGlobal } from 'emotion';
 import { Global, css } from '@emotion/core';
+import { colors } from './theme';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -63,38 +64,61 @@ ReactDOM.render(
         body {
           margin: 0;
           padding: 0;
-          color: #fff;
-          font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-            Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-            'Segoe UI Symbol';
+          overflow: hidden;
+          font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
           font-size: 3vw;
           line-height: 1.4;
-          overflow: hidden;
+          color: ${colors.white};
           }
 
           > div {
             margin-top: 0;
           }
 
+          header {
+            width: 100%;
+            height: 30%;
+            border: solid ${colors.white} thick;
+            border-radius: 50px 50px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: ${colors.pink};
+          }
+
           main {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             margin: 0 auto;
             width: 100vw;
             min-width: 300px;
             height: 100vh;
             min-height: 300px;
-            background: #a8dadc;
+            background: ${colors.pale};
             padding: 5vw 5vw 0 5vw;
+          }
+
+          footer {
+            height: 10vh;
+            width: 100vw;
+            padding: 40px;
+            border-top: solid ${colors.white} thick;
+            flex: 0 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            font-size: 3vw;
+            color: ${colors.white};
+            background:${colors.dark};
           }
 
           h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins';
             font-style: italic;
             line-height: 1.1;
-            color: #f1faee;
+            color: ${colors.white};
 
             + * {
               margin-top: 0.5rem;
@@ -102,26 +126,24 @@ ReactDOM.render(
           }
 
           h1 {
-          font-family: 'Contrail One';
-          font-size: 12vw;
+            font-family: 'Contrail One';
+            font-size: 12vw;
           }
 
           button {
+            padding: 1rem;
+            border: solid thin ${colors.white};
             border-radius: 50px;
-            border: solid thin #fff;
-            font-size: 4vw;
-            background: #e63946;
-            color: #f1faee;
-            color: #f1faee;
+            background: ${colors.pink};
             font-family: 'Poppins';
             font-style: italic;
-            padding: 1rem;
+            font-size: 4vw;
+            color: ${colors.white};
           }
 
           a {
+            color: ${colors.white};
             text-decoration: none;
-            color: #f1faee;
-            font-family: 'Contrail One';
           }
 
         }
