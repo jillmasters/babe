@@ -24,7 +24,7 @@ export default function Dashboard({ users, currency, transactions }) {
       <div
         css={css`
           flex: 1 1 auto;
-          font-size: 6vw;
+          font-size: 3vh;
           margin: auto;
           display: flex;
           align-items: center;
@@ -34,14 +34,21 @@ export default function Dashboard({ users, currency, transactions }) {
         `}
       >
         {totalOwed > 0 ? (
-          <h2>
-            {overallLender} gets {currency}
-            {totalOwed}
-          </h2>
+          <div>
+            <figure>
+              <span role="img" aria-label="cartwheel emoji">
+                🤸🏼
+              </span>
+            </figure>
+            <h2>
+              {overallLender} gets {currency}
+              {totalOwed}
+            </h2>
+          </div>
         ) : (
           <h2>
             Welcome, {users.lead}!<br />
-            <br /> You and {users.partner} are squared up.
+            <br /> You and {users.partner} are all square.
           </h2>
         )}
       </div>
@@ -50,7 +57,7 @@ export default function Dashboard({ users, currency, transactions }) {
           flex: 1 1 auto;
           display: flex;
           width: 100%;
-          max-height: 20vh;
+          height: 20vh;
           align-items: center;
           justify-content: space-evenly;
         `}

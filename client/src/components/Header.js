@@ -25,7 +25,7 @@ const Header = ({ app }) => {
           text-align: center;
         `}
       >
-        <h2>{app.description}</h2>
+        <h3>{app.description}</h3>
       </section>
     </header>
   );

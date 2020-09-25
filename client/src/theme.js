@@ -9,8 +9,9 @@ const colors = {
 };
 
 const MainView = styled('section')`
-  height: 65vh;
+  height: 70vh;
   width: 100%;
+  max-width: 600px;
   flex: 2 1 auto;
   display: flex;
   flex-direction: column;
@@ -19,7 +20,7 @@ const MainView = styled('section')`
   margin: auto;
   border: solid ${colors.white} thick;
   border-top: none;
-  padding: 10% 0;
+  padding: 2vh 0;
   border-radius: 0 0 50px 50px;
   background: ${colors.mid};
   overflow: scroll;
@@ -30,9 +31,8 @@ const MainView = styled('section')`
 `;
 
 const FormLabel = styled('label')`
-  padding: 1em;
-  font-size: 3vw;
-  line-height: 1.4;
+  padding: 1.2em;
+  font-size: 1.8vh;
   color: ${colors.white};
 `;
 
@@ -43,20 +43,20 @@ const FormInput = styled('input')`
   background: ${colors.white};
   color: ${colors.dark};
   font-family: 'Poppins';
-  font-size: 3vw;
+  font-size: 1.8vh;
   text-indent: 10px;
 `;
 
 const FormRadio = styled('input')`
-  width: 2vw;
-  height: 2vw;
+  width: 1vh;
+  height: 1vh;
   appearance: none;
   display: inline-block;
   padding: 0.25em;
   border: 2px solid ${colors.white};
   border-radius: 50%;
   background-color: ${colors.white};
-  transform: scale(3);
+  transform: scale(2);
 
   :checked {
     background-color: ${colors.dark};
@@ -66,7 +66,7 @@ const FormRadio = styled('input')`
 const FormButton = styled('button')`
   width: 100%;
   font-family: 'Poppins';
-  font-size: 3vw;
+  font-size: 1.8vh;
   line-height: 1;
   color: ${colors.white};
 `;
@@ -75,7 +75,7 @@ const FormSection = styled('div')`
   margin-bottom: 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 `;
 

@@ -44,6 +44,7 @@ export default function PageContainer({
         path="/history"
         transactions={transactions}
         currency={currency}
+        users={users}
       />
       <Login path="/login" />
       <Settings path="/settings" />

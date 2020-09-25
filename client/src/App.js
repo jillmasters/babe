@@ -11,7 +11,7 @@ function App() {
   // MAIN APP DATA (STATE)
   const app = {
     name: 'Babe',
-    description: 'Fast, unfussy bill-splitting for couples',
+    description: 'Split the bill, share the love',
   };
   const [transactions, setTransactions] = useState([]);
   const [users, setUsers] = useState({ lead: 'Jill', partner: 'Sam' });

@@ -66,7 +66,7 @@ ReactDOM.render(
           padding: 0;
           overflow: hidden;
           font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-          font-size: 3vw;
+          font-size: 2vh;
           color: ${colors.white};
           }
 
@@ -76,6 +76,7 @@ ReactDOM.render(
 
           header {
             width: 100%;
+            max-width: 600px;
             height: 15vh;
             border: solid ${colors.white} thick;
             border-radius: 50px 50px 0 0;
@@ -96,7 +97,7 @@ ReactDOM.render(
             height: 100vh;
             min-height: 300px;
             background: ${colors.pale};
-            padding: 5vw 5vw 0 5vw;
+            padding: 2vw 5vw 0 5vw;
           }
 
           footer {
@@ -108,7 +109,6 @@ ReactDOM.render(
             display: flex;
             align-items: center;
             justify-content: space-evenly;
-            font-size: 3vw;
             color: ${colors.white};
             background:${colors.dark};
           }
@@ -126,8 +126,20 @@ ReactDOM.render(
 
           h1 {
             font-family: 'Contrail One';
-            font-size: 12vw;
+            font-size: 7.5vh;
           }
+
+          h3 {
+            font-size: 2.5vh;
+          }
+
+          h4 {
+            font-size: 2.5vh;
+            font-weight: 200;
+            font-style: normal;
+            margin-bottom: 1rem;
+          }
+
 
           button {
             padding: 1rem;
@@ -136,13 +148,25 @@ ReactDOM.render(
             background: ${colors.pink};
             font-family: 'Poppins';
             font-style: italic;
-            font-size: 4vw;
+            font-size: 3vh;
             color: ${colors.white};
           }
 
           a {
             color: ${colors.white};
             text-decoration: none;
+          }
+
+          figure {
+            font-size: 12vh;
+          }
+
+          span[role="img"]{
+            padding: 0 20px;
+          }
+
+          time {
+            font-size: 1.5vh;
           }
 
         }
