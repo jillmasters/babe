@@ -18,39 +18,53 @@ const History = ({ currency, transactions, users }) => {
           💸
         </span>
       </h4>
-      {transactions.map(transaction => (
-        <div
-          key={transaction._id}
-          css={css`
-            border: none;
-            border-radius: 20px;
-            margin: 10px;
-            padding: 10px 20px;
-            width: 70%;
-            color: ${transaction.lender === users.lead
-              ? colors.dark
-              : colors.white};
-            background: ${transaction.lender === users.lead
-              ? colors.white
-              : colors.dark};
-            align-self: ${transaction.lender === users.lead
-              ? 'flex-end'
-              : 'flex-start'};
-          `}
-        >
-          <time>
-            Added{' '}
-            <strong>{moment(transaction.date).format('dddd, MMM Do')}</strong>
-          </time>
-          <p>
-            {transaction.item} &rarr;{' '}
-            <strong>
-              {currency}
-              {transaction.amount.toFixed(2)}
-            </strong>
-          </p>
-        </div>
-      ))}
+      <div
+        css={css`
+          font-size: 1.5vh;
+          width: 90%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        `}
+      >
+        <p>{users.partner}</p>
+        <p>{users.lead}</p>
+      </div>
+      {transactions
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .map(transaction => (
+          <div
+            key={transaction._id}
+            css={css`
+              border: none;
+              border-radius: 20px;
+              margin: 10px;
+              padding: 10px 20px;
+              width: 70%;
+              color: ${transaction.lender === users.lead
+                ? colors.dark
+                : colors.white};
+              background: ${transaction.lender === users.lead
+                ? colors.white
+                : colors.dark};
+              align-self: ${transaction.lender === users.lead
+                ? 'flex-end'
+                : 'flex-start'};
+            `}
+          >
+            <time>
+              Added{' '}
+              <strong>{moment(transaction.date).format('dddd, MMM Do')}</strong>
+            </time>
+            <p>
+              {transaction.item} &rarr;{' '}
+              <strong>
+                {currency}
+                {transaction.amount.toFixed(2)}
+              </strong>
+            </p>
+          </div>
+        ))}
     </MainView>
   );
 };

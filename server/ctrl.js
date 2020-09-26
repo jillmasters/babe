@@ -39,7 +39,7 @@ const addTransaction = async (req, res) => {
 const deleteTransaction = async (req, res) => {
   try {
     const { _id } = req.params;
-    Transaction.findByIdAndDelete(_id, (error) => {
+    Transaction.findByIdAndDelete(_id, error => {
       if (error)
         console.log(
           '---> Error while searching database by id (to delete)',
