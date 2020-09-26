@@ -29,7 +29,12 @@ function App() {
   summary.balance = transactions.reduce((acc, transaction) => {
     if (transaction.lender === users.lead)
       return acc + (transaction.amount * (100 - transaction.split)) / 100;
-    else return acc - (transaction.amount * (100 - transaction.split)) / 100;
+    else if (transaction.lender === users.partner)
+      return acc - (transaction.amount * (100 - transaction.split)) / 100;
+    else {
+      const remaining = transaction.amount * transaction.split;
+      return acc - remaining;
+    }
   }, 0);
   summary.overallLender = summary.balance > 0 ? users.lead : users.partner;
   summary.totalOwed = Math.abs(Math.round(summary.balance));

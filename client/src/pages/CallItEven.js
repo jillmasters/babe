@@ -1,5 +1,5 @@
 /*eslint-disable-next-line no-unused-vars*/
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   MainViewStatic,
@@ -9,7 +9,39 @@ import {
   FormButton,
 } from '../theme';
 
-const CallItEven = ({ summary, currency, users }) => {
+import APIService from '../services/APIService';
+import { navigate } from '@reach/router';
+
+const CallItEven = ({ summary, currency, users, setTransactions }) => {
+  const [note, setNote] = useState('');
+
+  const saveTransaction = transaction => {
+    APIService.postTransaction(transaction)
+      .then(newTransaction =>
+        setTransactions(oldTransactions => [
+          ...oldTransactions,
+          newTransaction,
+        ]),
+      )
+      .catch(error => {
+        throw Error('error posting transaction to database');
+      });
+  };
+
+  const submit = event => {
+    event.preventDefault();
+    const newTransaction = {
+      item: `${users.lead} called it even: ${note}`,
+      amount: summary.totalOwed,
+      date: new Date(),
+      lender: 'Babe',
+      split: 1,
+    };
+    saveTransaction(newTransaction);
+    setNote('');
+    navigate('/');
+  };
+
   return (
     <MainViewStatic>
       <h4>Call it Even</h4>
@@ -19,13 +51,15 @@ const CallItEven = ({ summary, currency, users }) => {
         <br />
         Happy to call it even?
       </h2>
-      <form>
+      <form onSubmit={submit}>
         <FormSection>
           <FormLabel for="wipe-description">Leave a note:</FormLabel>
           <FormInput
             type="text"
             name="wipe-description"
             placeholder="😘"
+            onChange={event => setNote(event.target.value)}
+            value={note}
           ></FormInput>
         </FormSection>
         <FormSection>

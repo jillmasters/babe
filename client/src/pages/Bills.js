@@ -36,7 +36,7 @@ const Bills = ({ users, currency, setTransactions }) => {
 
   const submit = event => {
     event.preventDefault();
-    const date = new Date().toDateString();
+    const date = new Date();
     const newTransaction = { item, amount, date, lender, split };
     saveTransaction(newTransaction);
     setItem('');

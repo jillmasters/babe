@@ -40,11 +40,17 @@ const History = ({ currency, transactions, users }) => {
               border-radius: 20px;
               margin: 10px;
               padding: 10px 20px;
-              width: 70%;
-              color: ${transaction.lender === users.lead
+              width: ${transaction.lender === 'Babe'
+                ? 'calc(100% - 20px)'
+                : '70%'};
+              color: ${transaction.lender === 'Babe'
+                ? colors.mid
+                : transaction.lender === users.lead
                 ? colors.dark
                 : colors.white};
-              background: ${transaction.lender === users.lead
+              background: ${transaction.lender === 'Babe'
+                ? colors.pale
+                : transaction.lender === users.lead
                 ? colors.white
                 : colors.dark};
               align-self: ${transaction.lender === users.lead

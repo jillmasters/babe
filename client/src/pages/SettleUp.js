@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MainViewStatic,
   FormSection,
@@ -7,10 +7,41 @@ import {
   FormButton,
 } from '../theme';
 
-const SettleUp = ({ summary, currency, users }) => {
+import APIService from '../services/APIService';
+import { navigate } from '@reach/router';
+
+const SettleUp = ({ summary, currency, users, setTransactions }) => {
+  const [note, setNote] = useState('');
+
+  const saveTransaction = transaction => {
+    APIService.postTransaction(transaction)
+      .then(newTransaction =>
+        setTransactions(oldTransactions => [
+          ...oldTransactions,
+          newTransaction,
+        ]),
+      )
+      .catch(error => {
+        throw Error('error posting transaction to database');
+      });
+  };
+
+  const submit = event => {
+    event.preventDefault();
+    const newTransaction = {
+      item: `${users.lead} settled up: ${note}`,
+      amount: summary.totalOwed,
+      date: new Date(),
+      lender: 'Babe',
+      split: -1,
+    };
+    saveTransaction(newTransaction);
+    setNote('');
+    navigate('/');
+  };
   return (
     <MainViewStatic>
-      <h4>Call it Even</h4>
+      <h4>Settle Up</h4>
       <h2>
         You owe {users.partner} {currency}
         {summary.totalOwed}.
@@ -23,13 +54,15 @@ const SettleUp = ({ summary, currency, users }) => {
           👇
         </span>
       </h2>
-      <form>
+      <form onSubmit={submit}>
         <FormSection>
-          <FormLabel for="wipe-description">Leave a note:</FormLabel>
+          <FormLabel htmlFor="wipe-description">Leave a note:</FormLabel>
           <FormInput
             type="text"
             name="wipe-description"
             placeholder="💰💰💰"
+            onChange={event => setNote(event.target.value)}
+            value={note}
           ></FormInput>
         </FormSection>
         <FormSection>

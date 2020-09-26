@@ -48,12 +48,14 @@ export default function PageContainer({
         summary={summary}
         users={users}
         currency={currency}
+        setTransactions={setTransactions}
       />
       <SettleUp
         path="/settle-up"
         summary={summary}
         users={users}
         currency={currency}
+        setTransactions={setTransactions}
       />
       <History
         path="/history"
