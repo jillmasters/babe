@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const Transaction = require('./model');
+const { Transaction } = require('./model');
 
 const getHistory = async (req, res) => {
   try {
@@ -36,7 +36,25 @@ const addTransaction = async (req, res) => {
   }
 };
 
+const deleteTransaction = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    Transaction.findByIdAndDelete(_id, (error) => {
+      if (error)
+        console.log(
+          '---> Error while searching database by id (to delete)',
+          error,
+        );
+    });
+    res.sendStatus(204);
+  } catch (error) {
+    console.log('---> error deleting from database', error);
+    res.status(500);
+  }
+};
+
 module.exports = {
   addTransaction,
   getHistory,
+  deleteTransaction,
 };

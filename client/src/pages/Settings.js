@@ -1,11 +1,66 @@
-import React from 'react';
-import { MainView } from '../theme';
+import React, { useState } from 'react';
+import {
+  MainViewStatic,
+  FormSection,
+  FormInput,
+  FormButton,
+  FormLabel,
+} from '../theme';
 
-const Settings = () => {
+const Settings = ({ users, setUsers, currency, setCurrency }) => {
+  const [tempUser, setTempUser] = useState(users.lead || '');
+  const [tempPartner, setTempPartner] = useState(users.partner || '');
+  const [tempCurrency, setTempCurrency] = useState(currency);
+
+  const submit = () => {
+    // THIS IS NOT QUITE RIGHT
+    setUsers({ lead: tempUser, partner: tempPartner });
+    setCurrency(tempCurrency);
+    //EDIT DB ENTRIES??
+  };
+
   return (
-    <MainView>
-      <h4>Reconfigure settings</h4>
-    </MainView>
+    <MainViewStatic>
+      <h4>Settings</h4>
+      <form onSubmit={submit}>
+        <FormSection>
+          <FormLabel htmlFor="user-lead">Your name:</FormLabel>
+          <FormInput
+            type="text"
+            name="user-lead"
+            value={tempUser}
+            onChange={event => setTempUser(event.target.value)}
+          />
+        </FormSection>
+        <FormSection>
+          <FormLabel htmlFor="user-partner">Your partner:</FormLabel>
+          <FormInput
+            type="text"
+            name="user-partner"
+            value={tempPartner}
+            onChange={event => setTempPartner(event.target.value)}
+          />
+        </FormSection>
+        <FormSection>
+          <FormLabel htmlFor="currency">
+            Your
+            <span role="img" aria-label="currency emoji">
+              💵
+            </span>
+            ?
+          </FormLabel>
+          <FormInput
+            type="text"
+            name="currency"
+            value={tempCurrency}
+            onChange={event => setTempCurrency(event.target.value)}
+          />
+        </FormSection>
+        <FormSection>
+          <FormButton type="submit">Save my preferences</FormButton>
+        </FormSection>
+      </form>
+    </MainViewStatic>
   );
 };
 

@@ -24,16 +24,29 @@ function App() {
       .catch(error => console.log('---> Error loading history', error)); // eslint-disable-line no-console
   }, []);
 
+  // reduce transactions into overall balance summary
+  const summary = {};
+  summary.balance = transactions.reduce((acc, transaction) => {
+    if (transaction.lender === users.lead)
+      return acc + (transaction.amount * (100 - transaction.split)) / 100;
+    else return acc - (transaction.amount * (100 - transaction.split)) / 100;
+  }, 0);
+  summary.overallLender = summary.balance > 0 ? users.lead : users.partner;
+  summary.totalOwed = Math.abs(Math.round(summary.balance));
+
   // LOAD MAIN PAGE LAYOUT
   return (
     <main>
       <Head app={app} />
       <Header app={app} />
       <PageContainer
+        summary={summary}
         users={users}
+        setUsers={setUsers}
         transactions={transactions}
         setTransactions={setTransactions}
         currency={currency}
+        setCurrency={setCurrency}
       />
       <Footer />
     </main>

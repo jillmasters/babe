@@ -117,6 +117,7 @@ ReactDOM.render(
             font-family: 'Poppins';
             font-style: italic;
             line-height: 1.1;
+            text-align: center;
             color: ${colors.white};
 
             + * {
@@ -134,9 +135,8 @@ ReactDOM.render(
           }
 
           h4 {
-            font-size: 2.5vh;
-            font-weight: 200;
-            font-style: normal;
+            font-family: 'Contrail One';
+            font-size: 3vh;
             margin-bottom: 1rem;
           }
 
@@ -162,7 +162,7 @@ ReactDOM.render(
           }
 
           span[role="img"]{
-            padding: 0 20px;
+            padding: 0 10px;
           }
 
           time {

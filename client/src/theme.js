@@ -30,6 +30,43 @@ const MainView = styled('section')`
     background: transparent;
 `;
 
+const MainViewStatic = styled('section')`
+  height: 70vh;
+  width: 100%;
+  max-width: 600px;
+  flex: 2 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+  border: solid ${colors.white} thick;
+  border-top: none;
+  padding: 2vh 0;
+  border-radius: 0 0 50px 50px;
+  background: ${colors.mid};
+`;
+
+const DashSummary = styled('div')`
+  flex: 1 1 auto;
+  font-size: 3vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  max-width: 80%;
+  height: 40vh;
+`;
+
+const DashOptions = styled('div')`
+  flex: 1 1 auto;
+  display: flex;
+  width: 100%;
+  height: 20vh;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+
 const FormLabel = styled('label')`
   padding: 1.2em;
   font-size: 1.8vh;
@@ -45,6 +82,7 @@ const FormInput = styled('input')`
   font-family: 'Poppins';
   font-size: 1.8vh;
   text-indent: 10px;
+  width: auto;
 `;
 
 const FormRadio = styled('input')`
@@ -100,10 +138,13 @@ const FormSlider = styled('input')`
 export {
   colors,
   MainView,
+  MainViewStatic,
   FormLabel,
   FormInput,
   FormRadio,
   FormButton,
   FormSection,
   FormSlider,
+  DashSummary,
+  DashOptions,
 };

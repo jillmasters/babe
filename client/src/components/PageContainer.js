@@ -7,6 +7,7 @@ import { jsx, css } from '@emotion/core';
 // IMPORT PAGES
 import Dashboard from '../pages/Dashboard';
 import Bills from '../pages/Bills';
+import CallItEven from '../pages/CallItEven';
 import SettleUp from '../pages/SettleUp';
 import History from '../pages/History';
 import Login from '../pages/Login';
@@ -14,14 +15,16 @@ import Settings from '../pages/Settings';
 
 export default function PageContainer({
   users,
+  setUsers,
   transactions,
-  currency,
   setTransactions,
+  currency,
+  setCurrency,
+  summary,
 }) {
   return (
     <Router
       css={css`
-        ${'' /* margin-top: 15vw; */}
         width: 100vw;
         padding: 0 5vw;
         flex: 1;
@@ -32,6 +35,7 @@ export default function PageContainer({
         users={users}
         transactions={transactions}
         currency={currency}
+        summary={summary}
       />
       <Bills
         path="/bills"
@@ -39,7 +43,18 @@ export default function PageContainer({
         currency={currency}
         setTransactions={setTransactions}
       />
-      <SettleUp path="/settle-up" />
+      <CallItEven
+        path="/call-it-even"
+        summary={summary}
+        users={users}
+        currency={currency}
+      />
+      <SettleUp
+        path="/settle-up"
+        summary={summary}
+        users={users}
+        currency={currency}
+      />
       <History
         path="/history"
         transactions={transactions}
@@ -47,7 +62,13 @@ export default function PageContainer({
         users={users}
       />
       <Login path="/login" />
-      <Settings path="/settings" />
+      <Settings
+        path="/settings"
+        currency={currency}
+        setCurrency={setCurrency}
+        users={users}
+        setUsers={setUsers}
+      />
     </Router>
   );
 }

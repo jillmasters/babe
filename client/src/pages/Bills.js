@@ -1,5 +1,6 @@
 /*eslint-disable-next-line no-unused-vars*/
 import React, { useState } from 'react';
+import { navigate } from '@reach/router';
 import {
   MainView,
   FormLabel,
@@ -42,6 +43,7 @@ const Bills = ({ users, currency, setTransactions }) => {
     setAmount('');
     setLender('');
     setSplit(50);
+    navigate('/');
   };
 
   return (

@@ -1,4 +1,6 @@
+/*eslint-disable-next-line no-unused-vars*/
 import React from 'react';
+
 import {
   MainViewStatic,
   FormSection,
@@ -7,21 +9,15 @@ import {
   FormButton,
 } from '../theme';
 
-const SettleUp = ({ summary, currency, users }) => {
+const CallItEven = ({ summary, currency, users }) => {
   return (
     <MainViewStatic>
       <h4>Call it Even</h4>
       <h2>
-        You owe {users.partner} {currency}
+        {users.partner} owes you {currency}
         {summary.totalOwed}.
         <br />
-        <span role="img" aria-label="pointing down emoji">
-          👇
-        </span>{' '}
-        Click to get even.
-        <span role="img" aria-label="pointing down emoji">
-          👇
-        </span>
+        Happy to call it even?
       </h2>
       <form>
         <FormSection>
@@ -29,12 +25,15 @@ const SettleUp = ({ summary, currency, users }) => {
           <FormInput
             type="text"
             name="wipe-description"
-            placeholder="💰💰💰"
+            placeholder="😘"
           ></FormInput>
         </FormSection>
         <FormSection>
           <FormButton type="submit">
-            I&apos;ve paid {users.partner} back
+            Wipe that debt
+            <span role="img" aria-label="handshake emoji">
+              🤝
+            </span>
           </FormButton>
         </FormSection>
       </form>
@@ -42,4 +41,6 @@ const SettleUp = ({ summary, currency, users }) => {
   );
 };
 
-export default SettleUp;
+// SOMETHING BUGGY HAPPENING IN THE REDIRECT (TODO!)
+
+export default CallItEven;
