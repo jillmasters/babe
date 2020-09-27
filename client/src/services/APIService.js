@@ -13,7 +13,6 @@ const getTransactions = async () => {
 };
 
 const postTransaction = async newTransaction => {
-  console.log('attempting to post:', newTransaction);
   return fetchRequest('/transactions', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -21,7 +20,26 @@ const postTransaction = async newTransaction => {
   });
 };
 
+const getOneTransaction = async _id => {
+  return fetchRequest(`/transactions/${_id}`);
+};
+
+const deleteTransaction = async _id => {
+  return fetchRequest(`/transactions/${_id}`, { method: 'DELETE' });
+};
+
+const editTransaction = async (_id, editedTransaction) => {
+  return fetchRequest(`/transactions/${_id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(editedTransaction),
+  });
+};
+
 module.exports = {
   getTransactions,
   postTransaction,
+  getOneTransaction,
+  deleteTransaction,
+  editTransaction,
 };

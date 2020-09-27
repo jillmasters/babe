@@ -42,12 +42,12 @@ const SettleUp = ({ summary, currency, users, setTransactions }) => {
   return (
     <MainViewStatic>
       <h4>
-        <span role="img" aria-label="pointing down emoji">
-          👇
+        <span role="img" aria-label="credit card emoji">
+          💳
         </span>
         Settle Up
-        <span role="img" aria-label="pointing down emoji">
-          👇
+        <span role="img" aria-label="credit card emoji">
+          💳
         </span>
       </h4>
       <h2>

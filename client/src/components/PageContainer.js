@@ -6,12 +6,13 @@ import { jsx, css } from '@emotion/core';
 
 // IMPORT PAGES
 import Dashboard from '../pages/Dashboard';
-import Bills from '../pages/Bills';
+import Transactions from '../pages/Transactions';
 import CallItEven from '../pages/CallItEven';
 import SettleUp from '../pages/SettleUp';
 import History from '../pages/History';
 import Login from '../pages/Login';
 import Settings from '../pages/Settings';
+import Inspect from '../pages/Inspect';
 
 export default function PageContainer({
   users,
@@ -37,8 +38,8 @@ export default function PageContainer({
         currency={currency}
         summary={summary}
       />
-      <Bills
-        path="/bills"
+      <Transactions
+        path="/transactions"
         users={users}
         currency={currency}
         setTransactions={setTransactions}
@@ -62,6 +63,12 @@ export default function PageContainer({
         transactions={transactions}
         currency={currency}
         users={users}
+      />
+      <Inspect
+        path="/transactions/:_id"
+        users={users}
+        currency={currency}
+        setTransactions={setTransactions}
       />
       <Login path="/login" />
       <Settings

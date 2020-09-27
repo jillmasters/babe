@@ -3,6 +3,7 @@
 import React from 'react';
 import { jsx, css } from '@emotion/core';
 import { colors, MainView } from '../theme';
+import { navigate } from '@reach/router';
 
 const moment = require('moment');
 
@@ -43,12 +44,20 @@ const History = ({ currency, transactions, users }) => {
             `}
           >
             <div
+              onClick={() => {
+                if (transaction.lender !== 'Babe')
+                  navigate(`/transactions/${transaction._id}`);
+              }}
               css={css`
                 position: relative;
                 border: none;
                 border-radius: 20px;
                 margin: 10px;
-                padding: 10px 50px 10px 20px;
+                padding: ${
+                  transaction.lender === 'Babe'
+                    ? '10px 20px'
+                    : '10px 50px 10px 20px'
+                };
                 text-align: ${
                   transaction.lender === 'Babe' ? 'center' : 'left'
                 };
@@ -74,7 +83,7 @@ const History = ({ currency, transactions, users }) => {
                 };
 
                 &::after {
-                  content: "🧐";
+                  content: ${transaction.lender === 'Babe' ? null : '"🧐"'};
                   font-size: 3.5vh;
                   position: absolute;
                   top: calc(45% - (3.5vh / 2));
@@ -85,7 +94,7 @@ const History = ({ currency, transactions, users }) => {
 
               &:hover {
                   &::after {
-                      transition: opacity 2s ease-in;
+                      transition: opacity 1s ease-in;
                       opacity: 1;
               }
               `}
@@ -109,7 +118,5 @@ const History = ({ currency, transactions, users }) => {
     </MainView>
   );
 };
-
-// if (transaction.lender = users.lead || users.partner) && isSelected
 
 export default History;

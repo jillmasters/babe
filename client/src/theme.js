@@ -57,7 +57,7 @@ const DashSummary = styled('div')`
   align-items: center;
   text-align: center;
   max-width: 80%;
-  height: 40vh;
+  height: 50vh;
 `;
 
 const DashOptions = styled('div')`
@@ -111,6 +111,18 @@ const FormButton = styled('button')`
   color: ${colors.white};
 `;
 
+const DeleteButton = styled('button')`
+  font-size: 3vh;
+  background: ${colors.white};
+  border: solid ${colors.pink} thin;
+
+  &:hover {
+    background: ${colors.pale};
+    transition: background 1s linear;
+    box-shadow: none;
+  }
+`;
+
 const FormSection = styled('div')`
   margin-bottom: 2rem;
   display: flex;
@@ -149,4 +161,5 @@ export {
   FormSlider,
   DashSummary,
   DashOptions,
+  DeleteButton,
 };

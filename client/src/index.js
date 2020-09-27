@@ -115,8 +115,8 @@ ReactDOM.render(
 
           h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins';
-            font-style: italic;
             line-height: 1.1;
+            font-weight: 400;
             text-align: center;
             color: ${colors.white};
 
@@ -128,10 +128,12 @@ ReactDOM.render(
           h1 {
             font-family: 'Contrail One';
             font-size: 7.5vh;
+            font-style: italic;
           }
 
           h3 {
             font-size: 2.5vh;
+            font-style: italic;
           }
 
           h4 {
@@ -139,7 +141,6 @@ ReactDOM.render(
             font-size: 3vh;
             margin-bottom: 1rem;
           }
-
 
           button {
             padding: 1rem;
@@ -171,7 +172,6 @@ ReactDOM.render(
               }
           }
 
-
           figure {
             font-size: 12vh;
             margin-bottom: 20px;
@@ -180,7 +180,12 @@ ReactDOM.render(
           span[role="img"]{
             padding: 0 10px;
             font-style: normal;
+          }
 
+          span[id="babify"]{
+            font-family: 'Contrail One';
+            font-style: italic;
+            letter-spacing: 0.05em;
           }
 
           time {

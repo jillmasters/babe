@@ -36,6 +36,18 @@ const addTransaction = async (req, res) => {
   }
 };
 
+const getTransaction = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const matchedTransaction = await Transaction.findOne({ _id });
+    res.send(matchedTransaction);
+    res.status(200);
+  } catch (error) {
+    console.log('---> error retrieving one document from database', error);
+    res.status(500);
+  }
+};
+
 const deleteTransaction = async (req, res) => {
   try {
     const { _id } = req.params;
@@ -73,7 +85,7 @@ const editTransaction = async (req, res) => {
     res.send(updatedTransaction);
     res.status(200);
   } catch (error) {
-    console.log('---> Error changing voting from ctrl:', error);
+    console.log('---> Error editing database', error);
     res.status(500);
   }
 };
@@ -81,6 +93,7 @@ const editTransaction = async (req, res) => {
 module.exports = {
   addTransaction,
   getHistory,
+  getTransaction,
   deleteTransaction,
   editTransaction,
 };

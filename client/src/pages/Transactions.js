@@ -13,7 +13,7 @@ import {
 
 import APIService from '../services/APIService';
 
-const Bills = ({ users, currency, setTransactions }) => {
+const Transactions = ({ users, currency, setTransactions }) => {
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [lender, setLender] = useState('');
@@ -48,6 +48,15 @@ const Bills = ({ users, currency, setTransactions }) => {
 
   return (
     <MainView>
+      <h4>
+        <span role="img" aria-label="cartwheel emoji">
+          🤸🏼
+        </span>
+        Split a bill
+        <span role="img" aria-label="cartwheel emoji">
+          🤸🏼
+        </span>
+      </h4>
       <form onSubmit={submit}>
         <FormSection>
           <FormLabel htmlFor="bill-item">What is it for?</FormLabel>
@@ -126,4 +135,4 @@ const Bills = ({ users, currency, setTransactions }) => {
   );
 };
 
-export default Bills;
+export default Transactions;
