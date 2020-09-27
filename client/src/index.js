@@ -97,7 +97,7 @@ ReactDOM.render(
             height: 100vh;
             min-height: 300px;
             background: ${colors.pale};
-            padding: 2vw 5vw 0 5vw;
+            padding: 2vh 5vw 0 5vw;
           }
 
           footer {
@@ -150,19 +150,37 @@ ReactDOM.render(
             font-style: italic;
             font-size: 3vh;
             color: ${colors.white};
+
+            &:hover {
+                box-shadow: 0 3px 2px ${colors.dark};
+              }
           }
 
           a {
             color: ${colors.white};
             text-decoration: none;
+
+            &:hover {
+                -webkit-text-stroke: 1px ${colors.white};
+                color: ${colors.dark};
+              }
+
+              &:hover[id="title"] {
+                -webkit-text-stroke: 0.25px ${colors.white};
+                color: ${colors.pink};
+              }
           }
+
 
           figure {
             font-size: 12vh;
+            margin-bottom: 20px;
           }
 
           span[role="img"]{
             padding: 0 10px;
+            font-style: normal;
+
           }
 
           time {

@@ -53,8 +53,34 @@ const deleteTransaction = async (req, res) => {
   }
 };
 
+const editTransaction = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const { lender, amount, item, date, split } = req.body;
+    const updatedTransaction = await Transaction.findOneAndUpdate(
+      { _id },
+      {
+        $set: {
+          lender: lender,
+          amount: amount,
+          item: item,
+          date: date,
+          split: split,
+        },
+      },
+      { new: true },
+    );
+    res.send(updatedTransaction);
+    res.status(200);
+  } catch (error) {
+    console.log('---> Error changing voting from ctrl:', error);
+    res.status(500);
+  }
+};
+
 module.exports = {
   addTransaction,
   getHistory,
   deleteTransaction,
+  editTransaction,
 };

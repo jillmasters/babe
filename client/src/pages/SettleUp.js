@@ -41,18 +41,20 @@ const SettleUp = ({ summary, currency, users, setTransactions }) => {
   };
   return (
     <MainViewStatic>
-      <h4>Settle Up</h4>
+      <h4>
+        <span role="img" aria-label="pointing down emoji">
+          👇
+        </span>
+        Settle Up
+        <span role="img" aria-label="pointing down emoji">
+          👇
+        </span>
+      </h4>
       <h2>
         You owe {users.partner} {currency}
         {summary.totalOwed}.
         <br />
-        <span role="img" aria-label="pointing down emoji">
-          👇
-        </span>{' '}
         Click to get even.
-        <span role="img" aria-label="pointing down emoji">
-          👇
-        </span>
       </h2>
       <form onSubmit={submit}>
         <FormSection>

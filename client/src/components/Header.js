@@ -15,7 +15,9 @@ const Header = ({ app }) => {
         `}
       >
         <h1>
-          <Link to="/">{app.name}</Link>
+          <Link to="/" id="title">
+            {app.name}
+          </Link>
         </h1>
       </section>
       <section

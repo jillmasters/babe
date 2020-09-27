@@ -4,7 +4,15 @@ import { MainView } from '../theme';
 const Login = () => {
   return (
     <MainView>
-      <h4>Login page</h4>
+      <h4>
+        <span role="img" aria-label="technologist emoji">
+          🧑‍💻
+        </span>
+        Login
+        <span role="img" aria-label="technologist emoji">
+          🧑‍💻
+        </span>
+      </h4>
     </MainView>
   );
 };

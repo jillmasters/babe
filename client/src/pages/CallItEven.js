@@ -44,7 +44,15 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
 
   return (
     <MainViewStatic>
-      <h4>Call it Even</h4>
+      <h4>
+        <span role="img" aria-label="fistbump right emoji">
+          🤜
+        </span>
+        Call it Even
+        <span role="img" aria-label="fistbump left emoji">
+          🤛
+        </span>
+      </h4>
       <h2>
         {users.partner} owes you {currency}
         {summary.totalOwed}.
@@ -63,12 +71,7 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
           ></FormInput>
         </FormSection>
         <FormSection>
-          <FormButton type="submit">
-            Wipe that debt
-            <span role="img" aria-label="handshake emoji">
-              🤝
-            </span>
-          </FormButton>
+          <FormButton type="submit">Wipe that debt</FormButton>
         </FormSection>
       </form>
     </MainViewStatic>

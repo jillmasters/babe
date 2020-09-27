@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 const colors = {
   pink: '#e63946',
+  baby: '#ffc3d0',
   white: '#f1faee',
   pale: '#a8dadc',
   mid: '#457b9d',
@@ -20,7 +21,7 @@ const MainView = styled('section')`
   margin: auto;
   border: solid ${colors.white} thick;
   border-top: none;
-  padding: 2vh 0;
+  padding-top: 2vh;
   border-radius: 0 0 50px 50px;
   background: ${colors.mid};
   overflow: scroll;
@@ -28,6 +29,7 @@ const MainView = styled('section')`
   ::-webkit-scrollbar {
     width: 0;
     background: transparent;
+  }
 `;
 
 const MainViewStatic = styled('section')`

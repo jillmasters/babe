@@ -21,7 +21,15 @@ const Settings = ({ users, setUsers, currency, setCurrency }) => {
 
   return (
     <MainViewStatic>
-      <h4>Settings</h4>
+      <h4>
+        <span role="img" aria-label="tools emoji">
+          🛠
+        </span>
+        Settings
+        <span role="img" aria-label="tools emoji">
+          🛠
+        </span>
+      </h4>
       <form onSubmit={submit}>
         <FormSection>
           <FormLabel htmlFor="user-lead">Your name:</FormLabel>
