@@ -140,6 +140,7 @@ ReactDOM.render(
             font-family: 'Contrail One';
             font-size: 3vh;
             margin-bottom: 1rem;
+            padding-top: 2vh;
           }
 
           button {

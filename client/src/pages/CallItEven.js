@@ -61,7 +61,7 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
       </h2>
       <form onSubmit={submit}>
         <FormSection>
-          <FormLabel for="wipe-description">Leave a note:</FormLabel>
+          <FormLabel htmlFor="wipe-description">Leave a note:</FormLabel>
           <FormInput
             type="text"
             name="wipe-description"

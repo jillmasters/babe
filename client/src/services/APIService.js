@@ -3,7 +3,7 @@
 const fetchRequest = (path, options) => {
   return fetch(`http://localhost:3001${path}`, options)
     .then(res => (res.status < 400 ? res : Promise.reject(res)))
-    .then(res => res.json())
+    .then(res => (res.status === 204 ? res : res.json()))
     .catch(error => console.log('---> Error fetching data from API', error));
 };
 

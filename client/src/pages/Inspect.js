@@ -39,9 +39,13 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
     APIService.editTransaction(_id, transaction)
       .then(() => APIService.getTransactions())
       .then(allTransactions => setTransactions(allTransactions))
-      .catch(() => {
-        throw Error('error editing transaction and reloading local copy');
-      });
+      .catch(error =>
+        // eslint-disable-next-line no-console
+        console.log(
+          '---> Error editing transaction and reloading local listing',
+          error,
+        ),
+      );
   };
 
   const submit = event => {
@@ -51,10 +55,23 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
     navigate('/');
   };
 
-  const deleteMe = () => {
+  const deleteFromDatabase = _id => {
     APIService.deleteTransaction(_id)
-      .then(() => navigate('/'))
-      .catch(error => console.log('---> Error deleting transaction', error)); // eslint-disable-line no-console
+      .then(() => APIService.getTransactions())
+      .then(allTransactions => setTransactions(allTransactions))
+      .catch(error =>
+        // eslint-disable-next-line no-console
+        console.log(
+          '---> Error deleting transaction and reloading local listing',
+          error,
+        ),
+      );
+  };
+
+  const deleteMe = event => {
+    event.preventDefault();
+    deleteFromDatabase(_id);
+    navigate('/');
   };
 
   return (

@@ -113,13 +113,27 @@ const FormButton = styled('button')`
 
 const DeleteButton = styled('button')`
   font-size: 3vh;
+  color: ${colors.dark};
+  padding: 1vh 3vh;
   background: ${colors.white};
   border: solid ${colors.pink} thin;
 
+  &::after {
+    content: 'Are you sure?';
+    background: ${colors.white};
+    position: relative;
+    font-size: 3vh;
+    color: ${colors.dark};
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+
   &:hover {
-    background: ${colors.pale};
-    transition: background 1s linear;
     box-shadow: none;
+    &::after {
+      transition: opacity 1s ease-in;
+      opacity: 1;
+    }
   }
 `;
 
