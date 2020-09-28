@@ -35,7 +35,7 @@ const Header = ({ app }) => {
               font-family: 'Kaushan Script';
               font-size: 4.5vh;
               line-height: 3vh;
-              padding-left: 0.5vh;
+              padding-left: 0.3vh;
               color: ${colors.pale};
             `}
           >

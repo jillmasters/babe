@@ -146,9 +146,10 @@ ReactDOM.render(
 
           h4 {
             font-family: 'Contrail One';
-            font-size: 3vh;
+            font-size: 4vh;
             margin-bottom: 1rem;
             padding-top: 2vh;
+          }
           }
 
           button {

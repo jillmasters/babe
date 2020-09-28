@@ -1,6 +1,5 @@
 /*eslint-disable-next-line no-unused-vars*/
 import React, { useState } from 'react';
-import { navigate } from '@reach/router';
 import {
   MainView,
   FormLabel,
@@ -13,6 +12,7 @@ import {
 } from '../theme';
 
 import APIService from '../services/APIService';
+import { navigate } from '@reach/router';
 
 const Transactions = ({ users, currency, setTransactions }) => {
   const [item, setItem] = useState('');
@@ -59,6 +59,9 @@ const Transactions = ({ users, currency, setTransactions }) => {
           🤸🏼
         </span>
       </h4>
+      {/* <FormSection>
+        <Lottie options={defaultOptions} height={400} width={400} />
+      </FormSection> */}
       <form onSubmit={submit}>
         <FormSection>
           <FormLabel htmlFor="bill-item">What is it for?</FormLabel>
