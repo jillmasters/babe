@@ -1,7 +1,7 @@
 import React from 'react';
 import { MainViewStatic } from '../theme';
 
-const Logout = () => {
+const Logout = ({ setIsAuthenticated }) => {
   return (
     <MainViewStatic>
       <h4>

@@ -7,9 +7,12 @@ const fetchRequest = (path, options) => {
     .catch(error => console.log('---> Error fetching data from API', error));
 };
 
-// get all events from the database, to display as list
 const getTransactions = async () => {
   return fetchRequest('/history');
+};
+
+const getOneTransaction = async _id => {
+  return fetchRequest(`/transactions/${_id}`);
 };
 
 const postTransaction = async newTransaction => {
@@ -18,10 +21,6 @@ const postTransaction = async newTransaction => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newTransaction),
   });
-};
-
-const getOneTransaction = async _id => {
-  return fetchRequest(`/transactions/${_id}`);
 };
 
 const deleteTransaction = async _id => {

@@ -12,7 +12,7 @@ router.put('/transactions/:_id', transactions.editTransaction);
 router.put('/edit/:name', transactions.editName);
 
 // USER METHODS
-router.post('/sign-up', users.create);
+router.post('/sign-up', users.signup);
 router.post('/login', users.login);
 router.get('/dashboard', authenticateMe, users.load);
 router.post('/logout', authenticateMe);

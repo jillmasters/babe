@@ -122,6 +122,7 @@ const FormButton = styled('button')`
   font-size: 1.8vh;
   line-height: 1;
   color: ${colors.white};
+  margin-bottom: 1rem;
 `;
 
 const DeleteButton = styled('button')`
@@ -154,7 +155,7 @@ const DeleteButton = styled('button')`
 `;
 
 const FormSection = styled('div')`
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

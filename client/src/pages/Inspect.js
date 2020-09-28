@@ -13,7 +13,7 @@ import {
   DeleteButton,
 } from '../theme';
 
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 const moment = require('moment');
 
 const Inspect = ({ _id, users, currency, setTransactions }) => {
@@ -24,7 +24,7 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
   const [split, setSplit] = useState('');
 
   useEffect(() => {
-    APIService.getOneTransaction(_id)
+    TransactionService.getOneTransaction(_id)
       .then(dbTransaction => {
         const { item, date, amount, lender, split } = dbTransaction;
         setItem(item);
@@ -37,8 +37,8 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
   }, [_id]);
 
   const saveTransaction = transaction => {
-    APIService.editTransaction(_id, transaction)
-      .then(() => APIService.getTransactions())
+    TransactionService.editTransaction(_id, transaction)
+      .then(() => TransactionService.getTransactions())
       .then(allTransactions => setTransactions(allTransactions))
       .catch(error =>
         // eslint-disable-next-line no-console
@@ -58,8 +58,8 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
   };
 
   const deleteFromDatabase = _id => {
-    APIService.deleteTransaction(_id)
-      .then(() => APIService.getTransactions())
+    TransactionService.deleteTransaction(_id)
+      .then(() => TransactionService.getTransactions())
       .then(allTransactions => setTransactions(allTransactions))
       .catch(error =>
         // eslint-disable-next-line no-console

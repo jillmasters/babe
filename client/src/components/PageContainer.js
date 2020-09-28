@@ -15,6 +15,7 @@ import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import SignUp from '../pages/SignUp';
 import Settings from '../pages/Settings';
+import About from '../pages/About';
 
 export default function PageContainer({
   users,
@@ -24,6 +25,7 @@ export default function PageContainer({
   currency,
   setCurrency,
   summary,
+  setIsAuthenticated,
 }) {
   return (
     <Router
@@ -72,9 +74,10 @@ export default function PageContainer({
         currency={currency}
         setTransactions={setTransactions}
       />
-      <Login path="/login" />
-      <Logout path="/logout" />
-      <SignUp path="/sign-up" />
+      <Login path="/login" setIsAuthenticated={setIsAuthenticated} />
+      <Logout path="/logout" setIsAuthenticated={setIsAuthenticated} />
+      <SignUp path="/sign-up" setIsAuthenticated={setIsAuthenticated} />
+      <About path="/about" />
       <Settings
         path="/settings"
         currency={currency}

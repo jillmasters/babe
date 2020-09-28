@@ -9,7 +9,7 @@ import {
 } from '../theme';
 
 import { navigate } from '@reach/router';
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 
 const Settings = ({
   users,
@@ -23,14 +23,14 @@ const Settings = ({
   const [tempCurrency, setTempCurrency] = useState(currency);
 
   const updateDatabase = (name, newName) => {
-    APIService.editName(name, newName).catch(error =>
+    TransactionService.editName(name, newName).catch(error =>
       // eslint-disable-next-line no-console
       console.log('---> Error editing database names', error),
     );
   };
 
   const updateLocal = () => {
-    APIService.getTransactions()
+    TransactionService.getTransactions()
       .then(allTransactions => setTransactions(allTransactions))
       .catch(error =>
         // eslint-disable-next-line no-console

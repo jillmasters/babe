@@ -7,14 +7,14 @@ import {
   FormButton,
 } from '../theme';
 
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
 const SettleUp = ({ summary, currency, users, setTransactions }) => {
   const [note, setNote] = useState('');
 
   const saveTransaction = transaction => {
-    APIService.postTransaction(transaction)
+    TransactionService.postTransaction(transaction)
       .then(newTransaction =>
         setTransactions(oldTransactions => [
           ...oldTransactions,

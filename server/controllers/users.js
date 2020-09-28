@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../model');
 const SECRET_KEY = 'supercalifragilisticexpialidocious';
 
-const create = async (req, res) => {
+const signup = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
   if (user) return res.status(409).send('User already exists');
@@ -48,4 +48,4 @@ const load = async (req, res) => {
   }
 };
 
-module.exports = { create, login, load };
+module.exports = { signup, login, load };

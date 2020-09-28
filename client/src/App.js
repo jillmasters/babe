@@ -5,20 +5,21 @@ import Head from './components/Head';
 import Header from './components/Header';
 import PageContainer from './components/PageContainer';
 import Footer from './components/Footer';
-import APIService from './services/APIService';
+import TransactionService from './services/TransactionService';
 import auth from './authentication';
 
 function App() {
   // STATE
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
+
   const [transactions, setTransactions] = useState([]);
   const [users, setUsers] = useState({ lead: 'Jill', partner: 'Sam' });
   const [currency, setCurrency] = useState('£');
 
   // LOAD DASHBOARD INFO
   useEffect(() => {
-    APIService.getTransactions()
+    TransactionService.getTransactions()
       .then(dbTransactions => setTransactions(dbTransactions))
       .catch(error => console.log('---> Error loading history', error)); // eslint-disable-line no-console
   }, []);
@@ -29,7 +30,7 @@ function App() {
     if (transaction.lender === users.lead)
       return acc + (transaction.amount * (100 - transaction.split)) / 100;
     else if (transaction.lender === users.partner)
-      return acc - (transaction.amount * (100 - transaction.split)) / 100;
+      return acc - transaction.amount * (transaction.split / 100);
     else {
       const remaining = transaction.amount * transaction.split;
       return acc - remaining;
@@ -51,8 +52,9 @@ function App() {
         setTransactions={setTransactions}
         currency={currency}
         setCurrency={setCurrency}
+        setIsAuthenticated={setIsAuthenticated}
       />
-      <Footer />
+      <Footer isAuthenticated={isAuthenticated} />
     </main>
   );
 }

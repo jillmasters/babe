@@ -11,7 +11,7 @@ import {
   SliderLabel,
 } from '../theme';
 
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
 const Transactions = ({ users, currency, setTransactions }) => {
@@ -23,7 +23,7 @@ const Transactions = ({ users, currency, setTransactions }) => {
   const [isCustomising, setIsCustomising] = useState(false);
 
   const saveTransaction = transaction => {
-    APIService.postTransaction(transaction)
+    TransactionService.postTransaction(transaction)
       .then(newTransaction =>
         setTransactions(oldTransactions => [
           ...oldTransactions,
@@ -41,10 +41,6 @@ const Transactions = ({ users, currency, setTransactions }) => {
     const addedBy = users.lead;
     const newTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
-    setItem('');
-    setAmount('');
-    setLender('');
-    setSplit(50);
     navigate('/');
   };
 
