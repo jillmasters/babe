@@ -6,13 +6,12 @@ import Header from './components/Header';
 import PageContainer from './components/PageContainer';
 import Footer from './components/Footer';
 import APIService from './services/APIService';
+import auth from './authentication';
 
 function App() {
-  // MAIN APP DATA (STATE)
-  const app = {
-    name: 'Babe',
-    description: 'Split the bill, share the love',
-  };
+  // STATE
+  const initialState = auth.isAuthenticated();
+  const [isAuthenticated, setIsAuthenticated] = useState(initialState);
   const [transactions, setTransactions] = useState([]);
   const [users, setUsers] = useState({ lead: 'Jill', partner: 'Sam' });
   const [currency, setCurrency] = useState('£');
@@ -42,8 +41,8 @@ function App() {
   // LOAD MAIN PAGE LAYOUT
   return (
     <main>
-      <Head app={app} />
-      <Header app={app} />
+      <Head />
+      <Header />
       <PageContainer
         summary={summary}
         users={users}

@@ -159,7 +159,7 @@ ReactDOM.render(
             background: ${colors.pink};
             font-family: 'Poppins';
             font-style: italic;
-            font-size: 3vh;
+            font-size: 2.5vh;
             color: ${colors.white};
 
             &:hover {

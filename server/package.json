@@ -4,8 +4,8 @@
   "description": "babe-back-end",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"*.{js,jsx}\"",
-    "lint": "eslint \"*.{js,jsx}\""
+    "format": "prettier --write \"**/*.{js,jsx}\"",
+    "lint": "eslint \"**/*.{js,jsx}\""
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,9 @@
     "mongoose": "^5.10.6",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "jsonwebtoken": "^8.5.1"
   }
 }

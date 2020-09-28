@@ -1,16 +1,20 @@
 const router = require('express').Router();
-const ctrl = require('./ctrl');
+const transactions = require('./controllers/transactions');
+const users = require('./controllers/users');
+const authenticateMe = require('./middleware/authentication');
 
-router.get('/history', ctrl.getHistory);
+// TRANSACTION METHODS
+router.get('/history', transactions.getHistory);
+router.post('/transactions', transactions.addTransaction);
+router.get('/transactions/:_id', transactions.getTransaction);
+router.delete('/transactions/:_id', transactions.deleteTransaction);
+router.put('/transactions/:_id', transactions.editTransaction);
+router.put('/edit/:name', transactions.editName);
 
-router.post('/transactions', ctrl.addTransaction);
-
-router.get('/transactions/:_id', ctrl.getTransaction);
-
-router.delete('/transactions/:_id', ctrl.deleteTransaction);
-
-router.put('/transactions/:_id', ctrl.editTransaction);
-
-router.put('/edit/:name', ctrl.editName);
+// USER METHODS
+router.post('/sign-up', users.create);
+router.post('/login', users.login);
+router.get('/dashboard', authenticateMe, users.load);
+router.post('/logout', authenticateMe);
 
 module.exports = router;

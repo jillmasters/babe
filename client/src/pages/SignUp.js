@@ -1,14 +1,14 @@
 import React from 'react';
 import { MainViewStatic } from '../theme';
 
-const Login = () => {
+const SignUp = () => {
   return (
     <MainViewStatic>
       <h4>
         <span role="img" aria-label="technologist emoji">
           🧑‍💻
         </span>
-        Login
+        Sign Up
         <span role="img" aria-label="technologist emoji">
           🧑‍💻
         </span>
@@ -17,4 +17,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

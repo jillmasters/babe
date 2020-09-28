@@ -8,8 +8,8 @@ mongoose.connect('mongodb://localhost:27017/babe', {
 });
 
 const TransactionSchema = new mongoose.Schema({
-  lender: { type: String, required: true }, //should be ID
-  addedBy: { type: String, required: true }, //should be ID
+  lender: { type: String, required: true }, //should be username
+  addedBy: { type: String, required: true }, //should be username
   amount: { type: Number, required: true },
   item: { type: String, required: true },
   date: { type: Date, required: true },
@@ -19,10 +19,11 @@ const TransactionSchema = new mongoose.Schema({
 const Transaction = mongoose.model('Transaction', TransactionSchema);
 
 const UserSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  password: { type: String, required: true },
   name: { type: String, required: true },
+  partner: { type: String, required: true },
   currency: { type: String, required: true },
-  user_id: { type: Number, required: true },
-  partner_id: { type: Number, required: true },
 });
 
 const User = mongoose.model('User', UserSchema);

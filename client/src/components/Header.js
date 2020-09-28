@@ -5,7 +5,7 @@ import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
 import { colors } from '../theme';
 
-const Header = ({ app }) => {
+const Header = () => {
   return (
     <header>
       <section
@@ -16,7 +16,7 @@ const Header = ({ app }) => {
       >
         <h1>
           <Link to="/" id="title">
-            {app.name}
+            Babe
           </Link>
         </h1>
       </section>
