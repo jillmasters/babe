@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import { jsx, css } from '@emotion/core';
+import { colors } from '../theme';
 
 const Header = ({ app }) => {
   return (
@@ -11,7 +12,6 @@ const Header = ({ app }) => {
         css={css`
           flex: 1;
           max-width: 25%;
-          text-align: center;
         `}
       >
         <h1>
@@ -24,10 +24,24 @@ const Header = ({ app }) => {
         css={css`
           flex: 3;
           max-width: 45%;
-          text-align: center;
         `}
       >
-        <h3>{app.description}</h3>
+        <h3>
+          Split the bill,
+          <br />
+          share the
+          <span
+            css={css`
+              font-family: 'Kaushan Script';
+              font-size: 4.5vh;
+              line-height: 3vh;
+              padding-left: 0.5vh;
+              color: ${colors.pale};
+            `}
+          >
+            love
+          </span>
+        </h3>
       </section>
     </header>
   );

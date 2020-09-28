@@ -7,16 +7,19 @@ import {
   FormLabel,
 } from '../theme';
 
+import { navigate } from '@reach/router';
+
 const Settings = ({ users, setUsers, currency, setCurrency }) => {
-  const [tempUser, setTempUser] = useState(users.lead || '');
-  const [tempPartner, setTempPartner] = useState(users.partner || '');
+  const [tempUser, setTempUser] = useState(users.lead);
+  const [tempPartner, setTempPartner] = useState(users.partner);
   const [tempCurrency, setTempCurrency] = useState(currency);
 
-  const submit = () => {
-    // THIS IS NOT QUITE RIGHT
-    setUsers({ lead: tempUser, partner: tempPartner });
+  const submit = event => {
+    event.preventDefault();
+    const newUsers = { lead: tempUser, partner: tempPartner };
+    setUsers(newUsers);
     setCurrency(tempCurrency);
-    //EDIT DB ENTRIES??
+    navigate('/');
   };
 
   return (

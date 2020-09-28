@@ -117,21 +117,24 @@ const DeleteButton = styled('button')`
   padding: 1vh 3vh;
   background: ${colors.white};
   border: solid ${colors.pink} thin;
+  position: relative;
 
   &::after {
-    content: 'Are you sure?';
+    content: '🧨';
     background: ${colors.white};
-    position: relative;
+    font-style: normal;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    padding: 0 20%;
     font-size: 3vh;
     color: ${colors.dark};
     opacity: 0;
-    transition: opacity 0.5s ease-out;
   }
 
   &:hover {
     box-shadow: none;
     &::after {
-      transition: opacity 1s ease-in;
       opacity: 1;
     }
   }

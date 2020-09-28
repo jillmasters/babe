@@ -33,7 +33,7 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
         setSplit(split);
       })
       .catch(error => console.log('---> Error loading transaction', error)); // eslint-disable-line no-console
-  }, []);
+  }, [_id]);
 
   const saveTransaction = transaction => {
     APIService.editTransaction(_id, transaction)
