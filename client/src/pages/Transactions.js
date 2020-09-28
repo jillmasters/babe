@@ -9,6 +9,7 @@ import {
   FormButton,
   FormSection,
   FormSlider,
+  SliderLabel,
 } from '../theme';
 
 import APIService from '../services/APIService';
@@ -37,7 +38,8 @@ const Transactions = ({ users, currency, setTransactions }) => {
   const submit = event => {
     event.preventDefault();
     const date = new Date();
-    const newTransaction = { item, amount, date, lender, split };
+    const addedBy = users.lead;
+    const newTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
     setItem('');
     setAmount('');
@@ -114,9 +116,9 @@ const Transactions = ({ users, currency, setTransactions }) => {
         </FormSection>
         {isCustomising && (
           <FormSection>
-            <FormLabel htmlFor="bill-proportion">
+            <SliderLabel htmlFor="bill-proportion">
               {split}% mine, {100 - split}% {users.partner}&apos;s
-            </FormLabel>
+            </SliderLabel>
             <FormSlider
               type="range"
               name="bill-proportion"

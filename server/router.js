@@ -11,4 +11,6 @@ router.delete('/transactions/:_id', ctrl.deleteTransaction);
 
 router.put('/transactions/:_id', ctrl.editTransaction);
 
+router.put('/edit/:name', ctrl.editName);
+
 module.exports = router;

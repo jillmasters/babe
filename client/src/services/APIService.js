@@ -36,10 +36,19 @@ const editTransaction = async (_id, editedTransaction) => {
   });
 };
 
+const editName = async (name, newName) => {
+  return fetchRequest(`/edit/${name}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newName),
+  });
+};
+
 module.exports = {
   getTransactions,
   postTransaction,
   getOneTransaction,
   deleteTransaction,
   editTransaction,
+  editName,
 };

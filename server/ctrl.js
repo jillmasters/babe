@@ -14,14 +14,15 @@ const getHistory = async (req, res) => {
 
 const addTransaction = async (req, res) => {
   try {
-    const { lender, amount, item, date, split } = req.body;
-    if (lender && amount && item && date && split) {
+    const { lender, amount, item, date, split, addedBy } = req.body;
+    if (lender && amount && item && date && split && addedBy) {
       const newTransaction = new Transaction({
         lender,
         amount,
         item,
         date,
         split,
+        addedBy,
       });
       const savedTransaction = await Transaction.create(newTransaction);
       res.send(savedTransaction);
@@ -68,7 +69,7 @@ const deleteTransaction = async (req, res) => {
 const editTransaction = async (req, res) => {
   try {
     const { _id } = req.params;
-    const { lender, amount, item, date, split } = req.body;
+    const { lender, amount, item, date, split, addedBy } = req.body;
     const updatedTransaction = await Transaction.findOneAndUpdate(
       { _id },
       {
@@ -78,6 +79,7 @@ const editTransaction = async (req, res) => {
           item: item,
           date: date,
           split: split,
+          addedBy: addedBy,
         },
       },
       { new: true },
@@ -90,10 +92,26 @@ const editTransaction = async (req, res) => {
   }
 };
 
+const editName = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const { newName } = req.body;
+    await Transaction.updateMany(
+      { lender: name },
+      { $set: { lender: newName } },
+    );
+    res.status(204);
+  } catch (error) {
+    console.log('---> Error editing multiple entries in database', error);
+    res.status(500);
+  }
+};
+
 module.exports = {
   addTransaction,
   getHistory,
   getTransaction,
   deleteTransaction,
   editTransaction,
+  editName,
 };

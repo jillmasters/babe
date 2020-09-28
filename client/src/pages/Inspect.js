@@ -9,6 +9,7 @@ import {
   FormButton,
   FormSection,
   FormSlider,
+  SliderLabel,
   DeleteButton,
 } from '../theme';
 
@@ -50,7 +51,8 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
 
   const submit = event => {
     event.preventDefault();
-    const editedTransaction = { item, amount, date, lender, split };
+    const addedBy = users.lead;
+    const editedTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(editedTransaction);
     navigate('/');
   };
@@ -139,9 +141,9 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>
         <FormSection>
-          <FormLabel htmlFor="bill-proportion">
+          <SliderLabel htmlFor="bill-proportion">
             {split}% mine, {100 - split}% {users.partner}&apos;s
-          </FormLabel>
+          </SliderLabel>
           <FormSlider
             type="range"
             name="bill-proportion"

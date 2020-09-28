@@ -73,6 +73,18 @@ const FormLabel = styled('label')`
   padding: 1.2em;
   font-size: 1.8vh;
   color: ${colors.white};
+
+  span {
+    font-size: 5vh;
+  }
+`;
+
+const SliderLabel = styled('label')`
+  width: 100%;
+  text-align: center;
+  padding: 0 1.2em 1.2em 1.2em;
+  font-size: 1.8vh;
+  color: ${colors.white};
 `;
 
 const FormInput = styled('input')`
@@ -93,6 +105,7 @@ const FormRadio = styled('input')`
   appearance: none;
   display: inline-block;
   padding: 0.25em;
+  margin-left: 1.2em;
   border: 2px solid ${colors.white};
   border-radius: 50%;
   background-color: ${colors.white};
@@ -176,6 +189,7 @@ export {
   FormButton,
   FormSection,
   FormSlider,
+  SliderLabel,
   DashSummary,
   DashOptions,
   DeleteButton,

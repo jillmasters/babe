@@ -77,6 +77,7 @@ export default function PageContainer({
         setCurrency={setCurrency}
         users={users}
         setUsers={setUsers}
+        setTransactions={setTransactions}
       />
     </Router>
   );
