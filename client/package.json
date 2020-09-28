@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"**/*.{js,jsx,json}\"",
+    "format": "prettier --write \"**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\""
   },
   "eslintConfig": {

@@ -4,6 +4,7 @@ import {
   MainView,
   FormSection,
   FormLabel,
+  RadioLabel,
   FormInput,
   FormButton,
   FormRadio,
@@ -54,12 +55,12 @@ const SignUp = ({ setIsAuthenticated }) => {
   return (
     <MainView>
       <h4>
-        <span role="img" aria-label="technologist emoji">
-          🧑‍💻
+        <span role="img" aria-label="pencil and paper emoji">
+          📝
         </span>
         Sign Up
-        <span role="img" aria-label="technologist emoji">
-          🧑‍💻
+        <span role="img" aria-label="pencil and paper emoji">
+          📝
         </span>
       </h4>
       <form onSubmit={handleSubmit}>
@@ -85,17 +86,17 @@ const SignUp = ({ setIsAuthenticated }) => {
         </FormSection>
         <FormSection onChange={handleChange}>
           <FormRadio type="radio" name="currency" value="£" required />
-          <FormLabel htmlFor="currency">
+          <RadioLabel htmlFor="currency">
             <span role="img" aria-label="pounds emoji">
               💷
             </span>
-          </FormLabel>
+          </RadioLabel>
           <FormRadio type="radio" name="currency" value="$" required />
-          <FormLabel htmlFor="currency">
+          <RadioLabel htmlFor="currency">
             <span role="img" aria-label="dollars emoji">
               💵
             </span>
-          </FormLabel>
+          </RadioLabel>
         </FormSection>
         <FormSection>
           <FormLabel htmlFor="name">Your name:</FormLabel>
@@ -118,16 +119,16 @@ const SignUp = ({ setIsAuthenticated }) => {
           />
         </FormSection>
         <FormSection>
-          <FormLabel htmlFor="partner-email">Partner&apos;s email:</FormLabel>
+          <FormLabel htmlFor="partnerEmail">Partner&apos;s email:</FormLabel>
           <FormInput
             type="text"
-            name="partner-email"
+            name="partnerEmail"
             value={state.partnerEmail}
             onChange={handleChange}
             required
           />
         </FormSection>
-        <FormButton type="submit">Sign me up</FormButton>
+        <FormButton type="submit">Let&apos;s get started</FormButton>
       </form>
     </MainView>
   );

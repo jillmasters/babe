@@ -150,6 +150,9 @@ ReactDOM.render(
             margin-bottom: 1rem;
             padding-top: 2vh;
           }
+
+          form {
+            width: 80%;
           }
 
           button {

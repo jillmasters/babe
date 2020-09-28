@@ -6,6 +6,7 @@ import {
   FormButton,
   FormLabel,
   FormRadio,
+  RadioLabel,
 } from '../theme';
 
 import { navigate } from '@reach/router';
@@ -93,11 +94,11 @@ const Settings = ({
             required
             defaultChecked={currency === '£' ? 'true' : null}
           />
-          <FormLabel htmlFor="currency">
+          <RadioLabel htmlFor="currency">
             <span role="img" aria-label="pounds emoji">
               💷
             </span>
-          </FormLabel>
+          </RadioLabel>
           <FormRadio
             type="radio"
             name="currency"
@@ -105,11 +106,11 @@ const Settings = ({
             required
             defaultChecked={currency === '$' ? 'true' : null}
           />
-          <FormLabel htmlFor="currency">
+          <RadioLabel htmlFor="currency">
             <span role="img" aria-label="dollars emoji">
               💵
             </span>
-          </FormLabel>
+          </RadioLabel>
         </FormSection>
         <FormSection>
           <FormButton type="submit">Save my preferences</FormButton>

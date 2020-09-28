@@ -7,7 +7,10 @@ const SECRET_KEY = 'supercalifragilisticexpialidocious';
 const signup = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
-  if (user) return res.status(409).send('User already exists');
+  if (user)
+    return res
+      .status(409)
+      .send({ error: '409', message: 'User already exists' });
   const hash = await bcrypt.hash(password, 10);
   const newUser = new User({ ...req.body, password: hash });
   try {
@@ -16,8 +19,8 @@ const signup = async (req, res) => {
     res.status(201);
     res.send({ accessToken });
   } catch (error) {
-    res.status(400);
-    res.send({ error, message: 'Could not create user' });
+    res.status(500);
+    res.send({ error: '500', message: 'Could not create user' });
   }
 };
 
@@ -32,7 +35,7 @@ const login = async (req, res) => {
     res.send({ accessToken });
   } catch (error) {
     res.status(401);
-    res.send('Username or password is incorrect');
+    res.send({ error: '401', message: 'Username or password is incorrect' });
   }
 };
 
@@ -44,7 +47,7 @@ const load = async (req, res) => {
     res.send(userDetails);
   } catch {
     res.status(404);
-    res.send('Account not found');
+    res.send({ error: '404', message: 'Account not found' });
   }
 };
 

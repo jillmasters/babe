@@ -73,6 +73,11 @@ const FormLabel = styled('label')`
   padding: 1.2em;
   font-size: 1.8vh;
   color: ${colors.white};
+`;
+
+const RadioLabel = styled('label')`
+  padding: 0 1.2em;
+  color: ${colors.white};
 
   span {
     font-size: 5vh;
@@ -122,7 +127,7 @@ const FormButton = styled('button')`
   font-size: 1.8vh;
   line-height: 1;
   color: ${colors.white};
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const DeleteButton = styled('button')`
@@ -187,6 +192,7 @@ export {
   FormLabel,
   FormInput,
   FormRadio,
+  RadioLabel,
   FormButton,
   FormSection,
   FormSlider,
