@@ -52,6 +52,7 @@ function App() {
         setTransactions={setTransactions}
         currency={currency}
         setCurrency={setCurrency}
+        isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
       />
       <Footer isAuthenticated={isAuthenticated} />

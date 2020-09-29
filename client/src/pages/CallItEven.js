@@ -49,7 +49,7 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
         <span role="img" aria-label="fistbump right emoji">
           🤜
         </span>
-        Call it Even
+        Call it even
         <span role="img" aria-label="fistbump left emoji">
           🤛
         </span>

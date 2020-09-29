@@ -46,7 +46,7 @@ const SettleUp = ({ summary, currency, users, setTransactions }) => {
         <span role="img" aria-label="credit card emoji">
           💳
         </span>
-        Settle Up
+        Settle up
         <span role="img" aria-label="credit card emoji">
           💳
         </span>

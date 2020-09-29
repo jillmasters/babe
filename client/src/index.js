@@ -149,7 +149,7 @@ ReactDOM.render(
           }
 
           h4 {
-            font-family: 'Contrail One';
+            font-family: 'Kaushan Script';
             font-size: 4vh;
             margin-bottom: 1rem;
             padding-top: 2vh;
@@ -162,19 +162,23 @@ ReactDOM.render(
             line-height: 1.4;
           }
 
+          h6 {
+            font-size: 2.5vh;
+          }
+
           form {
-            width: 70%;
+            width: 75%;
           }
 
           button {
             padding: 1rem;
-            height: 10vh;
-            width: 35vw;
+            height: 7.5vh;
+            width: auto;
+            min-width: 35vw;
             border: solid thin ${colors.white};
             border-radius: 50px;
             background: ${colors.pink};
             font-family: 'Poppins';
-            font-style: italic;
             font-size: 2.5vh;
             color: ${colors.white};
 
@@ -211,7 +215,8 @@ ReactDOM.render(
           span[id="babify"]{
             font-family: 'Contrail One';
             font-style: italic;
-            letter-spacing: 0.05em;
+            font-size: 1.1em;
+            margin-right: 5px;
           }
 
           time {

@@ -56,7 +56,7 @@ const SignUp = ({ setIsAuthenticated }) => {
         <span role="img" aria-label="wave emoji">
           👋
         </span>
-        Sign Up
+        Sign up
         <span role="img" aria-label="wave emoji">
           👋
         </span>
