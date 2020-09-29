@@ -33,18 +33,18 @@ const About = () => {
         <br />
         <Lottie options={pals} height={200} width={200} />
         <br />
-        <h2> It's for folks with shared lives and sole bank accounts.</h2>
+        <h2> It&apos;s for folks with shared lives and sole bank accounts.</h2>
         <br />
 
         <h5>
           Users get a simple balance, saying which person is owed money overall.
         </h5>
         <h5>
-          You can add new, customised bills, view your transaction history,
-          'call it even', or settle up.
+          You can add new, customised bills, view your transaction history, call
+          it even, or settle up.
         </h5>
         <h5>
-          There's no fuss, no finicky details, and no direct requests for
+          There&apos;s no fuss, no finicky details, and no direct requests for
           repayment. So you can share your life without invoicing the people you
           love.
         </h5>

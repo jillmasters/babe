@@ -38,7 +38,7 @@ const Transactions = ({ users, currency, setTransactions }) => {
   const submit = event => {
     event.preventDefault();
     const date = new Date();
-    const addedBy = users.lead;
+    const addedBy = users.leadEmail;
     const newTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
     navigate('/');
@@ -55,9 +55,6 @@ const Transactions = ({ users, currency, setTransactions }) => {
           🤸🏼
         </span>
       </h4>
-      {/* <FormSection>
-        <Lottie options={defaultOptions} height={400} width={400} />
-      </FormSection> */}
       <form onSubmit={submit}>
         <FormSection>
           <FormLabel htmlFor="bill-item">What is it for?</FormLabel>
@@ -88,11 +85,15 @@ const Transactions = ({ users, currency, setTransactions }) => {
           <FormRadio
             type="radio"
             name="bill-lender"
-            value={users.lead}
+            value={users.leadEmail}
             required
           />
           <FormLabel htmlFor="bill-lender">I paid</FormLabel>
-          <FormRadio type="radio" name="bill-lender" value={users.partner} />
+          <FormRadio
+            type="radio"
+            name="bill-lender"
+            value={users.partnerEmail}
+          />
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>
         <FormSection>

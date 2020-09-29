@@ -8,13 +8,11 @@ const signup = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
   if (user)
-    return res
-      .status(409)
-      .send({
-        error: '409',
-        message:
-          'There is an account already registered with this email. Please use a different email address or log in.',
-      });
+    return res.status(409).send({
+      error: '409',
+      message:
+        'There is an account already registered with this email. Please use a different email address or log in.',
+    });
   const hash = await bcrypt.hash(password, 10);
   const newUser = new User({ ...req.body, password: hash });
   try {
@@ -46,10 +44,10 @@ const login = async (req, res) => {
   }
 };
 
-const load = async (req, res) => {
+const loadUserDetails = async (req, res) => {
   try {
-    const { name, partner, currency } = req.user;
-    const userDetails = { name, partner, currency };
+    const { _id, email, name, partner, partnerEmail, currency } = req.user;
+    const userDetails = { _id, email, name, partner, partnerEmail, currency };
     res.status(201);
     res.send(userDetails);
   } catch {
@@ -58,4 +56,4 @@ const load = async (req, res) => {
   }
 };
 
-module.exports = { signup, login, load };
+module.exports = { signup, login, loadUserDetails };

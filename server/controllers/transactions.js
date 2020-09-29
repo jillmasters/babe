@@ -1,9 +1,14 @@
 /* eslint no-console: 0 */
-const { Transaction } = require('../model');
+const { Transaction, User } = require('../model');
 
 const getHistory = async (req, res) => {
   try {
-    const allTransactions = await Transaction.find();
+    const { _id } = req.params;
+    const user = await User.findOne({ _id });
+    const { email, partnerEmail } = user;
+    const allTransactions = await Transaction.find({
+      $or: [{ addedBy: email }, { addedBy: partnerEmail }],
+    });
     res.send(allTransactions);
     res.status(200);
   } catch (error) {

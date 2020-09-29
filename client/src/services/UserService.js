@@ -27,7 +27,7 @@ const login = user => {
   });
 };
 
-const load = accessToken => {
+const loadUserDetails = accessToken => {
   return fetchRequest('/dashboard', {
     method: 'GET',
     credentials: 'include',
@@ -43,4 +43,4 @@ const logout = tokenName => {
   localStorage.removeItem(tokenName);
 };
 
-module.exports = { signup, login, load, logout };
+module.exports = { signup, login, loadUserDetails, logout };

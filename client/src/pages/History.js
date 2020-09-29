@@ -67,19 +67,21 @@ const History = ({ currency, transactions, users }) => {
                 color: ${
                   transaction.lender === 'Babe'
                     ? colors.mid
-                    : transaction.lender === users.lead
+                    : transaction.lender === users.leadEmail
                     ? colors.dark
                     : colors.white
                 };
                 background: ${
                   transaction.lender === 'Babe'
                     ? colors.pale
-                    : transaction.lender === users.lead
+                    : transaction.lender === users.leadEmail
                     ? colors.white
                     : colors.dark
                 };
                 align-self: ${
-                  transaction.lender === users.lead ? 'flex-end' : 'flex-start'
+                  transaction.lender === users.leadEmail
+                    ? 'flex-end'
+                    : 'flex-start'
                 };
 
                 &::after {

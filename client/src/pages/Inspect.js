@@ -38,7 +38,7 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
 
   const saveTransaction = transaction => {
     TransactionService.editTransaction(_id, transaction)
-      .then(() => TransactionService.getTransactions())
+      .then(() => TransactionService.getTransactions(users._id))
       .then(allTransactions => setTransactions(allTransactions))
       .catch(error =>
         // eslint-disable-next-line no-console
@@ -51,7 +51,7 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
 
   const submit = event => {
     event.preventDefault();
-    const addedBy = users.lead;
+    const addedBy = users.leadEmail;
     const editedTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(editedTransaction);
     navigate('/');
@@ -59,7 +59,7 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
 
   const deleteFromDatabase = _id => {
     TransactionService.deleteTransaction(_id)
-      .then(() => TransactionService.getTransactions())
+      .then(() => TransactionService.getTransactions(users._id))
       .then(allTransactions => setTransactions(allTransactions))
       .catch(error =>
         // eslint-disable-next-line no-console
@@ -126,17 +126,17 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
           <FormRadio
             type="radio"
             name="bill-lender"
-            value={users.lead}
+            value={users.leadEmail}
             required
-            defaultChecked={lender === users.lead ? 'true' : null}
+            defaultChecked={lender === users.leadEmail ? 'true' : null}
           />
           <FormLabel htmlFor="bill-lender">I paid</FormLabel>
           <FormRadio
             type="radio"
             name="bill-lender"
-            value={users.partner}
+            value={users.partnerEmail}
             required
-            defaultChecked={lender === users.partner ? 'true' : null}
+            defaultChecked={lender === users.partnerEmail ? 'true' : null}
           />
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>

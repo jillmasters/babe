@@ -36,7 +36,7 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
       date: new Date(),
       lender: 'Babe',
       split: 1,
-      addedBy: users.lead,
+      addedBy: users.leadEmail,
     };
     saveTransaction(newTransaction);
     setNote('');
@@ -78,7 +78,5 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
     </MainViewStatic>
   );
 };
-
-// SOMETHING BUGGY HAPPENING IN THE REDIRECT (TODO!)
 
 export default CallItEven;

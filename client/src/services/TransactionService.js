@@ -7,8 +7,8 @@ const fetchRequest = (path, options) => {
     .catch(error => console.log('---> Error fetching data from API', error));
 };
 
-const getTransactions = async () => {
-  return fetchRequest('/history');
+const getTransactions = async _id => {
+  return fetchRequest(`/history/${_id}`);
 };
 
 const getOneTransaction = async _id => {

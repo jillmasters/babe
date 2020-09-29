@@ -34,7 +34,7 @@ const SettleUp = ({ summary, currency, users, setTransactions }) => {
       date: new Date(),
       lender: 'Babe',
       split: -1,
-      addedBy: users.lead,
+      addedBy: users.leadEmail,
     };
     saveTransaction(newTransaction);
     setNote('');
