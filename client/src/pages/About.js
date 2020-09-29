@@ -1,8 +1,5 @@
-/** @jsx jsx */
-/*eslint-disable-next-line no-unused-vars*/
 import React from 'react';
 import { MainView, AboutPage } from '../theme';
-import { jsx, css } from '@emotion/core';
 
 import Lottie from 'react-lottie';
 import mates from '../animations/mates.json';

@@ -163,11 +163,13 @@ ReactDOM.render(
           }
 
           form {
-            width: 80%;
+            width: 70%;
           }
 
           button {
             padding: 1rem;
+            height: 10vh;
+            width: 35vw;
             border: solid thin ${colors.white};
             border-radius: 50px;
             background: ${colors.pink};

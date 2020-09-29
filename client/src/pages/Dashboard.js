@@ -10,7 +10,7 @@ import piggyBank from '../animations/piggy-bank.json';
 import confetti from '../animations/confetti.json';
 
 const pig = {
-  loop: true,
+  loop: false,
   autoplay: true,
   animationData: piggyBank,
   rendererSettings: {

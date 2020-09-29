@@ -40,9 +40,7 @@ const SignUp = ({ setIsAuthenticated }) => {
     const result = await UserService.signup(newUser);
 
     if (result.error) {
-      alert(
-        `There is already a Babe account associated with ${email}. Please re-register with another email.`,
-      );
+      alert(`${result.message}`);
       setState(initialState);
     } else {
       const { accessToken } = result;
@@ -55,14 +53,15 @@ const SignUp = ({ setIsAuthenticated }) => {
   return (
     <MainView>
       <h4>
-        <span role="img" aria-label="pencil and paper emoji">
-          📝
+        <span role="img" aria-label="wave emoji">
+          👋
         </span>
         Sign Up
-        <span role="img" aria-label="pencil and paper emoji">
-          📝
+        <span role="img" aria-label="wave emoji">
+          👋
         </span>
       </h4>
+      <br />
       <form onSubmit={handleSubmit}>
         <FormSection>
           <FormLabel htmlFor="email">Email:</FormLabel>

@@ -10,7 +10,11 @@ const signup = async (req, res) => {
   if (user)
     return res
       .status(409)
-      .send({ error: '409', message: 'User already exists' });
+      .send({
+        error: '409',
+        message:
+          'There is an account already registered with this email. Please use a different email address or log in.',
+      });
   const hash = await bcrypt.hash(password, 10);
   const newUser = new User({ ...req.body, password: hash });
   try {
@@ -20,7 +24,7 @@ const signup = async (req, res) => {
     res.send({ accessToken });
   } catch (error) {
     res.status(500);
-    res.send({ error: '500', message: 'Could not create user' });
+    res.send({ error: '500', message: 'Server error. Could not create user.' });
   }
 };
 
@@ -35,7 +39,10 @@ const login = async (req, res) => {
     res.send({ accessToken });
   } catch (error) {
     res.status(401);
-    res.send({ error: '401', message: 'Email or password is incorrect' });
+    res.send({
+      error: '401',
+      message: 'Your email or password is incorrect. Please try again.',
+    });
   }
 };
 
@@ -47,7 +54,7 @@ const load = async (req, res) => {
     res.send(userDetails);
   } catch {
     res.status(404);
-    res.send({ error: '404', message: 'Account not found' });
+    res.send({ error: '404', message: 'Account not found.' });
   }
 };
 
