@@ -69,6 +69,17 @@ const DashOptions = styled('div')`
   justify-content: space-evenly;
 `;
 
+const AboutPage = styled('div')`
+  flex: 1 1 auto;
+  font-size: 2vh;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  max-width: 80%;
+`;
+
 const FormLabel = styled('label')`
   padding: 1.2em;
   font-size: 1.8vh;
@@ -200,4 +211,5 @@ export {
   DashSummary,
   DashOptions,
   DeleteButton,
+  AboutPage,
 };

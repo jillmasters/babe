@@ -8,8 +8,8 @@ mongoose.connect('mongodb://localhost:27017/babe', {
 });
 
 const TransactionSchema = new mongoose.Schema({
-  lender: { type: String, required: true }, //should be username
-  addedBy: { type: String, required: true }, //should be username
+  lender: { type: String, required: true }, //should be email
+  addedBy: { type: String, required: true }, //should be email
   amount: { type: Number, required: true },
   item: { type: String, required: true },
   date: { type: Date, required: true },

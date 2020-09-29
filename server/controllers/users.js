@@ -35,7 +35,7 @@ const login = async (req, res) => {
     res.send({ accessToken });
   } catch (error) {
     res.status(401);
-    res.send({ error: '401', message: 'Username or password is incorrect' });
+    res.send({ error: '401', message: 'Email or password is incorrect' });
   }
 };
 

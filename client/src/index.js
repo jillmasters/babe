@@ -109,16 +109,20 @@ ReactDOM.render(
           }
 
           footer {
+            z-index: 10;
             height: 10vh;
+            min-height: 2.5vh;
             width: 100vw;
-            padding: 40px;
+            padding: 0.5vh 2vw;
             border-top: solid ${colors.white} thick;
-            flex: 0 1 auto;
+            margin-top: 2vh;
+            flex: 1 1 auto;
             display: flex;
             align-items: center;
             justify-content: space-evenly;
             color: ${colors.white};
             background:${colors.dark};
+            font-size:
           }
 
           h1, h2, h3, h4, h5, h6 {
@@ -149,6 +153,13 @@ ReactDOM.render(
             font-size: 4vh;
             margin-bottom: 1rem;
             padding-top: 2vh;
+          }
+
+          h5 {
+            padding: 1vh 0;
+            font-size: 2vh;
+            font-weight: 200;
+            line-height: 1.4;
           }
 
           form {
