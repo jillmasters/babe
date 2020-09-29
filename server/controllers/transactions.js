@@ -97,26 +97,10 @@ const editTransaction = async (req, res) => {
   }
 };
 
-const editName = async (req, res) => {
-  try {
-    const { name } = req.params;
-    const { newName } = req.body;
-    await Transaction.updateMany(
-      { lender: name },
-      { $set: { lender: newName } },
-    );
-    res.status(204);
-  } catch (error) {
-    console.log('---> Error editing multiple entries in database', error);
-    res.status(500);
-  }
-};
-
 module.exports = {
   addTransaction,
   getHistory,
   getTransaction,
   deleteTransaction,
   editTransaction,
-  editName,
 };

@@ -37,16 +37,17 @@ const SignUp = ({ setIsAuthenticated }) => {
     event.preventDefault();
     const { email, password, name, partner, currency, partnerEmail } = state;
     const newUser = { email, password, name, partner, partnerEmail, currency };
-    const result = await UserService.signup(newUser);
-
-    if (result.error) {
-      alert(`${result.message}`);
-      setState(initialState);
-    } else {
+    try {
+      const result = await UserService.signup(newUser);
       const { accessToken } = result;
       localStorage.setItem('accessToken', accessToken);
       setIsAuthenticated(true);
       authentication.login(() => navigate('/', { replace: true }));
+    } catch (error) {
+      alert(
+        `There is an account already registered with ${email}. Please use a different email address or log in.`,
+      );
+      setState(initialState);
     }
   };
 

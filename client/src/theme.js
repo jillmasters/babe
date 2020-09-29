@@ -63,6 +63,7 @@ const DashSummary = styled('div')`
 const DashOptions = styled('div')`
   flex: 1 1 auto;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 20vh;
   align-items: center;
@@ -138,11 +139,13 @@ const FormButton = styled('button')`
   font-size: 1.8vh;
   line-height: 1;
   color: ${colors.white};
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const DeleteButton = styled('button')`
   font-size: 3vh;
+  width: 100%;
   color: ${colors.dark};
   padding: 1vh 3vh;
   background: ${colors.white};
@@ -154,8 +157,8 @@ const DeleteButton = styled('button')`
     background: ${colors.white};
     font-style: normal;
     position: absolute;
-    top: 15%;
-    left: 15%;
+    top: 18%;
+    left: 27%;
     padding: 0 20%;
     font-size: 3vh;
     color: ${colors.dark};

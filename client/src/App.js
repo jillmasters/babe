@@ -62,14 +62,15 @@ function App() {
   // LOAD DASHBOARD INFO
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    retrieveUserInfo(accessToken);
+    if (accessToken) retrieveUserInfo(accessToken);
     if (users._id) {
+      setIsAuthenticated(true);
       TransactionService.getTransactions(users._id)
         .then(dbTransactions => setTransactions(dbTransactions))
         .catch(error => console.log('---> Error loading user history', error)); // eslint-disable-line no-console
       calculateSummary();
     }
-  }, []);
+  }, [users._id, transactions.length]); //eslint-disable-line react-hooks/exhaustive-deps
 
   // LOAD MAIN PAGE LAYOUT
   return (

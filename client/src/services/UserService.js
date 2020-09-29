@@ -43,4 +43,12 @@ const logout = tokenName => {
   localStorage.removeItem(tokenName);
 };
 
-module.exports = { signup, login, loadUserDetails, logout };
+const editUserDetails = async (_id, field, value) => {
+  return fetchRequest(`/${_id}/${field}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(value),
+  });
+};
+
+module.exports = { signup, login, loadUserDetails, logout, editUserDetails };

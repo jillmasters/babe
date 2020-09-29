@@ -6,12 +6,12 @@ import UserService from '../services/UserService';
 import authentication from '../authentication';
 
 import Lottie from 'react-lottie';
-import waving from '../animations/waving.json';
+import mates from '../animations/mates.json';
 
 const cya = {
   loop: true,
   autoplay: true,
-  animationData: waving,
+  animationData: mates,
   rendererSettings: {
     preserveAspectRatio: 'xMidYMid slice',
   },
@@ -43,6 +43,8 @@ const Logout = ({ setIsAuthenticated }) => {
           🧑‍💻
         </span>
       </h4>
+      <br />
+      <br />
       <Lottie options={cya} height={250} width={250} />
       <DashOptions>
         <button onClick={handleLogout}>Log me out</button>

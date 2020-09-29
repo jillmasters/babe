@@ -7,12 +7,14 @@ const SECRET_KEY = 'supercalifragilisticexpialidocious';
 const signup = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
-  if (user)
-    return res.status(409).send({
+  if (user) {
+    res.status(409);
+    res.send({
       error: '409',
       message:
         'There is an account already registered with this email. Please use a different email address or log in.',
     });
+  }
   const hash = await bcrypt.hash(password, 10);
   const newUser = new User({ ...req.body, password: hash });
   try {
@@ -56,4 +58,16 @@ const loadUserDetails = async (req, res) => {
   }
 };
 
-module.exports = { signup, login, loadUserDetails };
+const editUserDetails = async (req, res) => {
+  try {
+    const { _id, field } = req.params;
+    const { value } = req.body;
+    await User.findOneAndUpdate({ _id }, { $set: { [field]: value } });
+    res.status(204);
+  } catch (error) {
+    console.log('---> Error updating user in database', error);
+    res.status(500);
+  }
+};
+
+module.exports = { signup, login, loadUserDetails, editUserDetails };

@@ -175,6 +175,7 @@ ReactDOM.render(
             height: 7.5vh;
             width: auto;
             min-width: 35vw;
+            max-width: 100%;
             border: solid thin ${colors.white};
             border-radius: 50px;
             background: ${colors.pink};

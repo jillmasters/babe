@@ -32,15 +32,14 @@ const Login = ({ setIsAuthenticated }) => {
     const { email, password } = state;
     const user = { email, password };
     const result = await UserService.login(user);
-
-    if (result.error) {
-      alert(`${result.message}`);
-      setState(initialState);
-    } else {
+    try {
       const { accessToken } = result;
       localStorage.setItem('accessToken', accessToken);
       setIsAuthenticated(true);
       authentication.login(() => navigate('/', { replace: true }));
+    } catch (error) {
+      alert('Your email or password is incorrect. Please try again.');
+      setState(initialState);
     }
   };
 

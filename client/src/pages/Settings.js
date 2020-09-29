@@ -10,7 +10,7 @@ import {
 } from '../theme';
 
 import { navigate } from '@reach/router';
-import TransactionService from '../services/TransactionService';
+import UserService from '../services/UserService';
 
 const Settings = ({
   users,
@@ -23,35 +23,32 @@ const Settings = ({
   const [tempPartner, setTempPartner] = useState(users.partner);
   const [tempCurrency, setTempCurrency] = useState(currency);
 
-  const updateDatabase = (name, newName) => {
-    TransactionService.editName(name, newName).catch(error =>
+  const updateDatabase = (_id, field, value) => {
+    UserService.editUserDetails(_id, field, value).catch(error =>
       // eslint-disable-next-line no-console
-      console.log('---> Error editing database names', error),
+      console.log('---> Error editing database values', error),
     );
-  };
-
-  const updateLocal = () => {
-    TransactionService.getTransactions()
-      .then(allTransactions => setTransactions(allTransactions))
-      .catch(error =>
-        // eslint-disable-next-line no-console
-        console.log('---> Error reloading local listing', error),
-      );
   };
 
   const submit = event => {
     event.preventDefault();
     if (users.lead !== tempUser) {
-      const newUser = { newName: tempUser };
-      updateDatabase(users.lead, newUser);
+      const leadName = { value: tempUser };
+      updateDatabase(users._id, 'lead', leadName);
     }
     if (users.partner !== tempPartner) {
-      const newPartner = { newName: tempPartner };
-      updateDatabase(users.partner, newPartner);
+      const partnerName = { value: tempPartner };
+      updateDatabase(users._id, 'partner', partnerName);
     }
-    updateLocal();
-    const newCouple = { lead: tempUser, partner: tempPartner };
-    setUsers(newCouple);
+    if (currency !== tempCurrency) {
+      const newCurrency = { value: tempCurrency };
+      updateDatabase(users._id, 'currency', newCurrency);
+    }
+    setUsers(originalCouple => ({
+      ...originalCouple,
+      lead: tempUser,
+      partner: tempPartner,
+    }));
     setCurrency(tempCurrency);
     navigate('/');
   };
