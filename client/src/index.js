@@ -109,16 +109,20 @@ ReactDOM.render(
           }
 
           footer {
+            z-index: 10;
             height: 10vh;
+            min-height: 2.5vh;
             width: 100vw;
-            padding: 40px;
+            padding: 0.5vh 2vw;
             border-top: solid ${colors.white} thick;
-            flex: 0 1 auto;
+            margin-top: 2vh;
+            flex: 1 1 auto;
             display: flex;
             align-items: center;
             justify-content: space-evenly;
             color: ${colors.white};
             background:${colors.dark};
+            font-size:
           }
 
           h1, h2, h3, h4, h5, h6 {
@@ -145,20 +149,37 @@ ReactDOM.render(
           }
 
           h4 {
-            font-family: 'Contrail One';
+            font-family: 'Kaushan Script';
             font-size: 4vh;
             margin-bottom: 1rem;
             padding-top: 2vh;
           }
+
+          h5 {
+            padding: 1vh 0;
+            font-size: 2vh;
+            font-weight: 200;
+            line-height: 1.4;
+          }
+
+          h6 {
+            font-size: 2.5vh;
+          }
+
+          form {
+            width: 75%;
           }
 
           button {
             padding: 1rem;
+            height: 7.5vh;
+            width: auto;
+            min-width: 35vw;
+            max-width: 100%;
             border: solid thin ${colors.white};
             border-radius: 50px;
             background: ${colors.pink};
             font-family: 'Poppins';
-            font-style: italic;
             font-size: 2.5vh;
             color: ${colors.white};
 
@@ -195,7 +216,8 @@ ReactDOM.render(
           span[id="babify"]{
             font-family: 'Contrail One';
             font-style: italic;
-            letter-spacing: 0.05em;
+            font-size: 1.1em;
+            margin-right: 5px;
           }
 
           time {

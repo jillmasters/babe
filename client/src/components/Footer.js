@@ -2,12 +2,22 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-export default function Footer() {
+export default function Footer({ isAuthenticated }) {
   return (
     <footer>
-      <Link to="/history">History</Link>
-      <Link to="/login">Log In / Sign Up</Link>
-      <Link to="/settings">Settings</Link>
+      {isAuthenticated ? (
+        <React.Fragment>
+          <Link to="/settings">Settings</Link>
+          <Link to="/history">History</Link>
+          <Link to="/logout">Logout</Link>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Link to="/about">About</Link>
+          <Link to="/sign-up">Sign up</Link>
+          <Link to="/login">Login</Link>
+        </React.Fragment>
+      )}
     </footer>
   );
 }

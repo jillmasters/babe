@@ -2,53 +2,56 @@
 /*eslint-disable-next-line no-unused-vars*/
 import React from 'react';
 import { jsx, css } from '@emotion/core';
-import { colors, MainView } from '../theme';
-import { navigate } from '@reach/router';
+import { colors, MainView, MainViewStatic } from '../theme';
+import { Link, navigate } from '@reach/router';
 
 const moment = require('moment');
 
 const History = ({ currency, transactions, users }) => {
   return (
-    <MainView>
-      <h4>
-        <span role="img" aria-label="flying cash emoji">
-          💸
-        </span>
-        Past transactions
-        <span role="img" aria-label="flying cash emoji">
-          💸
-        </span>
-      </h4>
-      <div
-        css={css`
-          font-size: 1.5vh;
-          width: 90%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        `}
-      >
-        <p>{users.partner}</p>
-        <p>{users.lead}</p>
-      </div>
-      {transactions
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .map(transaction => (
-          <section
-            key={transaction._id}
+    <React.Fragment>
+      {transactions.length !== 0 ? (
+        <MainView>
+          <h4>
+            <span role="img" aria-label="flying cash emoji">
+              💸
+            </span>
+            Past transactions
+            <span role="img" aria-label="flying cash emoji">
+              💸
+            </span>
+          </h4>
+          <div
             css={css`
+              font-size: 1.5vh;
+              width: 90%;
               display: flex;
-              flex-direction: column;
-              width: 100%;
-              height: 100%;
+              align-items: flex-start;
+              justify-content: space-between;
             `}
           >
-            <div
-              onClick={() => {
-                if (transaction.lender !== 'Babe')
-                  navigate(`/transactions/${transaction._id}`);
-              }}
-              css={css`
+            <p>{users.partner}</p>
+            <p>{users.lead}</p>
+          </div>
+          {transactions
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .map(transaction => (
+              <section
+                key={transaction._id}
+                css={css`
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-start;
+                  width: 100%;
+                  height: 100%;
+                `}
+              >
+                <div
+                  onClick={() => {
+                    if (transaction.lender !== 'Babe')
+                      navigate(`/transactions/${transaction._id}`);
+                  }}
+                  css={css`
                 position: relative;
                 border: none;
                 border-radius: 20px;
@@ -67,19 +70,21 @@ const History = ({ currency, transactions, users }) => {
                 color: ${
                   transaction.lender === 'Babe'
                     ? colors.mid
-                    : transaction.lender === users.lead
+                    : transaction.lender === users.leadEmail
                     ? colors.dark
                     : colors.white
                 };
                 background: ${
                   transaction.lender === 'Babe'
                     ? colors.pale
-                    : transaction.lender === users.lead
+                    : transaction.lender === users.leadEmail
                     ? colors.white
                     : colors.dark
                 };
                 align-self: ${
-                  transaction.lender === users.lead ? 'flex-end' : 'flex-start'
+                  transaction.lender === users.leadEmail
+                    ? 'flex-end'
+                    : 'flex-start'
                 };
 
                 &::after {
@@ -98,24 +103,33 @@ const History = ({ currency, transactions, users }) => {
                       opacity: 1;
               }
               `}
-            >
-              <time>
-                Added{' '}
-                <strong>
-                  {moment(transaction.date).format('dddd, MMM Do')}
-                </strong>
-              </time>
-              <p>
-                {transaction.item} &rarr;{' '}
-                <strong>
-                  {currency}
-                  {transaction.amount.toFixed(2)}
-                </strong>
-              </p>
-            </div>
-          </section>
-        ))}
-    </MainView>
+                >
+                  <time>
+                    Added{' '}
+                    <strong>
+                      {moment(transaction.date).format('dddd, MMM Do')}
+                    </strong>
+                  </time>
+                  <p>
+                    {transaction.item} &rarr;{' '}
+                    <strong>
+                      {currency}
+                      {transaction.amount.toFixed(2)}
+                    </strong>
+                  </p>
+                </div>
+              </section>
+            ))}
+        </MainView>
+      ) : (
+        <MainViewStatic>
+          <h4>No transactions... yet.</h4>
+          <Link to="/transactions">
+            <button>Split your first bill</button>
+          </Link>
+        </MainViewStatic>
+      )}
+    </React.Fragment>
   );
 };
 

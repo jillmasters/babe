@@ -13,10 +13,10 @@ import {
   DeleteButton,
 } from '../theme';
 
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 const moment = require('moment');
 
-const Inspect = ({ _id, users, currency, setTransactions }) => {
+const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
   const [item, setItem] = useState('');
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
@@ -24,7 +24,7 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
   const [split, setSplit] = useState('');
 
   useEffect(() => {
-    APIService.getOneTransaction(_id)
+    TransactionService.getOneTransaction(_id)
       .then(dbTransaction => {
         const { item, date, amount, lender, split } = dbTransaction;
         setItem(item);
@@ -37,8 +37,8 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
   }, [_id]);
 
   const saveTransaction = transaction => {
-    APIService.editTransaction(_id, transaction)
-      .then(() => APIService.getTransactions())
+    TransactionService.editTransaction(_id, transaction)
+      .then(() => TransactionService.getTransactions(users._id))
       .then(allTransactions => setTransactions(allTransactions))
       .catch(error =>
         // eslint-disable-next-line no-console
@@ -51,15 +51,16 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
 
   const submit = event => {
     event.preventDefault();
-    const addedBy = users.lead;
+    const addedBy = users.leadEmail;
     const editedTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(editedTransaction);
+    setIsLoading(true);
     navigate('/');
   };
 
   const deleteFromDatabase = _id => {
-    APIService.deleteTransaction(_id)
-      .then(() => APIService.getTransactions())
+    TransactionService.deleteTransaction(_id)
+      .then(() => TransactionService.getTransactions(users._id))
       .then(allTransactions => setTransactions(allTransactions))
       .catch(error =>
         // eslint-disable-next-line no-console
@@ -126,17 +127,17 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
           <FormRadio
             type="radio"
             name="bill-lender"
-            value={users.lead}
+            value={users.leadEmail}
             required
-            defaultChecked={lender === users.lead ? 'true' : null}
+            defaultChecked={lender === users.leadEmail ? 'true' : null}
           />
           <FormLabel htmlFor="bill-lender">I paid</FormLabel>
           <FormRadio
             type="radio"
             name="bill-lender"
-            value={users.partner}
+            value={users.partnerEmail}
             required
-            defaultChecked={lender === users.partner ? 'true' : null}
+            defaultChecked={lender === users.partnerEmail ? 'true' : null}
           />
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>

@@ -1,7 +1,38 @@
 import React from 'react';
-import { MainViewStatic } from '../theme';
+import { Link, navigate } from '@reach/router';
+import { MainViewStatic, DashOptions } from '../theme';
 
-const Logout = () => {
+import UserService from '../services/UserService';
+import authentication from '../authentication';
+
+import Lottie from 'react-lottie';
+import mates from '../animations/mates.json';
+
+const cya = {
+  loop: true,
+  autoplay: true,
+  animationData: mates,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
+};
+
+const Logout = ({ setIsAuthenticated, setIsLoading }) => {
+  const removeToken = () => {
+    UserService.logout('accessToken');
+  };
+
+  const deauthenticate = () => {
+    setIsAuthenticated(false);
+    authentication.logout(() => navigate('/', { replace: true }));
+  };
+
+  const handleLogout = () => {
+    removeToken();
+    deauthenticate();
+    setIsLoading(true);
+  };
+
   return (
     <MainViewStatic>
       <h4>
@@ -13,6 +44,15 @@ const Logout = () => {
           🧑‍💻
         </span>
       </h4>
+      <br />
+      <br />
+      <Lottie options={cya} height={250} width={250} />
+      <DashOptions>
+        <button onClick={handleLogout}>Log me out</button>
+        <Link to="/">
+          <button>Take me home</button>
+        </Link>
+      </DashOptions>
     </MainViewStatic>
   );
 };

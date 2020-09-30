@@ -10,7 +10,7 @@ import piggyBank from '../animations/piggy-bank.json';
 import confetti from '../animations/confetti.json';
 
 const pig = {
-  loop: true,
+  loop: false,
   autoplay: true,
   animationData: piggyBank,
   rendererSettings: {
@@ -27,66 +27,88 @@ const celebrate = {
   },
 };
 
-export default function Dashboard({ summary, users, currency, transactions }) {
+export default function Dashboard({
+  summary,
+  users,
+  currency,
+  isAuthenticated,
+}) {
   return (
     <MainView>
-      <DashSummary>
-        {summary.totalOwed > 0 ? (
-          <div>
-            <Lottie options={pig} height={250} width={250} />
-            <h2>
-              {summary.overallLender} gets {currency}
-              {summary.totalOwed}
-            </h2>
-          </div>
-        ) : (
-          <div
-            css={css`
-              position: relative;
-              height: 100%;
-              width: 100%;
-            `}
-          >
-            <Lottie
-              options={celebrate}
-              css={css`
-                height: 100%;
-                width: 100%;
-              `}
-            />
-            <div
-              css={css`
-                position: absolute;
-                top: 40%;
-                bottom: 40%;
-                left: 8%;
-                right: 8%;
-                z-index: 10;
-              `}
-            >
+      {isAuthenticated ? (
+        <React.Fragment>
+          <DashSummary>
+            {summary.totalOwed > 0 ? (
+              <div>
+                <Lottie options={pig} height={250} width={250} />
+                <h2>
+                  {summary.overallLender} gets {currency}
+                  {summary.totalOwed}
+                </h2>
+              </div>
+            ) : (
+              <div
+                css={css`
+                  position: relative;
+                  height: 100%;
+                  width: 100%;
+                `}
+              >
+                <Lottie options={celebrate} />
+                <div
+                  css={css`
+                    position: absolute;
+                    top: 40%;
+                    bottom: 40%;
+                    left: 8%;
+                    right: 8%;
+                    z-index: 10;
+                  `}
+                >
+                  <h2>
+                    Welcome, <span id="babify">{users.lead}</span> !
+                  </h2>
+                  <h3> You and {users.partner} are all square.</h3>
+                </div>
+              </div>
+            )}
+          </DashSummary>
+          <DashOptions>
+            <Link to="/transactions">
+              <button>Split A Bill</button>
+            </Link>
+            {summary.totalOwed === 0 ? null : users.partner ===
+              summary.overallLender ? (
+              <Link to="/settle-up">
+                <button>Settle Up</button>
+              </Link>
+            ) : (
+              <Link to="/call-it-even">
+                <button>Call It Even</button>
+              </Link>
+            )}
+          </DashOptions>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <DashSummary>
+            <div>
+              <Lottie options={pig} height={250} width={250} />
               <h2>
-                Welcome, <span id="babify">{users.lead}</span> !
+                Welcome to <span id="babify">Babe</span>
               </h2>
-              <h3> You and {users.partner} are all square.</h3>
+              <h5>Sign up or login to get started</h5>
             </div>
-          </div>
-        )}
-      </DashSummary>
-      <DashOptions>
-        <Link to="/transactions">
-          <button>Split A Bill</button>
-        </Link>
-        {summary.totalOwed === 0 ? null : users.partner ===
-          summary.overallLender ? (
-          <Link to="/settle-up">
-            <button>Settle Up</button>
-          </Link>
-        ) : (
-          <Link to="/call-it-even">
-            <button>Call It Even</button>
-          </Link>
-        )}
-      </DashOptions>
+          </DashSummary>
+          <DashOptions>
+            <Link to="/about">
+              <button>
+                What does <span id="babify">Babe</span> do?
+              </button>
+            </Link>
+          </DashOptions>
+        </React.Fragment>
+      )}
     </MainView>
   );
 }

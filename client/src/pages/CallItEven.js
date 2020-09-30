@@ -9,14 +9,20 @@ import {
   FormButton,
 } from '../theme';
 
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const CallItEven = ({ summary, currency, users, setTransactions }) => {
+const CallItEven = ({
+  summary,
+  currency,
+  users,
+  setTransactions,
+  setIsLoading,
+}) => {
   const [note, setNote] = useState('');
 
   const saveTransaction = transaction => {
-    APIService.postTransaction(transaction)
+    TransactionService.postTransaction(transaction)
       .then(newTransaction =>
         setTransactions(oldTransactions => [
           ...oldTransactions,
@@ -36,10 +42,11 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
       date: new Date(),
       lender: 'Babe',
       split: 1,
-      addedBy: users.lead,
+      addedBy: users.leadEmail,
     };
     saveTransaction(newTransaction);
     setNote('');
+    setIsLoading(true);
     navigate('/');
   };
 
@@ -49,7 +56,7 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
         <span role="img" aria-label="fistbump right emoji">
           🤜
         </span>
-        Call it Even
+        Call it even
         <span role="img" aria-label="fistbump left emoji">
           🤛
         </span>
@@ -78,7 +85,5 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
     </MainViewStatic>
   );
 };
-
-// SOMETHING BUGGY HAPPENING IN THE REDIRECT (TODO!)
 
 export default CallItEven;

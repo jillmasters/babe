@@ -11,10 +11,16 @@ import {
   SliderLabel,
 } from '../theme';
 
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const Transactions = ({ users, currency, setTransactions }) => {
+const Transactions = ({
+  users,
+  currency,
+  setTransactions,
+  isLoading,
+  setIsLoading,
+}) => {
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [lender, setLender] = useState('');
@@ -23,7 +29,7 @@ const Transactions = ({ users, currency, setTransactions }) => {
   const [isCustomising, setIsCustomising] = useState(false);
 
   const saveTransaction = transaction => {
-    APIService.postTransaction(transaction)
+    TransactionService.postTransaction(transaction)
       .then(newTransaction =>
         setTransactions(oldTransactions => [
           ...oldTransactions,
@@ -38,13 +44,10 @@ const Transactions = ({ users, currency, setTransactions }) => {
   const submit = event => {
     event.preventDefault();
     const date = new Date();
-    const addedBy = users.lead;
+    const addedBy = users.leadEmail;
     const newTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
-    setItem('');
-    setAmount('');
-    setLender('');
-    setSplit(50);
+    setIsLoading(true);
     navigate('/');
   };
 
@@ -59,9 +62,6 @@ const Transactions = ({ users, currency, setTransactions }) => {
           🤸🏼
         </span>
       </h4>
-      {/* <FormSection>
-        <Lottie options={defaultOptions} height={400} width={400} />
-      </FormSection> */}
       <form onSubmit={submit}>
         <FormSection>
           <FormLabel htmlFor="bill-item">What is it for?</FormLabel>
@@ -92,11 +92,15 @@ const Transactions = ({ users, currency, setTransactions }) => {
           <FormRadio
             type="radio"
             name="bill-lender"
-            value={users.lead}
+            value={users.leadEmail}
             required
           />
           <FormLabel htmlFor="bill-lender">I paid</FormLabel>
-          <FormRadio type="radio" name="bill-lender" value={users.partner} />
+          <FormRadio
+            type="radio"
+            name="bill-lender"
+            value={users.partnerEmail}
+          />
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>
         <FormSection>

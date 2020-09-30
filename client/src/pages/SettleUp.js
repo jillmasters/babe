@@ -7,14 +7,20 @@ import {
   FormButton,
 } from '../theme';
 
-import APIService from '../services/APIService';
+import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const SettleUp = ({ summary, currency, users, setTransactions }) => {
+const SettleUp = ({
+  summary,
+  currency,
+  users,
+  setTransactions,
+  setIsLoading,
+}) => {
   const [note, setNote] = useState('');
 
   const saveTransaction = transaction => {
-    APIService.postTransaction(transaction)
+    TransactionService.postTransaction(transaction)
       .then(newTransaction =>
         setTransactions(oldTransactions => [
           ...oldTransactions,
@@ -34,10 +40,11 @@ const SettleUp = ({ summary, currency, users, setTransactions }) => {
       date: new Date(),
       lender: 'Babe',
       split: -1,
-      addedBy: users.lead,
+      addedBy: users.leadEmail,
     };
     saveTransaction(newTransaction);
     setNote('');
+    setIsLoading(true);
     navigate('/');
   };
   return (
@@ -46,7 +53,7 @@ const SettleUp = ({ summary, currency, users, setTransactions }) => {
         <span role="img" aria-label="credit card emoji">
           💳
         </span>
-        Settle Up
+        Settle up
         <span role="img" aria-label="credit card emoji">
           💳
         </span>

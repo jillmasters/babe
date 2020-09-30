@@ -15,6 +15,7 @@ import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import SignUp from '../pages/SignUp';
 import Settings from '../pages/Settings';
+import About from '../pages/About';
 
 export default function PageContainer({
   users,
@@ -24,6 +25,9 @@ export default function PageContainer({
   currency,
   setCurrency,
   summary,
+  isAuthenticated,
+  setIsAuthenticated,
+  setIsLoading,
 }) {
   return (
     <Router
@@ -33,18 +37,22 @@ export default function PageContainer({
         flex: 1;
       `}
     >
+      <About path="/about" />
       <Dashboard
         path="/"
         users={users}
-        transactions={transactions}
         currency={currency}
         summary={summary}
+        isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <Transactions
         path="/transactions"
         users={users}
         currency={currency}
         setTransactions={setTransactions}
+        isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <CallItEven
         path="/call-it-even"
@@ -52,6 +60,8 @@ export default function PageContainer({
         users={users}
         currency={currency}
         setTransactions={setTransactions}
+        isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <SettleUp
         path="/settle-up"
@@ -59,22 +69,24 @@ export default function PageContainer({
         users={users}
         currency={currency}
         setTransactions={setTransactions}
+        isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <History
         path="/history"
         transactions={transactions}
         currency={currency}
         users={users}
+        isAuthenticated={isAuthenticated}
       />
       <Inspect
         path="/transactions/:_id"
         users={users}
         currency={currency}
         setTransactions={setTransactions}
+        isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
-      <Login path="/login" />
-      <Logout path="/logout" />
-      <SignUp path="/sign-up" />
       <Settings
         path="/settings"
         currency={currency}
@@ -82,6 +94,23 @@ export default function PageContainer({
         users={users}
         setUsers={setUsers}
         setTransactions={setTransactions}
+        isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
+      />
+      <Login
+        path="/login"
+        setIsAuthenticated={setIsAuthenticated}
+        setIsLoading={setIsLoading}
+      />
+      <Logout
+        path="/logout"
+        setIsAuthenticated={setIsAuthenticated}
+        setIsLoading={setIsLoading}
+      />
+      <SignUp
+        path="/sign-up"
+        setIsAuthenticated={setIsAuthenticated}
+        setIsLoading={setIsLoading}
       />
     </Router>
   );
