@@ -63,15 +63,32 @@ const DashSummary = styled('div')`
 const DashOptions = styled('div')`
   flex: 1 1 auto;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 20vh;
   align-items: center;
   justify-content: space-evenly;
 `;
 
+const AboutPage = styled('div')`
+  flex: 1 1 auto;
+  font-size: 2vh;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  max-width: 80%;
+`;
+
 const FormLabel = styled('label')`
   padding: 1.2em;
   font-size: 1.8vh;
+  color: ${colors.white};
+`;
+
+const RadioLabel = styled('label')`
+  padding: 0 1.2em;
   color: ${colors.white};
 
   span {
@@ -122,10 +139,13 @@ const FormButton = styled('button')`
   font-size: 1.8vh;
   line-height: 1;
   color: ${colors.white};
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const DeleteButton = styled('button')`
   font-size: 3vh;
+  width: 100%;
   color: ${colors.dark};
   padding: 1vh 3vh;
   background: ${colors.white};
@@ -137,8 +157,8 @@ const DeleteButton = styled('button')`
     background: ${colors.white};
     font-style: normal;
     position: absolute;
-    top: 15%;
-    left: 15%;
+    top: 18%;
+    left: 27%;
     padding: 0 20%;
     font-size: 3vh;
     color: ${colors.dark};
@@ -154,7 +174,7 @@ const DeleteButton = styled('button')`
 `;
 
 const FormSection = styled('div')`
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -186,6 +206,7 @@ export {
   FormLabel,
   FormInput,
   FormRadio,
+  RadioLabel,
   FormButton,
   FormSection,
   FormSlider,
@@ -193,4 +214,5 @@ export {
   DashSummary,
   DashOptions,
   DeleteButton,
+  AboutPage,
 };

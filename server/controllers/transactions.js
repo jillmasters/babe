@@ -1,9 +1,14 @@
 /* eslint no-console: 0 */
-const { Transaction } = require('../model');
+const { Transaction, User } = require('../model');
 
 const getHistory = async (req, res) => {
   try {
-    const allTransactions = await Transaction.find();
+    const { _id } = req.params;
+    const user = await User.findOne({ _id });
+    const { email, partnerEmail } = user;
+    const allTransactions = await Transaction.find({
+      $or: [{ addedBy: email }, { addedBy: partnerEmail }],
+    });
     res.send(allTransactions);
     res.status(200);
   } catch (error) {
@@ -92,26 +97,10 @@ const editTransaction = async (req, res) => {
   }
 };
 
-const editName = async (req, res) => {
-  try {
-    const { name } = req.params;
-    const { newName } = req.body;
-    await Transaction.updateMany(
-      { lender: name },
-      { $set: { lender: newName } },
-    );
-    res.status(204);
-  } catch (error) {
-    console.log('---> Error editing multiple entries in database', error);
-    res.status(500);
-  }
-};
-
 module.exports = {
   addTransaction,
   getHistory,
   getTransaction,
   deleteTransaction,
   editTransaction,
-  editName,
 };
