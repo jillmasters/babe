@@ -22,7 +22,7 @@ const initialState = {
   currency: '',
 };
 
-const SignUp = ({ setIsAuthenticated }) => {
+const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
   const [state, setState] = useState(initialState);
 
   const handleChange = event => {
@@ -42,6 +42,7 @@ const SignUp = ({ setIsAuthenticated }) => {
       const { accessToken } = result;
       localStorage.setItem('accessToken', accessToken);
       setIsAuthenticated(true);
+      setIsLoading(true);
       authentication.login(() => navigate('/', { replace: true }));
     } catch (error) {
       alert(

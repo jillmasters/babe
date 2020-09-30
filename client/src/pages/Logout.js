@@ -17,7 +17,7 @@ const cya = {
   },
 };
 
-const Logout = ({ setIsAuthenticated }) => {
+const Logout = ({ setIsAuthenticated, setIsLoading }) => {
   const removeToken = () => {
     UserService.logout('accessToken');
   };
@@ -30,6 +30,7 @@ const Logout = ({ setIsAuthenticated }) => {
   const handleLogout = () => {
     removeToken();
     deauthenticate();
+    setIsLoading(true);
   };
 
   return (

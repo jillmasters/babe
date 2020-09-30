@@ -16,7 +16,7 @@ const initialState = {
   password: '',
 };
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = ({ setIsAuthenticated, setIsLoading }) => {
   const [state, setState] = useState(initialState);
 
   const handleChange = event => {
@@ -36,6 +36,7 @@ const Login = ({ setIsAuthenticated }) => {
       const { accessToken } = result;
       localStorage.setItem('accessToken', accessToken);
       setIsAuthenticated(true);
+      setIsLoading(true);
       authentication.login(() => navigate('/', { replace: true }));
     } catch (error) {
       alert('Your email or password is incorrect. Please try again.');

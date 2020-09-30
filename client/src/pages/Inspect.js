@@ -16,7 +16,7 @@ import {
 import TransactionService from '../services/TransactionService';
 const moment = require('moment');
 
-const Inspect = ({ _id, users, currency, setTransactions }) => {
+const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
   const [item, setItem] = useState('');
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
@@ -54,6 +54,7 @@ const Inspect = ({ _id, users, currency, setTransactions }) => {
     const addedBy = users.leadEmail;
     const editedTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(editedTransaction);
+    setIsLoading(true);
     navigate('/');
   };
 

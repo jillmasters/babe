@@ -65,8 +65,11 @@ const editUserDetails = async (req, res) => {
     await User.findOneAndUpdate({ _id }, { $set: { [field]: value } });
     res.status(204);
   } catch (error) {
-    console.log('---> Error updating user in database', error);
     res.status(500);
+    res.send({
+      error: '500',
+      message: 'Error updating user in database.',
+    });
   }
 };
 

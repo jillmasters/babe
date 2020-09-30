@@ -10,7 +10,13 @@ import {
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const SettleUp = ({ summary, currency, users, setTransactions }) => {
+const SettleUp = ({
+  summary,
+  currency,
+  users,
+  setTransactions,
+  setIsLoading,
+}) => {
   const [note, setNote] = useState('');
 
   const saveTransaction = transaction => {
@@ -38,6 +44,7 @@ const SettleUp = ({ summary, currency, users, setTransactions }) => {
     };
     saveTransaction(newTransaction);
     setNote('');
+    setIsLoading(true);
     navigate('/');
   };
   return (

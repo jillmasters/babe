@@ -27,6 +27,7 @@ export default function PageContainer({
   summary,
   isAuthenticated,
   setIsAuthenticated,
+  setIsLoading,
 }) {
   return (
     <Router
@@ -43,6 +44,7 @@ export default function PageContainer({
         currency={currency}
         summary={summary}
         isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <Transactions
         path="/transactions"
@@ -50,6 +52,7 @@ export default function PageContainer({
         currency={currency}
         setTransactions={setTransactions}
         isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <CallItEven
         path="/call-it-even"
@@ -58,6 +61,7 @@ export default function PageContainer({
         currency={currency}
         setTransactions={setTransactions}
         isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <SettleUp
         path="/settle-up"
@@ -66,6 +70,7 @@ export default function PageContainer({
         currency={currency}
         setTransactions={setTransactions}
         isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <History
         path="/history"
@@ -80,6 +85,7 @@ export default function PageContainer({
         currency={currency}
         setTransactions={setTransactions}
         isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
       <Settings
         path="/settings"
@@ -89,10 +95,23 @@ export default function PageContainer({
         setUsers={setUsers}
         setTransactions={setTransactions}
         isAuthenticated={isAuthenticated}
+        setIsLoading={setIsLoading}
       />
-      <Login path="/login" setIsAuthenticated={setIsAuthenticated} />
-      <Logout path="/logout" setIsAuthenticated={setIsAuthenticated} />
-      <SignUp path="/sign-up" setIsAuthenticated={setIsAuthenticated} />
+      <Login
+        path="/login"
+        setIsAuthenticated={setIsAuthenticated}
+        setIsLoading={setIsLoading}
+      />
+      <Logout
+        path="/logout"
+        setIsAuthenticated={setIsAuthenticated}
+        setIsLoading={setIsLoading}
+      />
+      <SignUp
+        path="/sign-up"
+        setIsAuthenticated={setIsAuthenticated}
+        setIsLoading={setIsLoading}
+      />
     </Router>
   );
 }

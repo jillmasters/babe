@@ -14,7 +14,13 @@ import {
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const Transactions = ({ users, currency, setTransactions }) => {
+const Transactions = ({
+  users,
+  currency,
+  setTransactions,
+  isLoading,
+  setIsLoading,
+}) => {
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [lender, setLender] = useState('');
@@ -41,6 +47,7 @@ const Transactions = ({ users, currency, setTransactions }) => {
     const addedBy = users.leadEmail;
     const newTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
+    setIsLoading(true);
     navigate('/');
   };
 

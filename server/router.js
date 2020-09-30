@@ -3,6 +3,8 @@ const transactions = require('./controllers/transactions');
 const users = require('./controllers/users');
 const authenticateMe = require('./middleware/authentication');
 
+router.get('/', (req, res) => res.send(''));
+
 // TRANSACTION METHODS
 router.get('/history/:_id', transactions.getHistory);
 router.post('/transactions', transactions.addTransaction);

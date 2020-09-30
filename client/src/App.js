@@ -5,6 +5,7 @@ import Head from './components/Head';
 import Header from './components/Header';
 import PageContainer from './components/PageContainer';
 import Footer from './components/Footer';
+import { MainViewStatic } from './theme';
 
 // GET SERVICES
 import TransactionService from './services/TransactionService';
@@ -29,6 +30,7 @@ function App() {
     totalOwed: 0,
     overallLender: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const retrieveUserInfo = async accessToken => {
     try {
@@ -64,30 +66,46 @@ function App() {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) retrieveUserInfo(accessToken);
     if (users._id) {
-      setIsAuthenticated(true);
+      setIsAuthenticated(authentication.isAuthenticated());
       TransactionService.getTransactions(users._id)
         .then(dbTransactions => setTransactions(dbTransactions))
         .catch(error => console.log('---> Error loading user history', error)); // eslint-disable-line no-console
       calculateSummary();
     }
-  }, [users._id, transactions.length]); //eslint-disable-line react-hooks/exhaustive-deps
+    setIsLoading(false);
+  }, [
+    users._id,
+    users.lead,
+    users.partner,
+    transactions.length,
+    summary.balance,
+    summary.totalOwed,
+    summary.overallLender,
+    isLoading,
+    isAuthenticated,
+  ]);
 
   // LOAD MAIN PAGE LAYOUT
   return (
     <main>
       <Head />
       <Header />
-      <PageContainer
-        summary={summary}
-        users={users}
-        setUsers={setUsers}
-        transactions={transactions}
-        setTransactions={setTransactions}
-        currency={currency}
-        setCurrency={setCurrency}
-        isAuthenticated={isAuthenticated}
-        setIsAuthenticated={setIsAuthenticated}
-      />
+      {isLoading ? (
+        <MainViewStatic></MainViewStatic>
+      ) : (
+        <PageContainer
+          summary={summary}
+          users={users}
+          setUsers={setUsers}
+          transactions={transactions}
+          setTransactions={setTransactions}
+          currency={currency}
+          setCurrency={setCurrency}
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+          setIsLoading={setIsLoading}
+        />
+      )}
       <Footer isAuthenticated={isAuthenticated} />
     </main>
   );

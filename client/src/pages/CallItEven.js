@@ -12,7 +12,13 @@ import {
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const CallItEven = ({ summary, currency, users, setTransactions }) => {
+const CallItEven = ({
+  summary,
+  currency,
+  users,
+  setTransactions,
+  setIsLoading,
+}) => {
   const [note, setNote] = useState('');
 
   const saveTransaction = transaction => {
@@ -40,6 +46,7 @@ const CallItEven = ({ summary, currency, users, setTransactions }) => {
     };
     saveTransaction(newTransaction);
     setNote('');
+    setIsLoading(true);
     navigate('/');
   };
 

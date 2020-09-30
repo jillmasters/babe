@@ -12,13 +12,7 @@ import {
 import { navigate } from '@reach/router';
 import UserService from '../services/UserService';
 
-const Settings = ({
-  users,
-  setUsers,
-  currency,
-  setCurrency,
-  setTransactions,
-}) => {
+const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
   const [tempUser, setTempUser] = useState(users.lead);
   const [tempPartner, setTempPartner] = useState(users.partner);
   const [tempCurrency, setTempCurrency] = useState(currency);
@@ -50,6 +44,7 @@ const Settings = ({
       partner: tempPartner,
     }));
     setCurrency(tempCurrency);
+    setIsLoading(true);
     navigate('/');
   };
 
