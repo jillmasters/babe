@@ -13,7 +13,7 @@ const History = ({ currency, transactions, users }) => {
       {transactions.length !== 0 ? (
         <MainView>
           <h4>
-            <span role="img" aria-label="flying cash emoji">
+            <span data-testid="t1" role="img" aria-label="flying cash emoji">
               💸
             </span>
             Past transactions
@@ -30,13 +30,14 @@ const History = ({ currency, transactions, users }) => {
               justify-content: space-between;
             `}
           >
-            <p>{users.partner}</p>
-            <p>{users.lead}</p>
+            <p data-testid="usersPartner">{users.partner}</p>
+            <p data-testid="usersLead">{users.lead}</p>
           </div>
           {transactions
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map(transaction => (
               <section
+                role="transaction"
                 key={transaction._id}
                 css={css`
                   display: flex;
@@ -56,36 +57,30 @@ const History = ({ currency, transactions, users }) => {
                 border: none;
                 border-radius: 20px;
                 margin: 10px;
-                padding: ${
-                  transaction.lender === 'Babe'
-                    ? '10px 20px'
-                    : '10px 50px 10px 20px'
-                };
-                text-align: ${
-                  transaction.lender === 'Babe' ? 'center' : 'left'
-                };
-                width: ${
-                  transaction.lender === 'Babe' ? 'calc(100% - 20px)' : '70%'
-                };
-                color: ${
-                  transaction.lender === 'Babe'
-                    ? colors.mid
-                    : transaction.lender === users.leadEmail
-                    ? colors.dark
-                    : colors.white
-                };
-                background: ${
-                  transaction.lender === 'Babe'
-                    ? colors.pale
-                    : transaction.lender === users.leadEmail
-                    ? colors.white
-                    : colors.dark
-                };
-                align-self: ${
-                  transaction.lender === users.leadEmail
-                    ? 'flex-end'
-                    : 'flex-start'
-                };
+                padding: ${transaction.lender === 'Babe'
+                      ? '10px 20px'
+                      : '10px 50px 10px 20px'
+                    };
+                text-align: ${transaction.lender === 'Babe' ? 'center' : 'left'
+                    };
+                width: ${transaction.lender === 'Babe' ? 'calc(100% - 20px)' : '70%'
+                    };
+                color: ${transaction.lender === 'Babe'
+                      ? colors.mid
+                      : transaction.lender === users.leadEmail
+                        ? colors.dark
+                        : colors.white
+                    };
+                background: ${transaction.lender === 'Babe'
+                      ? colors.pale
+                      : transaction.lender === users.leadEmail
+                        ? colors.white
+                        : colors.dark
+                    };
+                align-self: ${transaction.lender === users.leadEmail
+                      ? 'flex-end'
+                      : 'flex-start'
+                    };
 
                 &::after {
                   content: ${transaction.lender === 'Babe' ? null : '"🧐"'};
@@ -110,7 +105,7 @@ const History = ({ currency, transactions, users }) => {
                       {moment(transaction.date).format('dddd, MMM Do')}
                     </strong>
                   </time>
-                  <p>
+                  <p data-testid="transItem">
                     {transaction.item} &rarr;{' '}
                     <strong>
                       {currency}
@@ -122,13 +117,13 @@ const History = ({ currency, transactions, users }) => {
             ))}
         </MainView>
       ) : (
-        <MainViewStatic>
-          <h4>No transactions... yet.</h4>
-          <Link to="/transactions">
-            <button>Split your first bill</button>
-          </Link>
-        </MainViewStatic>
-      )}
+          <MainViewStatic>
+            <h4>No transactions... yet.</h4>
+            <Link to="/transactions">
+              <button>Split your first bill</button>
+            </Link>
+          </MainViewStatic>
+        )}
     </React.Fragment>
   );
 };
