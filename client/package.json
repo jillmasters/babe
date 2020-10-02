@@ -25,7 +25,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "test2": "jest --watch"
+    "test2": "jest --watch",
+    "test2:coverage": "jest --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
