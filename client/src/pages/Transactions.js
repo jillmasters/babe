@@ -69,7 +69,7 @@ const Transactions = ({
             type="text"
             name="bill-item"
             aria-label="bill-item"
-            label="bill-item"
+
             placeholder="Pints with Gesh 🍻"
             onChange={event => setItem(event.target.value)}
             value={item}
@@ -97,13 +97,14 @@ const Transactions = ({
             name="bill-lender"
             value={users.leadEmail}
             required
-            data-testid="bill-lender-user-radio"
+            aria-label="bill-lender-lead-radio"
           />
           <FormLabel htmlFor="bill-lender">I paid</FormLabel>
           <FormRadio
             type="radio"
             name="bill-lender"
             value={users.partnerEmail}
+            aria-label="bill-lender-partner-radio"
           />
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>
@@ -115,7 +116,7 @@ const Transactions = ({
             onChange={() => setIsCustomising(!isCustomising)}
             defaultChecked
             required
-            data-testid="bill-split-even-radio"
+            aria-label="bill-split-even-radio"
           />
           <FormLabel htmlFor="bill-lender">Half each</FormLabel>
           <FormRadio
@@ -123,6 +124,7 @@ const Transactions = ({
             name="bill-split"
             value={true}
             onChange={() => setIsCustomising(!isCustomising)}
+            aria-label="bill-split-uneven-radio"
           />
           <FormLabel htmlFor="bill-lender">Customise</FormLabel>
         </FormSection>
@@ -138,6 +140,7 @@ const Transactions = ({
               max="100"
               step="10"
               onChange={event => setSplit(event.target.value)}
+              aria-label="bill-split-slider"
             />
           </FormSection>
         )}

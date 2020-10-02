@@ -31,27 +31,22 @@ test('Submit form with even split ', () => {
     />,
   );
 
-  const billItem = screen.getByLabelText('bill-item');
+  const billItem = screen.getByRole('textbox', { name: 'bill-item' });
   expect(billItem).toBeInTheDocument();
-  // expect(screen.getByRole('input', { name: /bill-item/i })).toBeInTheDocument();
+
   userEvent.type(billItem, 'Breakfast');
 
-  const billAmount = screen.getByLabelText('bill-amount');
+  const billAmount = screen.getByRole('spinbutton', { name: 'bill-amount' });
   expect(billAmount).toBeInTheDocument();
-  // expect(screen.getByRole('input', { name: /bill-item/i })).toBeInTheDocument();
   userEvent.type(billAmount, '20');
 
-  const userPaidRadio = screen.getByTestId('bill-lender-user-radio');
+  const userPaidRadio = screen.getByRole('radio', { name: 'bill-lender-lead-radio' });
   userEvent.click(userPaidRadio);
-  const billSplitEvenRadio = screen.getByTestId('bill-split-even-radio');
+  const billSplitEvenRadio = screen.getByRole('radio', { name: 'bill-split-even-radio' });
   userEvent.click(billSplitEvenRadio);
 
-  const submitButton = screen.getByText('Split');
+  const submitButton = screen.getByRole('button', { name: 'Split' });
   expect(submitButton).toBeInTheDocument();
-
-  // jest
-  // .spyOn(global, 'Date')
-  // .mockImplementationOnce(() => new Date('2019-05-14T11:01:58.135Z'));
 
   jest
     .spyOn(global.Date, 'now')
