@@ -22,7 +22,7 @@ test('Show login page when not authenticated', () => {
     <Dashboard
       summary={mockSummary}
       users={mockUsers}
-      current={mockCurrency}
+      currency={mockCurrency}
       isAuthenticated={false}
     />,
   );
@@ -49,12 +49,12 @@ test('Show main dashboard when logged in', () => {
   expect(screen.getByText('Split A Bill')).toBeInTheDocument();
 });
 
-test('Show Call It Even when user owes money', () => {
+test('Show Call It Even button when user owes money', () => {
   render(
     <Dashboard
       summary={mockSummary}
       users={mockUsers}
-      current={mockCurrency}
+      currency={mockCurrency}
       isAuthenticated={true}
     />,
   );
@@ -65,14 +65,14 @@ test('Show Call It Even when user owes money', () => {
   expect(screen.getByText('Call It Even')).toBeInTheDocument();
 });
 
-test('Show Settle Up when user is owed money', () => {
+test('Show Settle Up button when user is owed money', () => {
   render(
     <Dashboard
       summary={mockSummary}
       users={{
         partner: USER_NAME,
       }}
-      current={mockCurrency}
+      currency={mockCurrency}
       isAuthenticated={true}
     />,
   );
@@ -90,12 +90,13 @@ test('Correct elements show when no money is owed', () => {
       users={{
         partner: USER_NAME,
       }}
-      current={mockCurrency}
+      currency={mockCurrency}
       isAuthenticated={true}
     />,
   );
 
-  // expect(screen.getByText('You and joe are all square')).toBeInTheDocument(); //TODO: Get this working with concatentation
+  // expect(screen.getByText(' You and joe are all square.'), {exact: false}).toBeInTheDocument(); //TODO: Get this working with concatentation
+  // expect(screen.getAllByText('joe'), {exact: false}).toBeInTheDocument(); //TODO: Get this working with concatentation
 
   expect(screen.queryByText('Settle Up')).not.toBeInTheDocument();
   expect(screen.queryByText('Call It Even')).not.toBeInTheDocument();
