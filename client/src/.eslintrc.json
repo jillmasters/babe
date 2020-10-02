@@ -11,7 +11,7 @@
     },
     "ecmaVersion": 12
   },
-  "plugins": ["react"],
+  "plugins": ["react", "@babel/plugin-transform-react-jsx"],
   "rules": {
     "react/prop-types": 0,
     "semi": ["error", "always"],

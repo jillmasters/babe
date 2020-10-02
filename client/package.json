@@ -24,7 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\""
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "test2": "jest --watch"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,7 +43,19 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-jest": "^26.3.0",
+    "babel-polyfill": "^6.26.0",
     "eslint": "^7.9.0",
-    "eslint-plugin-react": "^7.21.1"
+    "eslint-plugin-react": "^7.21.1",
+    "jest": "^26.4.2",
+    "jest-canvas-mock": "^2.3.0",
+    "react-test-renderer": "^16.13.1"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
   }
 }
