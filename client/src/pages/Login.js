@@ -31,8 +31,8 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
     event.preventDefault();
     const { email, password } = state;
     const user = { email, password };
-    const result = await UserService.login(user);
     try {
+      const result = await UserService.login(user);
       const { accessToken } = result;
       localStorage.setItem('accessToken', accessToken);
       setIsAuthenticated(true);
