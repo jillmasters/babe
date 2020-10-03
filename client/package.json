@@ -22,7 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
+    "test:coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
@@ -45,15 +46,16 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/dom": "^7.24.3",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "@testing-library/dom": "^7.24.3",
     "babel-jest": "^26.3.0",
     "babel-polyfill": "^6.26.0",
     "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.21.1",
     "jest": "^26.4.2",
     "jest-canvas-mock": "^2.3.0",
+    "jest-localstorage-mock": "^2.4.3",
     "react-test-renderer": "^16.13.1"
   }
 }

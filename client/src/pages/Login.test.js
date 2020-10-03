@@ -6,7 +6,7 @@ import Login from './Login';
 
 import UserService from '../services/UserService';
 jest.mock('../services/UserService')
-UserService.login.mockResolvedValue('accessToken');
+UserService.login.mockResolvedValue({accessToken: 'TOKEN'});
 
 import authentication from '../authentication';
 jest.mock('../authentication')
@@ -14,6 +14,10 @@ authentication.login.mockResolvedValue('LOGGED IN o_O');
 
 const setIsAuthenticatedMock = jest.fn(() => {});
 const setIsLoadingMock = jest.fn(() => {});
+
+beforeEach(() => {
+  localStorage.clear();
+});
 
 test('User can login with correct credentials', async () => {
   render(
@@ -39,6 +43,8 @@ test('User can login with correct credentials', async () => {
   userEvent.click(loginButton);
 
   await waitFor(() => {
+    expect(localStorage.setItem).toHaveBeenLastCalledWith('accessToken', 'TOKEN');
+
     expect(setIsAuthenticatedMock).toHaveBeenCalledTimes(1);
     expect(setIsLoadingMock).toHaveBeenCalledTimes(1);
     expect(authentication.login).toHaveBeenCalledTimes(1);
