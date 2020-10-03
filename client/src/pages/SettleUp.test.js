@@ -1,7 +1,5 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-// import '@testing-library/jest-dom/extend-expect';
-// import 'babel-polyfill';
 
 import userEvent from '@testing-library/user-event';
 
@@ -66,3 +64,39 @@ test('User can settle up', async () => {
     expect(setTransactionsMock).toHaveBeenCalledTimes(1);
   });
 });
+
+
+//TODO: Add this test back in when error boundary is being handled better
+
+// test('Server error with settling up', () => {
+// // Look for other methods for ethrowing errors 
+// // try catch
+
+//   const error = new Error('Some error!');
+//   postTransaction.mockImplementation(() => {
+//     throw error;
+//   });
+
+//   render(
+//     <SettleUp
+//       summary={{
+//         totalOwed: 10,
+//       }}
+//       currency="$"
+//       users={mockUsers}
+//       setTransactions={setTransactionsMock}
+//       setIsLoading={setIsLoadingMock}
+//     />,
+//   );
+
+//   const wipeNote = screen.getByRole('textbox', { name: 'wipe-description' });
+//   expect(wipeNote).toBeInTheDocument();
+
+//   userEvent.type(wipeNote, 'Woohoo');
+
+//   const submitButton = screen.getByRole('button', { name: 'SettleUp' });
+//   expect(submitButton).toBeInTheDocument();
+
+//   userEvent.click(submitButton);
+//   expect(postTransaction).toThrow(error);
+// });
