@@ -61,6 +61,7 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="text"
             name="email"
+            aria-label="email"
             value={state.email}
             onChange={handleChange}
             required
@@ -71,6 +72,7 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="password"
             name="password"
+            aria-label="password"
             value={state.password}
             onChange={handleChange}
             required
