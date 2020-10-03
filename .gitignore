@@ -41,3 +41,6 @@ coverage
 # custom
 private
 dist
+
+.vscode/settings.json
+.env
