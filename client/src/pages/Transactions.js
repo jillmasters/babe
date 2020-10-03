@@ -43,7 +43,7 @@ const Transactions = ({
 
   const submit = event => {
     event.preventDefault();
-    const date = new Date();
+    const date = new Date(Date.now());
     const addedBy = users.leadEmail;
     const newTransaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
@@ -68,6 +68,8 @@ const Transactions = ({
           <FormInput
             type="text"
             name="bill-item"
+            aria-label="bill-item"
+
             placeholder="Pints with Gesh 🍻"
             onChange={event => setItem(event.target.value)}
             value={item}
@@ -82,6 +84,7 @@ const Transactions = ({
             min="0"
             step="0.01"
             placeholder="18.50"
+            aria-label="bill-amount"
             name="bill-amount"
             onChange={event => setAmount(event.target.value)}
             value={amount}
@@ -94,12 +97,14 @@ const Transactions = ({
             name="bill-lender"
             value={users.leadEmail}
             required
+            aria-label="bill-lender-lead-radio"
           />
           <FormLabel htmlFor="bill-lender">I paid</FormLabel>
           <FormRadio
             type="radio"
             name="bill-lender"
             value={users.partnerEmail}
+            aria-label="bill-lender-partner-radio"
           />
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>
@@ -111,6 +116,7 @@ const Transactions = ({
             onChange={() => setIsCustomising(!isCustomising)}
             defaultChecked
             required
+            aria-label="bill-split-even-radio"
           />
           <FormLabel htmlFor="bill-lender">Half each</FormLabel>
           <FormRadio
@@ -118,6 +124,7 @@ const Transactions = ({
             name="bill-split"
             value={true}
             onChange={() => setIsCustomising(!isCustomising)}
+            aria-label="bill-split-uneven-radio"
           />
           <FormLabel htmlFor="bill-lender">Customise</FormLabel>
         </FormSection>
@@ -133,6 +140,7 @@ const Transactions = ({
               max="100"
               step="10"
               onChange={event => setSplit(event.target.value)}
+              aria-label="bill-split-slider"
             />
           </FormSection>
         )}

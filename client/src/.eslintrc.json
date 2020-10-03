@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "commonjs": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
@@ -11,7 +12,7 @@
     },
     "ecmaVersion": 12
   },
-  "plugins": ["react"],
+  "plugins": ["react", "@babel/plugin-transform-react-jsx"],
   "rules": {
     "react/prop-types": 0,
     "semi": ["error", "always"],
