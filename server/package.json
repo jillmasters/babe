@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx}\"",
-    "lint": "eslint \"**/*.{js,jsx}\"",
-    "start": "node index.js"
+    "lint": "eslint \"**/*.{js,jsx}\""
   },
   "author": "",
   "license": "ISC",
