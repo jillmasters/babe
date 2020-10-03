@@ -73,8 +73,10 @@ describe('Call it even', () => {
 
 
     userEvent.type(LeaveNote, 'HI');
-    // await waitFor(() => {
-      jest
+
+      // your mocking the Date.now() return value here.. so make sure in the 
+      // the actual function thats being mocked (postTransaction) its using Date.now()..
+      jest 
         .spyOn(global.Date, 'now')
         .mockImplementationOnce(() =>
           new Date('2019-05-14T11:01:58.135Z').valueOf()
@@ -90,9 +92,5 @@ describe('Call it even', () => {
         split: 1,
         addedBy: "1234@test",
       });
-
-    // })
-
-
   })
 })

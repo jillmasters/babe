@@ -161,7 +161,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
       </form>
       <form onSubmit={deleteMe}>
         <FormSection>
-          <DeleteButton type="submit">
+          <DeleteButton type="submit" role="deleteTrans">
             <span role="img" aria-label="trash emoji">
               🗑
             </span>
