@@ -59,8 +59,8 @@ test('Show Call It Even button when user owes money', () => {
     />,
   );
 
-  // expect(screen.getByText('Bob gets 2')).toBeInTheDocument(); //TODO: get this working with concatentation
-
+  expect(screen.getByText(/joe\s*gets\s*\$\s*2/)).toBeInTheDocument(); 
+  
   // if total owed > 0, and user.partner != summary.overallLender then call-it-even
   expect(screen.getByText('Call It Even')).toBeInTheDocument();
 });
@@ -95,8 +95,9 @@ test('Correct elements show when no money is owed', () => {
     />,
   );
 
-  // expect(screen.getByText(' You and joe are all square.'), {exact: false}).toBeInTheDocument(); //TODO: Get this working with concatentation
-  // expect(screen.getAllByText('joe'), {exact: false}).toBeInTheDocument(); //TODO: Get this working with concatentation
+  expect(
+    screen.getByText(/You and \s*joe\s* are all square/),
+  ).toBeInTheDocument();
 
   expect(screen.queryByText('Settle Up')).not.toBeInTheDocument();
   expect(screen.queryByText('Call It Even')).not.toBeInTheDocument();
