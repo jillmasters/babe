@@ -6,7 +6,6 @@ import Transactions from './Transactions';
 import userEvent from '@testing-library/user-event';
 
 import { postTransaction } from '../services/TransactionService';
-// import { getPosts } from "./apiService.js";
 jest.mock('../services/TransactionService');
 postTransaction.mockResolvedValue('Uploaded blah');
 
@@ -16,9 +15,11 @@ const mockUsers = {
   partner: 'bob',
 };
 
+afterEach(() => {
+  jest.clearAllMocks();
+})
+
 test('Submit form with even split ', async () => {
-  // jest.mock('../services/TransactionService');
-  // postTransaction.mockResolvedValue('Uploaded blah');
   render(
     <Transactions
       users={mockUsers}
@@ -75,8 +76,6 @@ test('Submit form with even split ', async () => {
 });
 
 test('Submit form with uneven split ', async () => {
-  // jest.mock('../services/TransactionService');
-  // postTransaction.mockResolvedValue('Uploaded blah');
   render(
     <Transactions
       users={mockUsers}
@@ -128,7 +127,7 @@ test('Submit form with uneven split ', async () => {
 
     userEvent.click(submitButton);
 
-    // expect(postTransaction).toHaveBeenCalledTimes(1); // FIXME: why does this not work when both tests are enabled
+    expect(postTransaction).toHaveBeenCalledTimes(1); // FIXME: why does this not work when both tests are enabled
     expect(postTransaction).toHaveBeenCalledWith({
       item: 'Breakfast',
       amount: '20',
