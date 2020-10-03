@@ -7,13 +7,19 @@ import { Link, navigate } from '@reach/router';
 
 const moment = require('moment');
 
+
 const History = ({ currency, transactions, users }) => {
+  function navigateToTransaction (transaction) {
+    if (transaction.lender !== 'Babe') {
+      navigate(`/transactions/${transaction._id}`);
+    }
+  }
   return (
     <React.Fragment>
       {transactions.length !== 0 ? (
         <MainView>
           <h4>
-            <span data-testid="t1" role="img" aria-label="flying cash emoji">
+            <span role="img" aria-label="flying cash emoji">
               💸
             </span>
             Past transactions
@@ -48,10 +54,8 @@ const History = ({ currency, transactions, users }) => {
                 `}
               >
                 <div
-                  onClick={() => {
-                    if (transaction.lender !== 'Babe')
-                      navigate(`/transactions/${transaction._id}`);
-                  }}
+                  role="clickToEdit"
+                  onClick={() => {navigateToTransaction(transaction)}}
                   css={css`
                 position: relative;
                 border: none;

@@ -1,8 +1,15 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, act, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
+import {navigate } from '@reach/router';
+
 import History from '../pages/History';
 import '@testing-library/jest-dom/extend-expect'
+
 afterEach(cleanup);
+
+jest.mock('@reach/router')
+navigate.mockResolvedValue('');
 
 const transactions = [
   {
@@ -10,7 +17,7 @@ const transactions = [
     amount: 5,
     date: "2020-10-02T15:52:39.226Z",
     item: "C settled up: ",
-    lender: "Babe",
+    lender: "Chris",
     split: -1,
     __v: 0,
     _id: "5f75fb47f11dc559c775e8s09",
@@ -90,6 +97,15 @@ describe('History', () => {
     render(<History transactions={transactions} users={users} currency={currency} />);
     const trans = await screen.findAllByRole("transaction");
     expect(trans[0]).toHaveTextContent('Friday, Oct 2nd');
-
+    expect(trans[0]).toHaveTextContent('C settled up: ');
+    expect(trans[2]).toHaveTextContent('dinner');
     })
+    // test on click of transaction navigates to transactions page
+    it('Clickable transaction', async () => {
+      render(<History transactions={transactions} users={users} currency={currency} />);
+      const a = await screen.findAllByRole('clickToEdit');
+      userEvent.click(a[0]);
+      expect(navigate).toHaveBeenCalledTimes(1);
+      expect(navigate).toHaveBeenCalledWith("/transactions/5f75fb47f11dc559c775e8s09");
+   });
 });
