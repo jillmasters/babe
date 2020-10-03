@@ -55,10 +55,5 @@
     "jest": "^26.4.2",
     "jest-canvas-mock": "^2.3.0",
     "react-test-renderer": "^16.13.1"
-  },
-  "jest": {
-    "setupFiles": [
-      "jest-canvas-mock"
-    ]
   }
 }
