@@ -70,6 +70,7 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="text"
             name="email"
+            aria-label="email"
             value={state.email}
             onChange={handleChange}
             required
@@ -80,19 +81,20 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="password"
             name="password"
+            aria-label="password"
             value={state.password}
             onChange={handleChange}
             required
           />
         </FormSection>
         <FormSection onChange={handleChange}>
-          <FormRadio type="radio" name="currency" value="£" required />
+          <FormRadio type="radio" aria-label="currency-gbp" name="currency" value="£" required />
           <RadioLabel htmlFor="currency">
             <span role="img" aria-label="pounds emoji">
               💷
             </span>
           </RadioLabel>
-          <FormRadio type="radio" name="currency" value="$" required />
+          <FormRadio type="radio" aria-label="currency-usd" name="currency" value="$" required />
           <RadioLabel htmlFor="currency">
             <span role="img" aria-label="dollars emoji">
               💵
@@ -104,6 +106,7 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="text"
             name="name"
+            aria-label="your-name"
             value={state.name}
             onChange={handleChange}
             required
@@ -114,6 +117,7 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="text"
             name="partner"
+            aria-label="partners-name"
             value={state.partner}
             onChange={handleChange}
             required
@@ -124,12 +128,13 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="text"
             name="partnerEmail"
+            aria-label="partners-email"
             value={state.partnerEmail}
             onChange={handleChange}
             required
           />
         </FormSection>
-        <FormButton type="submit">Let&apos;s get started</FormButton>
+        <FormButton role="button" type="submit">Let&apos;s get started</FormButton>
       </form>
     </MainView>
   );

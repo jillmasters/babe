@@ -53,7 +53,6 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
     event.preventDefault();
     const addedBy = users.leadEmail;
     const editedTransaction = { item, amount, date, lender, split, addedBy };
-    console.log('editedTransaction: ', editedTransaction);
     saveTransaction(editedTransaction);
     setIsLoading(true);
     navigate('/');

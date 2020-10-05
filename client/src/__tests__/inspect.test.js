@@ -28,7 +28,7 @@ const currency = '£';
 //setTransactions
 //setIsLoading
 
-describe('Call it even', () => {
+describe('Inspect', () => {
   afterEach(() => {
     jest.clearAllMocks();
   })
@@ -152,3 +152,4 @@ describe('Call it even', () => {
     });
   })
 })
+// mock an error??
