@@ -65,6 +65,7 @@ const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
           <FormInput
             type="text"
             name="user-lead"
+            aria-label="user-lead"
             value={tempUser}
             onChange={event => setTempUser(event.target.value)}
           />
@@ -74,6 +75,7 @@ const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
           <FormInput
             type="text"
             name="user-partner"
+            aria-label="user-partner"
             value={tempPartner}
             onChange={event => setTempPartner(event.target.value)}
           />
