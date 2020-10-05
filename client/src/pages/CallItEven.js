@@ -60,7 +60,7 @@ const CallItEven = ({
           🤛
         </span>
       </h4>
-      <h2 role="partnerOwes">
+      <h2>
         {users.partner} owes you {currency}
         {summary.totalOwed}.
         <br />
