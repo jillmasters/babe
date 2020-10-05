@@ -39,7 +39,7 @@ const CallItEven = ({
     const newTransaction = {
       item: `${users.lead} called it even: ${note}`,
       amount: summary.totalOwed,
-      date: new Date(),
+      date: new Date(Date.now()),
       lender: 'Babe',
       split: 1,
       addedBy: users.leadEmail,
@@ -49,7 +49,6 @@ const CallItEven = ({
     setIsLoading(true);
     navigate('/');
   };
-
   return (
     <MainViewStatic data-testid="callItEven">
       <h4>
@@ -61,7 +60,7 @@ const CallItEven = ({
           🤛
         </span>
       </h4>
-      <h2>
+      <h2 role="partnerOwes">
         {users.partner} owes you {currency}
         {summary.totalOwed}.
         <br />
@@ -71,6 +70,7 @@ const CallItEven = ({
         <FormSection>
           <FormLabel htmlFor="wipe-description">Leave a note:</FormLabel>
           <FormInput
+            role="LeaveNote"
             type="text"
             name="wipe-description"
             placeholder="😘"

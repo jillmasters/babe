@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.6",
     "emotion": "^10.0.27",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "moment": "^2.29.0",
     "prettier": "^2.1.2",
     "react": "^16.13.1",
