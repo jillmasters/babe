@@ -11,6 +11,7 @@ import { MainViewStatic } from './theme';
 import TransactionService from './services/TransactionService';
 import UserService from './services/UserService';
 import authentication from './authentication';
+import summariseTransactions from './calculate';
 
 function App() {
   // SET STATE
@@ -43,24 +44,6 @@ function App() {
     }
   };
 
-  const calculateSummary = () => {
-    if (transactions) {
-      const balance = transactions.reduce((acc, transaction) => {
-        if (transaction.lender === users.leadEmail)
-          return acc + (transaction.amount * (100 - transaction.split)) / 100;
-        else if (transaction.lender === users.partnerEmail)
-          return acc - transaction.amount * (transaction.split / 100);
-        else {
-          const remaining = transaction.amount * transaction.split;
-          return acc - remaining;
-        }
-      }, 0);
-      const overallLender = balance > 0 ? users.lead : users.partner;
-      const totalOwed = Math.abs(Math.round(balance));
-      setSummary({ balance, totalOwed, overallLender });
-    }
-  };
-
   // LOAD DASHBOARD INFO
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
@@ -70,7 +53,7 @@ function App() {
       TransactionService.getTransactions(users._id)
         .then(dbTransactions => setTransactions(dbTransactions))
         .catch(error => console.log('---> Error loading user history', error)); // eslint-disable-line no-console
-      calculateSummary();
+      setSummary(summariseTransactions(transactions, users))
     }
     setIsLoading(false);
   }, [
