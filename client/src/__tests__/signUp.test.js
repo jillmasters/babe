@@ -3,16 +3,15 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { navigate } from '@reach/router';
 import '@testing-library/jest-dom/extend-expect'
-import SignUp from '../pages/SignUp';
+import SignUp, {localStorage} from '../pages/SignUp';
 
 import {signup} from '../services/UserService'
 import {login} from '../authentication'
 
+
 jest.mock('../services/UserService');
 jest.mock('../authentication');
 signup.mockResolvedValue('upload');
-// login.mockResolvedValue('upload');
-
 jest.mock('@reach/router')
 navigate.mockResolvedValue('');
 
@@ -26,14 +25,16 @@ describe('Sign Up', () => {
       setTransactions={val => { console.log('transaction', val) }}
       setIsLoading={val => { console.log('isloading', val) }} />)
 
-    
     const email = screen.getByLabelText('email');
     expect(email).toBeInTheDocument();
     userEvent.type(email, '23@test');
+    expect(email).toHaveValue('23@test')
 
-    const pasword = screen.getByLabelText('password');
-    expect(pasword).toBeInTheDocument();
-    userEvent.type(pasword, '123');
+
+    const password = screen.getByLabelText('password');
+    expect(password).toBeInTheDocument();
+    userEvent.type(password, '123');
+    expect(password).toHaveValue('123');
 
     const gbpCurr = screen.getByLabelText('currency-gbp');
     expect(gbpCurr).toBeInTheDocument();
@@ -42,18 +43,25 @@ describe('Sign Up', () => {
     expect(usdCurr).toBeInTheDocument();
 
     userEvent.click(gbpCurr);
+    expect(gbpCurr).toBeChecked();
 
     const yourName = screen.getByLabelText('your-name');
     expect(yourName).toBeInTheDocument();
     userEvent.type(yourName, 'Chris');
+    expect(yourName).toHaveValue('Chris')
+
 
     const partnerName = screen.getByLabelText('partners-name');
     expect(partnerName).toBeInTheDocument();
     userEvent.type(partnerName, 'Tamara');
+    expect(partnerName).toHaveValue('Tamara')
+
 
     const partnerEmail = screen.getByLabelText('partners-email');
     expect(partnerEmail).toBeInTheDocument();
     userEvent.type(partnerEmail, 'tamara@test');
+    expect(partnerEmail).toHaveValue('tamara@test')
+
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
@@ -69,7 +77,13 @@ describe('Sign Up', () => {
         partnerEmail: 'tamara@test',
         currency: '£'
       })
+      expect(email).toHaveValue('');
+      expect(password).toHaveValue('');
+      expect(yourName).toHaveValue('');
+      expect(partnerName).toHaveValue('');
+      expect(partnerEmail).toHaveValue('');
     })
   })
 })
 // mock an error??
+// check form gets reset
