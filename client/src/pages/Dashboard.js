@@ -54,7 +54,7 @@ export default function Dashboard({
                   width: 100%;
                 `}
               >
-                {/* <Lottie options={celebrate} /> */}
+                <Lottie options={celebrate} />
                 <div
                   css={css`
                     position: absolute;

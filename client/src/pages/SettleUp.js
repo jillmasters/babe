@@ -37,7 +37,7 @@ const SettleUp = ({
     const newTransaction = {
       item: `${users.lead} settled up: ${note}`,
       amount: summary.totalOwed,
-      date: new Date(),
+      date: new Date(Date.now()),
       lender: 'Babe',
       split: -1,
       addedBy: users.leadEmail,
@@ -70,13 +70,14 @@ const SettleUp = ({
           <FormInput
             type="text"
             name="wipe-description"
+            aria-label="wipe-description"
             placeholder="💰💰💰"
             onChange={event => setNote(event.target.value)}
             value={note}
           ></FormInput>
         </FormSection>
         <FormSection>
-          <FormButton type="submit">
+          <FormButton type="submit" aria-label="SettleUp">
             I&apos;ve paid {users.partner} back
           </FormButton>
         </FormSection>
