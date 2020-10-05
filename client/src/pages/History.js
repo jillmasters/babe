@@ -43,7 +43,7 @@ const History = ({ currency, transactions, users }) => {
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map(transaction => (
               <section
-                role="transaction"
+                data-testid="transaction"
                 key={transaction._id}
                 css={css`
                   display: flex;
@@ -54,7 +54,7 @@ const History = ({ currency, transactions, users }) => {
                 `}
               >
                 <div
-                  role="clickToEdit"
+                  data-testid="clickToEdit"
                   onClick={() => {navigateToTransaction(transaction)}}
                   css={css`
                 position: relative;

@@ -42,3 +42,11 @@ export default {
   deleteTransaction,
   editTransaction,
 };
+
+export {
+  getTransactions,
+  postTransaction,
+  getOneTransaction,
+  deleteTransaction,
+  editTransaction,
+};

@@ -52,3 +52,4 @@ const editUserDetails = async (_id, field, value) => {
 };
 
 export default { signup, login, loadUserDetails, logout, editUserDetails };
+export { signup, login, loadUserDetails, logout, editUserDetails };
