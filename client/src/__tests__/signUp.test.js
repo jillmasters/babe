@@ -28,7 +28,7 @@ describe('Sign Up', () => {
   })
 
   it('Correctly filled out form', async () => {
-    // UserService.login.mockResolvedValue({ accessToken: 'TOKEN'});
+    UserService.login.mockResolvedValue({ accessToken: 'accessToken'});
 
     render(<SignUp
       setIsAuthenticated={setIsAuthenticatedMock}
@@ -73,9 +73,7 @@ describe('Sign Up', () => {
     userEvent.click(button);
 
     await waitFor(() => {
-      // expect(localStorage.setItem).toHaveBeenLastCalledWith(
-      //   'accessToken'
-      // );
+      expect(localStorage.setItem).toBeCalledTimes(1);
       expect(signup).toBeCalledTimes(1);
       expect(setIsLoadingMock).toBeCalledTimes(1);
       expect(setIsAuthenticatedMock).toBeCalledTimes(1);
@@ -146,7 +144,7 @@ describe('Sign Up', () => {
   userEvent.click(button);
 
   await waitFor(() => {
-   
+
     expect(email.textContent).toEqual('');
     expect(password.textContent).toEqual('');
     expect(yourName.textContent).toEqual('');
