@@ -27,12 +27,12 @@ describe('Call it even', () => {
   afterEach(() => {
     jest.clearAllMocks();
   })
+
   it('displays correct summary and users partner', async () => {
     render(<CallItEven users={users} currency={currency} summary={summary} />);
     expect(screen.getByText(/M\s*owes you\s*£5/)).toBeInTheDocument();
   })
-  //mock form input - check (wipe that debt) naviagtes away from page
-  //wipe that debt also adjusts transaction
+
   it('On "wipe that debt" click navigation is called', async () => {
     render(<CallItEven
       users={users}
@@ -45,14 +45,12 @@ describe('Call it even', () => {
       setIsLoading={val => {
         console.log('isloading', val);
       }} />);
-    const a = await screen.getByText('Wipe that debt');
-    userEvent.click(a);
+    const wipeDebt = await screen.getByText('Wipe that debt');
+    userEvent.click(wipeDebt);
     expect(navigate).toHaveBeenCalledTimes(1);
   })
-  // check a new transaction is created on click?!
+
   it('New transaction created on click', async () => {
-    // nothing to mock before hand
-    // apart from form entry
     render(<CallItEven
       users={users}
       currency={currency}
@@ -68,20 +66,18 @@ describe('Call it even', () => {
     const LeaveNote = screen.getByRole('LeaveNote');
     expect(LeaveNote).toBeInTheDocument();
 
-    const a = screen.getByText('Wipe that debt');
-    expect(a).toBeInTheDocument();
-
+    const wipeDebt = screen.getByText('Wipe that debt');
+    expect(wipeDebt).toBeInTheDocument();
 
     userEvent.type(LeaveNote, 'HI');
 
-      // your mocking the Date.now() return value here.. so make sure in the 
-      // the actual function thats being mocked (postTransaction) its using Date.now()..
       jest 
         .spyOn(global.Date, 'now')
         .mockImplementationOnce(() =>
           new Date('2019-05-14T11:01:58.135Z').valueOf()
         );
-      userEvent.click(a);
+
+      userEvent.click(wipeDebt);
 
       expect(postTransaction).toHaveBeenCalledTimes(1);
       expect(postTransaction).toHaveBeenCalledWith({

@@ -24,40 +24,37 @@ const users =
   partnerEmail: "123@test"
 };
 const currency = '£';
-// _id
-//setTransactions
-//setIsLoading
 
 describe('Inspect', () => {
   afterEach(() => {
     jest.clearAllMocks();
   })
+
   it('"Save my edits" directs away from page', async () => {
     render(<Inspect
       users={users}
       setTransactions={val => { console.log('transaction', val) }}
       setIsLoading={val => { console.log('isloading', val) }} />)
 
-    const a = screen.getByText('Save my edits');
-    expect(a).toBeInTheDocument();
+    const saveBtn = screen.getByText('Save my edits');
+    expect(saveBtn).toBeInTheDocument();
 
-    userEvent.click(a);
+    userEvent.click(saveBtn);
     expect(navigate).toHaveBeenCalledTimes(1);
   })
+
   it('"Delete" directs away from page', async () => {
     render(<Inspect
       users={users}
       setTransactions={val => { console.log('transaction', val) }}
       setIsLoading={val => { console.log('isloading', val) }} />)
 
-    const a = screen.getByRole('deleteTrans');
-    expect(a).toBeInTheDocument();
+    const deleteBtn = screen.getByRole('deleteTrans');
+    expect(deleteBtn).toBeInTheDocument();
 
-    userEvent.click(a);
+    userEvent.click(deleteBtn);
     expect(navigate).toHaveBeenCalledTimes(1);
   })
-
-  // check filled in inputs are saved correctly..
 
   it('When a transaction is updated it\'s sent through correctly: Even Split', async () => {
     render(<Inspect
@@ -75,7 +72,6 @@ describe('Inspect', () => {
 
     const billDate = screen.getByLabelText("bill-date");
     expect(billDate).toBeInTheDocument();
-    // userEvent.type(new Date('2019-05-14T11:01:58.135Z'))
     fireEvent.change(billDate, { target: { value: '2020-10-03'}})
 
     const userPaid = screen.getByLabelText("bill-lender-lead-radio");
@@ -86,11 +82,11 @@ describe('Inspect', () => {
     expect(slider).toBeInTheDocument();
     fireEvent.change(slider, { target: { value: "50" } });
 
-    const a = screen.getByText('Save my edits');
-    expect(a).toBeInTheDocument();
+    const saveBtn = screen.getByText('Save my edits');
+    expect(saveBtn).toBeInTheDocument();
 
     await waitFor(() => {
-      userEvent.click(a);
+      userEvent.click(saveBtn);
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledWith(undefined, {
@@ -129,15 +125,15 @@ describe('Inspect', () => {
     expect(slider).toBeInTheDocument();
     fireEvent.change(slider, { target: { value: "30" } });
 
-    const a = screen.getByText('Save my edits');
-    expect(a).toBeInTheDocument();
+    const saveBtn = screen.getByText('Save my edits');
+    expect(saveBtn).toBeInTheDocument();
 
     await waitFor(() => {
       jest
         .spyOn(global.Date, 'now')
         .mockImplementationOnce('2020-10-03');
 
-      userEvent.click(a);
+      userEvent.click(saveBtn);
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledTimes(1);
 

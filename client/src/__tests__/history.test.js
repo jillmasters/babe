@@ -103,8 +103,8 @@ describe('History', () => {
     // test on click of transaction navigates to transactions page
     it('Clickable transaction', async () => {
       render(<History transactions={transactions} users={users} currency={currency} />);
-      const a = await screen.findAllByRole('clickToEdit');
-      userEvent.click(a[0]);
+      const transactionDiv = await screen.findAllByRole('clickToEdit');
+      userEvent.click(transactionDiv[0]);
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(navigate).toHaveBeenCalledWith("/transactions/5f75fb47f11dc559c775e8s09");
    });

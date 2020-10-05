@@ -1,13 +1,11 @@
 import React from 'react';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { navigate } from '@reach/router';
 import '@testing-library/jest-dom/extend-expect'
-import SignUp, {localStorage} from '../pages/SignUp';
+import SignUp from '../pages/SignUp';
 
-import {signup} from '../services/UserService'
-import {login} from '../authentication'
-
+import { signup } from '../services/UserService'
 
 jest.mock('../services/UserService');
 jest.mock('../authentication');
@@ -15,11 +13,11 @@ signup.mockResolvedValue('upload');
 jest.mock('@reach/router')
 navigate.mockResolvedValue('');
 
-
 describe('Sign Up', () => {
   afterEach(() => {
     jest.clearAllMocks();
   })
+
   it('Correctly filled out form', async () => {
     render(<SignUp
       setTransactions={val => { console.log('transaction', val) }}
@@ -29,7 +27,6 @@ describe('Sign Up', () => {
     expect(email).toBeInTheDocument();
     userEvent.type(email, '23@test');
     expect(email).toHaveValue('23@test')
-
 
     const password = screen.getByLabelText('password');
     expect(password).toBeInTheDocument();
@@ -50,18 +47,15 @@ describe('Sign Up', () => {
     userEvent.type(yourName, 'Chris');
     expect(yourName).toHaveValue('Chris')
 
-
     const partnerName = screen.getByLabelText('partners-name');
     expect(partnerName).toBeInTheDocument();
     userEvent.type(partnerName, 'Tamara');
     expect(partnerName).toHaveValue('Tamara')
 
-
     const partnerEmail = screen.getByLabelText('partners-email');
     expect(partnerEmail).toBeInTheDocument();
     userEvent.type(partnerEmail, 'tamara@test');
     expect(partnerEmail).toHaveValue('tamara@test')
-
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
@@ -77,6 +71,7 @@ describe('Sign Up', () => {
         partnerEmail: 'tamara@test',
         currency: '£'
       })
+
       expect(email).toHaveValue('');
       expect(password).toHaveValue('');
       expect(yourName).toHaveValue('');
