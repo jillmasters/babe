@@ -48,7 +48,7 @@ const SettleUp = ({
     navigate('/');
   };
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="settleUp">
       <h4>
         <span role="img" aria-label="credit card emoji">
           💳

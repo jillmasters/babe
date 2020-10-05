@@ -50,7 +50,7 @@ const CallItEven = ({
     navigate('/');
   };
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="callItEven">
       <h4>
         <span role="img" aria-label="fistbump right emoji">
           🤜

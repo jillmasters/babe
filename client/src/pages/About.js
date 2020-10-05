@@ -15,7 +15,7 @@ const pals = {
 
 const About = () => {
   return (
-    <MainView>
+    <MainView data-testid="about">
       <h4>
         <span role="img" aria-label="confused person emoji">
           🤷

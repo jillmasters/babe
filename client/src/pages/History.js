@@ -17,7 +17,7 @@ const History = ({ currency, transactions, users }) => {
   return (
     <React.Fragment>
       {transactions.length !== 0 ? (
-        <MainView>
+        <MainView data-testid="history">
           <h4>
             <span role="img" aria-label="flying cash emoji">
               💸
@@ -100,7 +100,8 @@ const History = ({ currency, transactions, users }) => {
                   &::after {
                       transition: opacity 1s ease-in;
                       opacity: 1;
-              }
+                    }
+                  }
               `}
                 >
                   <time>

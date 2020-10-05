@@ -53,7 +53,7 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
   };
 
   return (
-    <MainView>
+    <MainView data-testid="signUp">
       <h4>
         <span role="img" aria-label="wave emoji">
           👋

@@ -52,7 +52,7 @@ const Transactions = ({
   };
 
   return (
-    <MainView>
+    <MainView data-testid="transactions">
       <h4>
         <span role="img" aria-label="cartwheel emoji">
           🤸🏼

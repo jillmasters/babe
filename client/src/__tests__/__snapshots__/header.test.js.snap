@@ -32,36 +32,3 @@ exports[`Header renders correctly 1`] = `
   </section>
 </header>
 `;
-
-exports[`renders correctly 1`] = `
-<header>
-  <section
-    className="css-1skciao-Header"
-  >
-    <h1>
-      <a
-        aria-current="page"
-        href="/"
-        id="title"
-        onClick={[Function]}
-      >
-        Babe
-      </a>
-    </h1>
-  </section>
-  <section
-    className="css-ogc0dt-Header"
-  >
-    <h3>
-      Split the bill,
-      <br />
-      share the
-      <span
-        className="css-voe987-Header"
-      >
-        love
-      </span>
-    </h3>
-  </section>
-</header>
-`;

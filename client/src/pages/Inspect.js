@@ -78,7 +78,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
   };
 
   return (
-    <MainView>
+    <MainView data-testid="inspect">
       <h4>
         <span role="img" aria-label="inspector emoji">
           🧐

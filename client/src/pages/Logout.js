@@ -34,7 +34,7 @@ const Logout = ({ setIsAuthenticated, setIsLoading }) => {
   };
 
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="logout">
       <h4>
         <span role="img" aria-label="technologist emoji">
           🧑‍💻

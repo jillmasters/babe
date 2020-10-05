@@ -45,7 +45,7 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
   };
 
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="login">
       <h4>
         <span role="img" aria-label="technologist emoji">
           🧑‍💻

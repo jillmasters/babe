@@ -3,6 +3,7 @@
 exports[`About renders correctly 1`] = `
 <section
   className="css-1rze9zt"
+  data-testid="about"
 >
   <h4>
     <span
