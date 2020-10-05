@@ -49,7 +49,7 @@ const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
   };
 
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="settings">
       <h4>
         <span role="img" aria-label="tools emoji">
           🛠

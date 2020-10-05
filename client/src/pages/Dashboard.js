@@ -34,7 +34,7 @@ export default function Dashboard({
   isAuthenticated,
 }) {
   return (
-    <MainView>
+    <MainView data-testid="dashboard">
       {isAuthenticated ? (
         <React.Fragment>
           <DashSummary>
