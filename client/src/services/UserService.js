@@ -51,4 +51,4 @@ const editUserDetails = async (_id, field, value) => {
   });
 };
 
-module.exports = { signup, login, loadUserDetails, logout, editUserDetails };
+export default { signup, login, loadUserDetails, logout, editUserDetails };
