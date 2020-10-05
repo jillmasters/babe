@@ -10,6 +10,12 @@ import {
 import '@testing-library/jest-dom/extend-expect';
 
 import PageContainer from './PageContainer';
+import Inspect from '../pages/Inspect';
+import Transactions from '../pages/Transactions';
+
+// 
+import TransactionService from '../services/TransactionService';
+jest.mock('../services/TransactionService.js');
 
 // this is a handy function that I would utilize for any component
 // that relies on the router being in context
@@ -137,9 +143,6 @@ test('full app rendering/navigating', async () => {
   await navigate('/history');
   expect(screen.getByTestId('history')).toBeInTheDocument();
 
-  await navigate('/transaction/:123'); //Test for actually using the id value in the Inspect component
-  expect(screen.getByTestId('inspect')).toBeInTheDocument();
-
   await navigate('/settings');
   expect(screen.getByTestId('settings')).toBeInTheDocument();
 
@@ -150,7 +153,39 @@ test('full app rendering/navigating', async () => {
   expect(screen.getByTestId('logout')).toBeInTheDocument();
 
   await navigate('/sign-up');
-  expect(screen.getByTestId('sign-up')).toBeInTheDocument();
+  expect(screen.getByTestId('signUp')).toBeInTheDocument();
+
+  await navigate('/transactions/123'); //Test for actually using the id value in the Inspect component
+  expect(screen.getByTestId('inspect')).toBeInTheDocument();
+});
+
+// render function with Router wrapper from @reach/router
+// For routes with data
+function renderWithRouterWrapper(
+  ui,
+  { route = '/', history = createHistory(createMemorySource(route)) } = {},
+) {
+  return {
+    ...render(
+      <LocationProvider history={history}>
+        <Router>{ui}</Router>
+      </LocationProvider>,
+    ),
+    history,
+  };
+}
+
+test('test Inspect component route', async () => {
+  TransactionService.getOneTransaction.mockResolvedValue(transactions[0]);
+  const {
+    container,
+    history: { navigate },
+  } = renderWithRouterWrapper(<Inspect path="/transactions/:_id" users={users} />, {
+    // and pass the parameter value on the route config
+    route: '/transactions/123'
+  });
+
+  expect(screen.getByTestId('inspect')).toBeInTheDocument();
 });
 
 //TODO test for unused route once error boundary is implemented
