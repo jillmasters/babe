@@ -89,17 +89,18 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
         </span>
       </h4>
       <form onSubmit={submit}>
-        <FormSection>
+        <FormSection role='bill-item'>
           <FormLabel htmlFor="bill-item">What was it for?</FormLabel>
           <FormInput
             type="text"
             name="bill-item"
+            aria-label="bill-item"
             onChange={event => setItem(event.target.value)}
             value={item}
             required
           />
         </FormSection>
-        <FormSection>
+        <FormSection role="bill-amount">
           <FormLabel htmlFor="bill-amount">How much?</FormLabel>
           <span>{currency}</span>
           <FormInput
@@ -107,17 +108,19 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
             min="0"
             step="0.01"
             name="bill-amount"
+            aria-label="bill-amount"
             onChange={event => setAmount(event.target.value)}
             value={amount}
             required
           />
         </FormSection>
-        <FormSection>
+        <FormSection role="bill-date">
           <FormLabel htmlFor="bill-date">When was it?</FormLabel>
           <FormInput
             type="date"
             max={moment(new Date()).format('YYYY-MM-DD')}
             name="bill-date"
+            aria-label="bill-date"
             onChange={event => setDate(event.target.value)}
             value={date}
             required
@@ -128,6 +131,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
             type="radio"
             name="bill-lender"
             value={users.leadEmail}
+            aria-label="bill-lender-lead-radio"
             required
             defaultChecked={lender === users.leadEmail ? 'true' : null}
           />
@@ -136,6 +140,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
             type="radio"
             name="bill-lender"
             value={users.partnerEmail}
+            aria-label="bill-lender-partner-radio"
             required
             defaultChecked={lender === users.partnerEmail ? 'true' : null}
           />
@@ -148,6 +153,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
           <FormSlider
             type="range"
             name="bill-proportion"
+            aria-label="bill-proportion-slider"
             min="0"
             max="100"
             step="10"
@@ -161,7 +167,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
       </form>
       <form onSubmit={deleteMe}>
         <FormSection>
-          <DeleteButton type="submit">
+          <DeleteButton type="submit" role="deleteTrans">
             <span role="img" aria-label="trash emoji">
               🗑
             </span>
