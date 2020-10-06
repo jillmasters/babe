@@ -14,7 +14,30 @@ import {
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const Transactions = ({
+interface TransactionsProps {
+  users: {
+      _id: string,
+      lead: string,
+      leadEmail: string,
+      partner: string,
+      partnerEmail: string
+  }
+  currency: string,
+  setTransactions: Function,
+  isLoading: Function,
+  setIsLoading: Function,
+}
+interface transaction {
+    addedBy: string,
+    amount: string,
+    date: Date,
+    item: string,
+    lender: string,
+    split: any, // fix
+    __v?: number,
+    _id?: string,
+}
+const Transactions: React.FC<TransactionsProps> = ({
   users,
   currency,
   setTransactions,
@@ -24,14 +47,14 @@ const Transactions = ({
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [lender, setLender] = useState('');
-  const [split, setSplit] = useState(50);
+  const [split, setSplit] = useState<(any)>(50);
 
   const [isCustomising, setIsCustomising] = useState(false);
 
-  const saveTransaction = transaction => {
+  const saveTransaction = (transaction: transaction) => {
     TransactionService.postTransaction(transaction)
       .then(newTransaction =>
-        setTransactions(oldTransactions => [
+        setTransactions((oldTransactions: transaction[]) => [
           ...oldTransactions,
           newTransaction,
         ]),
@@ -41,11 +64,11 @@ const Transactions = ({
       });
   };
 
-  const submit = event => {
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const date = new Date(Date.now());
     const addedBy = users.leadEmail;
-    const newTransaction = { item, amount, date, lender, split, addedBy };
+    const newTransaction: transaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
     setIsLoading(true);
     navigate('/');
@@ -69,7 +92,6 @@ const Transactions = ({
             type="text"
             name="bill-item"
             aria-label="bill-item"
-
             placeholder="Pints with Gesh 🍻"
             onChange={event => setItem(event.target.value)}
             value={item}
@@ -86,12 +108,12 @@ const Transactions = ({
             placeholder="18.50"
             aria-label="bill-amount"
             name="bill-amount"
-            onChange={event => setAmount(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
             value={amount}
             required
           />
         </FormSection>
-        <FormSection onChange={event => setLender(event.target.value)}>
+        <FormSection onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLender(event.target.value)}>
           <FormRadio
             type="radio"
             name="bill-lender"
@@ -112,7 +134,7 @@ const Transactions = ({
           <FormRadio
             type="radio"
             name="bill-split"
-            value={false}
+            value="false" // TODO -- Why does this work as opposed to value={false}
             onChange={() => setIsCustomising(!isCustomising)}
             defaultChecked
             required
@@ -122,7 +144,7 @@ const Transactions = ({
           <FormRadio
             type="radio"
             name="bill-split"
-            value={true}
+            value="true" // TODO -- Why does this work as opposed to value={true}
             onChange={() => setIsCustomising(!isCustomising)}
             aria-label="bill-split-uneven-radio"
           />
@@ -139,7 +161,7 @@ const Transactions = ({
               min="0"
               max="100"
               step="10"
-              onChange={event => setSplit(event.target.value)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSplit(event.target.value)}
               aria-label="bill-split-slider"
             />
           </FormSection>

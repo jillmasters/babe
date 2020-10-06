@@ -3,6 +3,11 @@
     "allowJs": true,
     "checkJs": true,
     "noImplicitAny": true,
+
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+
     "esModuleInterop": true,
     "jsx": "react",
     "target": "es5",
