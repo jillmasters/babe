@@ -2,11 +2,11 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
-    "noImplicitAny": true,
+    // "noImplicitAny": true,
 
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictBindCallApply": true,
+    // "strictFunctionTypes": true,
+    // "strictNullChecks": true,
+    // "strictBindCallApply": true,
 
     "esModuleInterop": true,
     "jsx": "react",

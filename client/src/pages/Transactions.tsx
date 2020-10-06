@@ -47,7 +47,7 @@ const Transactions: React.FC<TransactionsProps> = ({
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [lender, setLender] = useState('');
-  const [split, setSplit] = useState<(any)>(50);
+  const [split, setSplit] = useState<(any)>(50); // any?:() string|number --> split (l.156) or value (l.164) - doesnt like it. Just string everything is happy but tests fail
 
   const [isCustomising, setIsCustomising] = useState(false);
 
