@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-import {Users} from '../interfaces'
 
 const fetchRequest = (path: string, options?: any) => {
   return fetch(`${process.env.REACT_APP_API_CLIENT}${path}`, options)
@@ -8,7 +7,7 @@ const fetchRequest = (path: string, options?: any) => {
     .catch(error => console.log('---> Error fetching data from API', error));
 };
 
-const signup = (newUser: {name: string, password: string}) => {
+const signup = (newUser: { name: string; password: string }) => {
   return fetchRequest('/sign-up', {
     method: 'POST',
     credentials: 'include',
@@ -18,7 +17,7 @@ const signup = (newUser: {name: string, password: string}) => {
   });
 };
 
-const login = (newUser: {name?: string, email: string, password: string}) => {
+const login = (newUser: { name?: string; email: string; password: string }) => {
   return fetchRequest('/login', {
     method: 'POST',
     credentials: 'include',
@@ -44,7 +43,11 @@ const logout = (tokenName: string) => {
   localStorage.removeItem(tokenName);
 };
 
-const editUserDetails = async (_id: string, field: string, value: {value: string}) => {
+const editUserDetails = async (
+  _id: string,
+  field: string,
+  value: { value: string },
+) => {
   return fetchRequest(`/${_id}/${field}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
