@@ -35,7 +35,15 @@ const editTransaction = async (_id, editedTransaction) => {
   });
 };
 
-module.exports = {
+export default {
+  getTransactions,
+  postTransaction,
+  getOneTransaction,
+  deleteTransaction,
+  editTransaction,
+};
+
+export {
   getTransactions,
   postTransaction,
   getOneTransaction,

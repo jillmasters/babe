@@ -1,5 +1,7 @@
 # Babe: Fast, unfussy bill-splitting for couples
 
+![https://github.com/ilyadusoleil/babe](https://img.shields.io/github/workflow/status/ilyadusoleil/babe/Node.js%20CI)
+
 Babe is an app for couples who want shared lives and sole bank accounts. It's a radically simplified version of Splitwise/Venmo designed for two people, with a simple interface, that lets you add bills, call it even, or settle up. Invoicing your partner feels so unromantic. Babe abstracts away the finicky details, and lets you keep track faster and with less fuss about the details and no upfront requests for repayment.
 
 ## Core functions

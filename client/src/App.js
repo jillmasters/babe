@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+// FIXME: remove this disable later
+
 import React, { useState, useEffect } from 'react';
 
 // GET COMPONENTS
@@ -53,7 +56,7 @@ function App() {
       TransactionService.getTransactions(users._id)
         .then(dbTransactions => setTransactions(dbTransactions))
         .catch(error => console.log('---> Error loading user history', error)); // eslint-disable-line no-console
-      setSummary(summariseTransactions(transactions, users))
+      setSummary(summariseTransactions(transactions, users));
     }
     setIsLoading(false);
   }, [
