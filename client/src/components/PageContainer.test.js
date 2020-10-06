@@ -15,7 +15,7 @@ import Transactions from '../pages/Transactions';
 
 // 
 import TransactionService from '../services/TransactionService';
-jest.mock('../services/TransactionService.js');
+jest.mock('../services/TransactionService');
 
 // this is a handy function that I would utilize for any component
 // that relies on the router being in context

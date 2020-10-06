@@ -33,7 +33,7 @@ const Inspect: React.FC<InspectProps> = ({
   setIsLoading,
 }) => {
   const [item, setItem] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(new Date(Date.now()));
   const [amount, setAmount] = useState<number>(0);
   const [lender, setLender] = useState('');
   const [split, setSplit] = useState<number>(0);
@@ -43,7 +43,7 @@ const Inspect: React.FC<InspectProps> = ({
       .then((dbTransaction: Transaction) => {
         const { item, date, amount, lender, split } = dbTransaction;
         setItem(item);
-        setDate(moment(date).format('YYYY-MM-DD'));
+        setDate(date);
         setAmount(parseInt(amount.toFixed(2)));
         setLender(lender);
         setSplit(split);
@@ -150,9 +150,9 @@ const Inspect: React.FC<InspectProps> = ({
             name="bill-date"
             aria-label="bill-date"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setDate(event.target.value)
+              setDate(new Date(event.target.value))
             }
-            value={date}
+            value={date.toString()}
             required
           />
         </FormSection>

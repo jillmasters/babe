@@ -55,7 +55,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@testing-library/dom": "^7.24.3",
-    "@typescript-eslint/parser": "^4.4.0",
+    "@typescript-eslint/parser": "2.34.0",
     "babel-jest": "^26.3.0",
     "babel-polyfill": "^6.26.0",
     "eslint": "^7.9.0",
@@ -64,10 +64,7 @@
     "jest-canvas-mock": "^2.3.0",
     "jest-localstorage-mock": "^2.4.3",
     "react-test-renderer": "^16.13.1",
-    "typescript": "^3.9.7"
-  },
-  "resolutions": {
-    "**/@typescript-eslint/eslint-plugin": "^4.1.1",
-    "**/@typescript-eslint/parser": "^4.1.1"
+    "typescript": "^3.9.7",
+    "@typescript-eslint/eslint-plugin": "2.34.0"
   }
 }

@@ -3,7 +3,7 @@ import React from 'react';
 export interface Transaction {
   addedBy?: string,
   amount: number, 
-  date: string, // TODO
+  date: Date, // TODO
   item: string,
   lender: string,
   split: any, // fix

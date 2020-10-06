@@ -48,7 +48,7 @@ const CallItEven: React.FC<CallItEvenProps> = ({
     const newTransaction: Transaction = {
       item: `${users.lead} called it even: ${note}`,
       amount: summary.totalOwed,
-      date: new Date(Date.now()).toString(),
+      date: new Date(Date.now()),
       lender: 'Babe',
       split: 1,
       addedBy: users.leadEmail,

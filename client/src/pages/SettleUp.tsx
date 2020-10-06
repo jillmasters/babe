@@ -47,7 +47,7 @@ const SettleUp: React.FC<SettleUpProps> = ({
     const newTransaction = {
       item: `${users.lead} settled up: ${note}`,
       amount: summary.totalOwed,
-      date: moment(new Date(Date.now())).format('YYYY-MM-DD'),
+      date: new Date(Date.now()),
       lender: 'Babe',
       split: -1,
       addedBy: users.leadEmail,

@@ -130,7 +130,7 @@ test('Submit form with uneven split ', async () => {
   await waitFor(() => {
     expect(postTransaction).toHaveBeenCalledWith({
       item: 'Breakfast',
-      amount: '20',
+      amount: 20,
       date: new Date('2019-05-14T11:01:58.135Z'),
       lender: 'a@',
       split: 40,

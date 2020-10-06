@@ -51,7 +51,7 @@ const Transactions: React.FC<TransactionsProps> = ({
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const date = new Date(Date.now()).toString();
+    const date = new Date(Date.now());
     const addedBy = users.leadEmail;
     const newTransaction: Transaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
