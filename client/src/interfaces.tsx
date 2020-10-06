@@ -2,8 +2,8 @@ import React from 'react';
 
 export interface Transaction {
   addedBy?: string,
-  amount: number, //fix
-  date: string,
+  amount: number, 
+  date: string, // TODO
   item: string,
   lender: string,
   split: any, // fix
@@ -11,7 +11,7 @@ export interface Transaction {
   _id?: string,
   balance?: number,
   totalOwed?: number,
-  overallLender?: string, // fix
+  overallLender?: string, 
 };
 export interface Users {
   _id: string,

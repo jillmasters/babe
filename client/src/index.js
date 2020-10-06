@@ -6,7 +6,7 @@ import { Global, css } from '@emotion/core';
 import { colors } from './theme';
 
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 
 injectGlobal`
 @font-face {
@@ -235,4 +235,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();
