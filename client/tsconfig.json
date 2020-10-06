@@ -20,10 +20,10 @@
     "noEmit": true,
     "strict": true,
     
-    "noImplicitAny": false,
-    // "strictFunctionTypes": true,
-    // "strictNullChecks": true,
-    // "strictBindCallApply": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
   },
   "include": [
     "src"

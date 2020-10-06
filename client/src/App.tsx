@@ -90,6 +90,8 @@ function App() {
           isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
           setIsLoading={setIsLoading}
+          isLoading={isLoading}
+          _id={users._id}
         />
       )}
       <Footer isAuthenticated={isAuthenticated} />

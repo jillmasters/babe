@@ -31,7 +31,7 @@ interface DashboardProps {
   summary: Summary,
   currency: string,
   users: Users,
-  isAuthenticated: Function,
+  isAuthenticated: boolean,
 }
 
 const Dashboard: React.FC<DashboardProps> = ({

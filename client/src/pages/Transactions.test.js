@@ -55,18 +55,18 @@ test('Submit form with even split ', async () => {
   const submitButton = screen.getByRole('button', { name: 'Split' });
   expect(submitButton).toBeInTheDocument();
 
-  await waitFor(() => {
-    jest
-      .spyOn(global.Date, 'now')
-      .mockImplementationOnce(() =>
-        new Date('2019-05-14T11:01:58.135Z').valueOf(),
+  jest
+    .spyOn(global.Date, 'now')
+    .mockImplementationOnce(() =>
+      new Date('2019-05-14T11:01:58.135Z').valueOf(),
       );
+      userEvent.click(submitButton);
+      expect(postTransaction).toHaveBeenCalledTimes(1);
+  await waitFor(() => {
 
-    userEvent.click(submitButton);
-    expect(postTransaction).toHaveBeenCalledTimes(1);
     expect(postTransaction).toHaveBeenCalledWith({
       item: 'Breakfast',
-      amount: '20',
+      amount: 20,
       date: new Date('2019-05-14T11:01:58.135Z'),
       lender: 'a@',
       split: 50,
@@ -115,19 +115,19 @@ test('Submit form with uneven split ', async () => {
   expect(billSplitSlider).toBeInTheDocument();
   fireEvent.change(billSplitSlider, { target: { value: 40 } });
 
+  const submitButton = screen.getByRole('button', { name: 'Split' });
+  expect(submitButton).toBeInTheDocument();
+
+  jest
+    .spyOn(global.Date, 'now')
+    .mockImplementationOnce(() =>
+      new Date('2019-05-14T11:01:58.135Z').valueOf(),
+    );
+
+  userEvent.click(submitButton);
+
+  expect(postTransaction).toHaveBeenCalledTimes(1); // FIXME: why does this not work when both tests are enabled
   await waitFor(() => {
-    const submitButton = screen.getByRole('button', { name: 'Split' });
-    expect(submitButton).toBeInTheDocument();
-
-    jest
-      .spyOn(global.Date, 'now')
-      .mockImplementationOnce(() =>
-        new Date('2019-05-14T11:01:58.135Z').valueOf(),
-      );
-
-    userEvent.click(submitButton);
-
-    expect(postTransaction).toHaveBeenCalledTimes(1); // FIXME: why does this not work when both tests are enabled
     expect(postTransaction).toHaveBeenCalledWith({
       item: 'Breakfast',
       amount: '20',

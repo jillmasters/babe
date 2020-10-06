@@ -20,7 +20,6 @@ interface TransactionsProps {
   users: Users,
   currency: string,
   setTransactions: Function,
-  isLoading: Function,
   setIsLoading: Function,
 }
 
@@ -28,11 +27,10 @@ const Transactions: React.FC<TransactionsProps> = ({
   users,
   currency,
   setTransactions,
-  isLoading,
   setIsLoading,
 }) => {
   const [item, setItem] = useState('');
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState<number>(0);
   const [lender, setLender] = useState('');
   const [split, setSplit] = useState<(number)>(50); // any?:() string|number --> split (l.156) or value (l.164) - doesnt like it. Just string everything is happy but tests fail
 
@@ -53,7 +51,7 @@ const Transactions: React.FC<TransactionsProps> = ({
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const date = new Date(Date.now());
+    const date = new Date(Date.now()).toString();
     const addedBy = users.leadEmail;
     const newTransaction: Transaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
@@ -95,7 +93,7 @@ const Transactions: React.FC<TransactionsProps> = ({
             placeholder="18.50"
             aria-label="bill-amount"
             name="bill-amount"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(+event.target.value)}
             value={amount}
             required
           />
