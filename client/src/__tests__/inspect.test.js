@@ -80,21 +80,21 @@ describe('Inspect', () => {
 
     const slider = screen.getByLabelText("bill-proportion-slider");
     expect(slider).toBeInTheDocument();
-    fireEvent.change(slider, { target: { value: "50" } });
+    fireEvent.change(slider, { target: { value: 50 } });
 
     const saveBtn = screen.getByText('Save my edits');
     expect(saveBtn).toBeInTheDocument();
+    userEvent.click(saveBtn);
 
     await waitFor(() => {
-      userEvent.click(saveBtn);
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledWith(undefined, {
         item: 'Dinner',
-        amount: '21',
+        amount: 21,
         date: '2020-10-03',
         lender: '1234@test',
-        split: "50",
+        split: 50,
         addedBy: '1234@test',
       });
     });
@@ -123,7 +123,7 @@ describe('Inspect', () => {
 
     const slider = screen.getByLabelText("bill-proportion-slider");
     expect(slider).toBeInTheDocument();
-    fireEvent.change(slider, { target: { value: "30" } });
+    fireEvent.change(slider, { target: { value: 30 } });
 
     const saveBtn = screen.getByText('Save my edits');
     expect(saveBtn).toBeInTheDocument();
@@ -139,10 +139,10 @@ describe('Inspect', () => {
 
       expect(editTransaction).toHaveBeenCalledWith(undefined, {
         item: 'Dinner',
-        amount: '30',
+        amount: 30,
         date: '2020-10-03',
         lender: '1234@test',
-        split: "30",
+        split: 30,
         addedBy: '1234@test',
       });
     });

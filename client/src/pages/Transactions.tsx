@@ -11,32 +11,19 @@ import {
   SliderLabel,
 } from '../theme';
 
+import {Users, Transaction} from '../interfaces'
+
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
 interface TransactionsProps {
-  users: {
-      _id: string,
-      lead: string,
-      leadEmail: string,
-      partner: string,
-      partnerEmail: string
-  }
+  users: Users,
   currency: string,
   setTransactions: Function,
   isLoading: Function,
   setIsLoading: Function,
 }
-interface transaction {
-    addedBy: string,
-    amount: string,
-    date: Date,
-    item: string,
-    lender: string,
-    split: any, // fix
-    __v?: number,
-    _id?: string,
-}
+
 const Transactions: React.FC<TransactionsProps> = ({
   users,
   currency,
@@ -47,14 +34,14 @@ const Transactions: React.FC<TransactionsProps> = ({
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [lender, setLender] = useState('');
-  const [split, setSplit] = useState<(any)>(50); // any?:() string|number --> split (l.156) or value (l.164) - doesnt like it. Just string everything is happy but tests fail
+  const [split, setSplit] = useState<(number)>(50); // any?:() string|number --> split (l.156) or value (l.164) - doesnt like it. Just string everything is happy but tests fail
 
   const [isCustomising, setIsCustomising] = useState(false);
 
-  const saveTransaction = (transaction: transaction) => {
+  const saveTransaction = (transaction: Transaction) => {
     TransactionService.postTransaction(transaction)
-      .then(newTransaction =>
-        setTransactions((oldTransactions: transaction[]) => [
+      .then((newTransaction: Transaction) =>
+        setTransactions((oldTransactions: Transaction[]) => [
           ...oldTransactions,
           newTransaction,
         ]),
@@ -68,7 +55,7 @@ const Transactions: React.FC<TransactionsProps> = ({
     event.preventDefault();
     const date = new Date(Date.now());
     const addedBy = users.leadEmail;
-    const newTransaction: transaction = { item, amount, date, lender, split, addedBy };
+    const newTransaction: Transaction = { item, amount, date, lender, split, addedBy };
     saveTransaction(newTransaction);
     setIsLoading(true);
     navigate('/');
@@ -134,7 +121,7 @@ const Transactions: React.FC<TransactionsProps> = ({
           <FormRadio
             type="radio"
             name="bill-split"
-            value="false" // TODO -- Why does this work as opposed to value={false}
+            // value="false" // TODO -- Why does this work as opposed to value={false}
             onChange={() => setIsCustomising(!isCustomising)}
             defaultChecked
             required
@@ -144,7 +131,8 @@ const Transactions: React.FC<TransactionsProps> = ({
           <FormRadio
             type="radio"
             name="bill-split"
-            value="true" // TODO -- Why does this work as opposed to value={true}
+            // checked={true}
+            // value="true" // TODO -- Why does this work as opposed to value={true}
             onChange={() => setIsCustomising(!isCustomising)}
             aria-label="bill-split-uneven-radio"
           />
@@ -161,7 +149,7 @@ const Transactions: React.FC<TransactionsProps> = ({
               min="0"
               max="100"
               step="10"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSplit(event.target.value)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSplit(+event.target.value)}
               aria-label="bill-split-slider"
             />
           </FormSection>

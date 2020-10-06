@@ -7,11 +7,11 @@ import {
   FormButton,
 } from '../theme';
 
-const moment = require('moment');
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
 import {Transaction, Users, Summary} from '../interfaces'
+const moment = require('moment');
 
 interface SettleUpProps {
   summary: Summary,

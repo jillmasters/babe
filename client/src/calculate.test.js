@@ -62,7 +62,7 @@ test('Calculates transactions with B being the overall lender', () => {
 test('Returns default value for no transactions', () => {
   expect(summariseTransactions(null, users)).toEqual({ //TODO: CHeck that this check in calculate.js actually makes sense
     balance: 0,
-    overallLender: '',
+    overallLender: '-', //TODO
     totalOwed: 0,
   });
 });

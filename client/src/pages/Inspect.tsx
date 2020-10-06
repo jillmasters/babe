@@ -14,8 +14,8 @@ import {
 } from '../theme';
 
 import TransactionService from '../services/TransactionService';
-const moment = require('moment');
 import { Transaction, Users } from '../interfaces';
+const moment = require('moment');
 
 interface InspectProps {
   users: Users;
@@ -146,7 +146,7 @@ const Inspect: React.FC<InspectProps> = ({
           <FormLabel htmlFor="bill-date">When was it?</FormLabel>
           <FormInput
             type="date"
-            max={moment(new Date()).format('YYYY-MM-DD')}
+            // max={moment(new Date()).format('YYYY-MM-DD')}
             name="bill-date"
             aria-label="bill-date"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>

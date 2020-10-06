@@ -1,7 +1,7 @@
 /** @jsx jsx */
 /*eslint-disable-next-line no-unused-vars*/
 import React from 'react';
-import { Router } from '@reach/router';
+import { Router, RouteComponentProps } from '@reach/router';
 import { jsx, css } from '@emotion/core';
 
 // IMPORT PAGES
@@ -17,7 +17,22 @@ import SignUp from '../pages/SignUp';
 import Settings from '../pages/Settings';
 import About from '../pages/About';
 
-export default function PageContainer({
+import { Users, Transaction, Summary } from "../interfaces";
+
+interface PageContainerProps extends RouteComponentProps {
+  users: Users,
+  transactions: Transaction,
+  setUsers: Function,
+  setTransactions: Function,
+  currency: string,
+  setCurrency: Function,
+  summary: Summary,
+  isAuthenticated: Function,
+  setIsAuthenticated: Function,
+  setIsLoading: Function,
+  path: string,
+}
+const PageContainer: React.FC<PageContainerProps> = ({
   users,
   setUsers,
   transactions,
@@ -28,7 +43,7 @@ export default function PageContainer({
   isAuthenticated,
   setIsAuthenticated,
   setIsLoading,
-}) {
+}) => {
   return (
     <Router
       css={css`
@@ -115,3 +130,5 @@ export default function PageContainer({
     </Router>
   );
 }
+
+export default PageContainer;
