@@ -31,7 +31,7 @@ interface PageContainerProps extends RouteComponentProps {
   setIsAuthenticated: Function;
   setIsLoading: Function;
   isLoading: boolean;
-  _id: string,
+  _id: string;
 }
 const PageContainer: React.FC<PageContainerProps> = ({
   users,
@@ -154,7 +154,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
         users={users}
         isAuthenticated={isAuthenticated}
       />*/}
-    
+
       {/* <RouterPage
         path="/transactions/:_id"
         pageComponent={
