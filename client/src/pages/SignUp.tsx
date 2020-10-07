@@ -23,11 +23,14 @@ const initialState = {
 };
 
 interface SignUpProps {
-  setIsAuthenticated: Function,
-  setIsLoading: Function,
+  setIsAuthenticated: Function;
+  setIsLoading: Function;
 }
 
-const SignUp: React.FC<SignUpProps> = ({ setIsAuthenticated, setIsLoading }) => {
+const SignUp: React.FC<SignUpProps> = ({
+  setIsAuthenticated,
+  setIsLoading,
+}) => {
   const [state, setState] = useState(initialState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

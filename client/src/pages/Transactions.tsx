@@ -11,16 +11,16 @@ import {
   SliderLabel,
 } from '../theme';
 
-import {Users, Transaction} from '../interfaces'
+import { Users, Transaction } from '../interfaces';
 
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
 interface TransactionsProps {
-  users: Users,
-  currency: string,
-  setTransactions: Function,
-  setIsLoading: Function,
+  users: Users;
+  currency: string;
+  setTransactions: Function;
+  setIsLoading: Function;
 }
 
 const Transactions: React.FC<TransactionsProps> = ({
@@ -32,7 +32,7 @@ const Transactions: React.FC<TransactionsProps> = ({
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState<number>(0);
   const [lender, setLender] = useState('');
-  const [split, setSplit] = useState<(number)>(50); // any?:() string|number --> split (l.156) or value (l.164) - doesnt like it. Just string everything is happy but tests fail
+  const [split, setSplit] = useState<number>(50); // any?:() string|number --> split (l.156) or value (l.164) - doesnt like it. Just string everything is happy but tests fail
 
   const [isCustomising, setIsCustomising] = useState(false);
 
@@ -53,7 +53,14 @@ const Transactions: React.FC<TransactionsProps> = ({
     event.preventDefault();
     const date = new Date(Date.now());
     const addedBy = users.leadEmail;
-    const newTransaction: Transaction = { item, amount, date, lender, split, addedBy };
+    const newTransaction: Transaction = {
+      item,
+      amount,
+      date,
+      lender,
+      split,
+      addedBy,
+    };
     saveTransaction(newTransaction);
     setIsLoading(true);
     navigate('/');
@@ -93,12 +100,18 @@ const Transactions: React.FC<TransactionsProps> = ({
             placeholder="18.50"
             aria-label="bill-amount"
             name="bill-amount"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(+event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setAmount(+event.target.value)
+            }
             value={amount}
             required
           />
         </FormSection>
-        <FormSection onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLender(event.target.value)}>
+        <FormSection
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setLender(event.target.value)
+          }
+        >
           <FormRadio
             type="radio"
             name="bill-lender"
@@ -147,7 +160,9 @@ const Transactions: React.FC<TransactionsProps> = ({
               min="0"
               max="100"
               step="10"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSplit(+event.target.value)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setSplit(+event.target.value)
+              }
               aria-label="bill-split-slider"
             />
           </FormSection>

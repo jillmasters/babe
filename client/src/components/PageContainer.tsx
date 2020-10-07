@@ -154,7 +154,8 @@ const PageContainer: React.FC<PageContainerProps> = ({
         users={users}
         isAuthenticated={isAuthenticated}
       />*/}
-      <RouterPage
+    
+      {/* <RouterPage
         path="/transactions/:_id"
         pageComponent={
           <Inspect
@@ -165,16 +166,15 @@ const PageContainer: React.FC<PageContainerProps> = ({
             _id={_id}
           />
         }
-      />
+      /> */}
 
-      {/*<Inspect
+      <Inspect
         path="/transactions/:_id"
         users={users}
         currency={currency}
         setTransactions={setTransactions}
-        isAuthenticated={isAuthenticated}
         setIsLoading={setIsLoading}
-      />*/}
+      />
       <RouterPage
         path="/settings"
         pageComponent={

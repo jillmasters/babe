@@ -15,7 +15,9 @@ import {
 
 import TransactionService from '../services/TransactionService';
 import { Transaction, Users } from '../interfaces';
-const moment = require('moment');
+// const moment = require('moment');
+
+import { RouteComponentProps } from '@reach/router';
 
 interface InspectProps {
   users: Users;
@@ -23,15 +25,22 @@ interface InspectProps {
   setIsLoading: Function;
   _id: string;
   currency: string;
+
+  path: string; //TODO Remove
 }
 
-const Inspect: React.FC<InspectProps> = ({
-  _id,
-  users,
-  currency,
-  setTransactions,
-  setIsLoading,
-}) => {
+interface InspectProps2 extends RouteComponentProps {
+  _id?: string;
+
+  users: Users;
+  setTransactions: Function;
+  setIsLoading: Function;
+  currency: string;
+}
+
+const Inspect = (props: InspectProps2) => {
+  const { _id, users, currency, setTransactions, setIsLoading } = props;
+
   const [item, setItem] = useState('');
   const [date, setDate] = useState(new Date(Date.now()));
   const [amount, setAmount] = useState<number>(0);
@@ -39,31 +48,39 @@ const Inspect: React.FC<InspectProps> = ({
   const [split, setSplit] = useState<number>(0);
 
   useEffect(() => {
-    TransactionService.getOneTransaction(_id)
-      .then((dbTransaction: Transaction) => {
-        const { item, date, amount, lender, split } = dbTransaction;
-        setItem(item);
-        setDate(date);
-        setAmount(parseInt(amount.toFixed(2)));
-        setLender(lender);
-        setSplit(split);
-      })
-      .catch(error => console.log('---> Error loading transaction', error)); // eslint-disable-line no-console
+    if (_id) {
+      // eslint-disable-next-line no-console
+      console.log('initalising inspect with id: ', _id);
+      TransactionService.getOneTransaction(_id)
+        .then((dbTransaction: Transaction) => {
+          // eslint-disable-next-line no-console
+          console.log('dbtransaction', dbTransaction);
+          const { item, date, amount, lender, split } = dbTransaction;
+          setItem(item);
+          setDate(date);
+          setAmount(parseInt(amount.toFixed(2)));
+          setLender(lender);
+          setSplit(split);
+        })
+        .catch(error => console.log('---> Error loading transaction', error)); // eslint-disable-line no-console
+    }
   }, [_id]);
 
   const saveTransaction = (transaction: Transaction) => {
-    TransactionService.editTransaction(_id, transaction)
-      .then(() => TransactionService.getTransactions(users._id))
-      .then((allTransactions: Transaction[]) =>
-        setTransactions(allTransactions),
-      )
-      .catch(error =>
-        // eslint-disable-next-line no-console
-        console.log(
-          '---> Error editing transaction and reloading local listing',
-          error,
-        ),
-      );
+    if (_id) {
+      TransactionService.editTransaction(_id, transaction)
+        .then(() => TransactionService.getTransactions(users._id))
+        .then((allTransactions: Transaction[]) =>
+          setTransactions(allTransactions),
+        )
+        .catch(error =>
+          // eslint-disable-next-line no-console
+          console.log(
+            '---> Error editing transaction and reloading local listing',
+            error,
+          ),
+        );
+    }
   };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -82,8 +99,9 @@ const Inspect: React.FC<InspectProps> = ({
     navigate('/');
   };
 
-  const deleteFromDatabase = (_id: string) => {
-    TransactionService.deleteTransaction(_id)
+  const deleteFromDatabase = (_id?: string) => {
+    if (_id) {
+      TransactionService.deleteTransaction(_id)
       .then(() => TransactionService.getTransactions(users._id))
       .then((allTransactions: Transaction[]) =>
         setTransactions(allTransactions),
@@ -95,6 +113,8 @@ const Inspect: React.FC<InspectProps> = ({
           error,
         ),
       );
+    }
+    
   };
 
   const deleteMe = (event: React.FormEvent<HTMLFormElement>) => {

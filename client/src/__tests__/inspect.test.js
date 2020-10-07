@@ -12,13 +12,29 @@ import {
 } from '../services/TransactionService';
 
 jest.mock('../services/TransactionService');
-getOneTransaction.mockResolvedValue('upload');
-getTransactions.mockResolvedValue('upload');
-deleteTransaction.mockResolvedValue('upload');
-editTransaction.mockResolvedValue('upload');
+// @ts-ignore
+deleteTransaction.mockResolvedValue(
+  () => new Promise((resolve, reject) => resolve({})),
+);
+// @ts-ignore
+getOneTransaction.mockResolvedValue(
+  () => new Promise((resolve, reject) => resolve({})),
+);
+// @ts-ignore
+getTransactions.mockResolvedValue(
+  () => new Promise((resolve, reject) => resolve({})),
+);
+// @ts-ignore
+editTransaction.mockImplementation(
+  () => new Promise((resolve, reject) => resolve({})),
+);
+
+// const mockedEditTransaction = axios as jest.Mocked<typeof axios>
+// FIXME: remove this warning later
+// editTransaction.mockResolvedValue(new Promise((resolve) => 'edited'));
 
 jest.mock('@reach/router');
-navigate.mockResolvedValue('');
+// navigate.mockResolvedValue('');
 
 const users = {
   _id: '5f75e077dd559746a01dda55',
@@ -45,13 +61,11 @@ describe('Inspect', () => {
   it('"Save my edits" directs away from page', async () => {
     render(
       <Inspect
+        _id="123"
+        currency={currency}
         users={users}
-        setTransactions={val => {
-          console.log('transaction', val);
-        }}
-        setIsLoading={val => {
-          console.log('isloading', val);
-        }}
+        setTransactions={() => {}}
+        setIsLoading={() => {}}
       />,
     );
 
@@ -62,16 +76,14 @@ describe('Inspect', () => {
     expect(navigate).toHaveBeenCalledTimes(1);
   });
 
-  it('"Delete" directs away from page', async () => {
+  it('Delete directs away from page', async () => {
     render(
       <Inspect
+        _id="123"
+        currency={currency}
         users={users}
-        setTransactions={val => {
-          console.log('transaction', val);
-        }}
-        setIsLoading={val => {
-          console.log('isloading', val);
-        }}
+        setTransactions={() => {}}
+        setIsLoading={() => {}}
       />,
     );
 
@@ -82,16 +94,14 @@ describe('Inspect', () => {
     expect(navigate).toHaveBeenCalledTimes(1);
   });
 
-  it("When a transaction is updated it's sent through correctly: Even Split", async () => {
+  it('When a transaction is updated its sent through correctly: Even Split', async () => {
     render(
       <Inspect
+        _id="123"
+        currency={currency}
         users={users}
-        setTransactions={val => {
-          console.log('transaction', val);
-        }}
-        setIsLoading={val => {
-          console.log('isloading', val);
-        }}
+        setTransactions={() => {}}
+        setIsLoading={() => {}}
       />,
     );
 
@@ -122,7 +132,7 @@ describe('Inspect', () => {
     await waitFor(() => {
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledTimes(1);
-      expect(editTransaction).toHaveBeenCalledWith(undefined, {
+      expect(editTransaction).toHaveBeenCalledWith('123', {
         item: 'Dinner',
         amount: 21,
         date: new Date('2019-05-14T11:01:58.135Z'),
@@ -132,16 +142,14 @@ describe('Inspect', () => {
       });
     });
   });
-  it("When a transaction is updated it's sent through correctly: uneven Split", async () => {
+  it('When a transaction is updated its sent through correctly: uneven Split', async () => {
     render(
       <Inspect
+        _id="123"
+        currency={currency}
         users={users}
-        setTransactions={val => {
-          console.log('transaction', val);
-        }}
-        setIsLoading={val => {
-          console.log('isloading', val);
-        }}
+        setTransactions={() => {}}
+        setIsLoading={() => {}}
       />,
     );
 
@@ -173,7 +181,7 @@ describe('Inspect', () => {
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledTimes(1);
 
-      expect(editTransaction).toHaveBeenCalledWith(undefined, {
+      expect(editTransaction).toHaveBeenCalledWith('123', {
         item: 'Dinner',
         amount: 30,
         date: new Date('2019-05-14T11:01:58.135Z'),

@@ -18,11 +18,14 @@ const cya = {
 };
 
 interface LogoutProps {
-  setIsAuthenticated: Function,
-  setIsLoading: Function,
+  setIsAuthenticated: Function;
+  setIsLoading: Function;
 }
 
-const Logout: React.FC<LogoutProps> = ({ setIsAuthenticated, setIsLoading }) => {
+const Logout: React.FC<LogoutProps> = ({
+  setIsAuthenticated,
+  setIsLoading,
+}) => {
   const removeToken = () => {
     UserService.logout('accessToken');
   };
