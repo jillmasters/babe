@@ -1,7 +1,7 @@
 export interface Transaction {
   addedBy?: string;
   amount: number;
-  date: Date;
+  date: Date | string;
   item: string;
   lender: string;
   split: number;

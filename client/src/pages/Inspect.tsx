@@ -17,7 +17,7 @@ import TransactionService from '../services/TransactionService';
 import { Transaction, Users } from '../interfaces';
 
 import { RouteComponentProps } from '@reach/router';
-
+const moment = require('moment');
 interface InspectProps2 extends RouteComponentProps {
   _id?: string;
   users: Users;
@@ -30,7 +30,7 @@ const Inspect = (props: InspectProps2) => {
   const { _id, users, currency, setTransactions, setIsLoading } = props;
 
   const [item, setItem] = useState('');
-  const [date, setDate] = useState(new Date(Date.now()));
+  const [date, setDate] = useState<Date | string>('');
   const [amount, setAmount] = useState<number>(0);
   const [lender, setLender] = useState('');
   const [split, setSplit] = useState<number>(0);
@@ -156,10 +156,11 @@ const Inspect = (props: InspectProps2) => {
             // max={moment(new Date()).format('YYYY-MM-DD')}
             name="bill-date"
             aria-label="bill-date"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setDate(new Date(event.target.value))
-            }
-            value={date.toString()}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setDate(new Date(event.target.value));
+
+            }}
+            value={moment(date).format('YYYY-MM-DD')}
             required
           />
         </FormSection>
