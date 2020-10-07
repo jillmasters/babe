@@ -15,7 +15,7 @@ import TransactionService from './services/TransactionService';
 import UserService from './services/UserService';
 import authentication from './authentication';
 import summariseTransactions from './calculate';
-import {Users, Transaction} from './interfaces'
+
 function App() {
   // SET STATE
   const currentAuthentication = authentication.isAuthenticated();
