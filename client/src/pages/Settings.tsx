@@ -12,19 +12,39 @@ import {
 import { navigate } from '@reach/router';
 import UserService from '../services/UserService';
 
-const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
+import { Users } from '../interfaces';
+
+interface SettingsProps {
+  users: Users;
+  setUsers: Function;
+  currency: string;
+  setCurrency: Function;
+  setIsLoading: Function;
+}
+
+const Settings: React.FC<SettingsProps> = ({
+  users,
+  setUsers,
+  currency,
+  setCurrency,
+  setIsLoading,
+}) => {
   const [tempUser, setTempUser] = useState(users.lead);
   const [tempPartner, setTempPartner] = useState(users.partner);
   const [tempCurrency, setTempCurrency] = useState(currency);
 
-  const updateDatabase = (_id, field, value) => {
+  const updateDatabase = (
+    _id: string,
+    field: string,
+    value: { value: string },
+  ) => {
     UserService.editUserDetails(_id, field, value).catch(error =>
       // eslint-disable-next-line no-console
       console.log('---> Error editing database values', error),
     );
   };
 
-  const submit = event => {
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (users.lead !== tempUser) {
       const leadName = { value: tempUser };
@@ -38,7 +58,7 @@ const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
       const newCurrency = { value: tempCurrency };
       updateDatabase(users._id, 'currency', newCurrency);
     }
-    setUsers(originalCouple => ({
+    setUsers((originalCouple: [{ lead: string; partner: string }]) => ({
       ...originalCouple,
       lead: tempUser,
       partner: tempPartner,
@@ -67,7 +87,9 @@ const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
             name="user-lead"
             aria-label="user-lead"
             value={tempUser}
-            onChange={event => setTempUser(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setTempUser(event.target.value)
+            }
           />
         </FormSection>
         <FormSection>
@@ -77,16 +99,22 @@ const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
             name="user-partner"
             aria-label="user-partner"
             value={tempPartner}
-            onChange={event => setTempPartner(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setTempPartner(event.target.value)
+            }
           />
         </FormSection>
-        <FormSection onChange={event => setTempCurrency(event.target.value)}>
+        <FormSection
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setTempCurrency(event.target.value)
+          }
+        >
           <FormRadio
             type="radio"
             name="currency"
             value="£"
             required
-            defaultChecked={currency === '£' ? 'true' : null}
+            defaultChecked={currency === '£' ? true : undefined}
           />
           <RadioLabel htmlFor="currency">
             <span role="img" aria-label="pounds emoji">
@@ -98,7 +126,7 @@ const Settings = ({ users, setUsers, currency, setCurrency, setIsLoading }) => {
             name="currency"
             value="$"
             required
-            defaultChecked={currency === '$' ? 'true' : null}
+            defaultChecked={currency === '$' ? true : undefined}
           />
           <RadioLabel htmlFor="currency">
             <span role="img" aria-label="dollars emoji">

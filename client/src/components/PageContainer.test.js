@@ -13,9 +13,9 @@ import PageContainer from './PageContainer';
 import Inspect from '../pages/Inspect';
 import Transactions from '../pages/Transactions';
 
-// 
+//
 import TransactionService from '../services/TransactionService';
-jest.mock('../services/TransactionService.js');
+jest.mock('../services/TransactionService');
 
 // this is a handy function that I would utilize for any component
 // that relies on the router being in context
@@ -180,10 +180,13 @@ test('test Inspect component route', async () => {
   const {
     container,
     history: { navigate },
-  } = renderWithRouterWrapper(<Inspect path="/transactions/:_id" users={users} />, {
-    // and pass the parameter value on the route config
-    route: '/transactions/123'
-  });
+  } = renderWithRouterWrapper(
+    <Inspect path="/transactions/:_id" users={users} />,
+    {
+      // and pass the parameter value on the route config
+      route: '/transactions/123',
+    },
+  );
 
   expect(screen.getByTestId('inspect')).toBeInTheDocument();
 });

@@ -14,54 +14,98 @@ import {
 } from '../theme';
 
 import TransactionService from '../services/TransactionService';
-const moment = require('moment');
+import { Transaction, Users } from '../interfaces';
+// const moment = require('moment');
 
-const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
+import { RouteComponentProps } from '@reach/router';
+
+interface InspectProps {
+  users: Users;
+  setTransactions: Function;
+  setIsLoading: Function;
+  _id: string;
+  currency: string;
+
+  path: string; //TODO Remove
+}
+
+interface InspectProps2 extends RouteComponentProps {
+  _id?: string;
+
+  users: Users;
+  setTransactions: Function;
+  setIsLoading: Function;
+  currency: string;
+}
+
+const Inspect = (props: InspectProps2) => {
+  const { _id, users, currency, setTransactions, setIsLoading } = props;
+
   const [item, setItem] = useState('');
-  const [date, setDate] = useState('');
-  const [amount, setAmount] = useState('');
+  const [date, setDate] = useState(new Date(Date.now()));
+  const [amount, setAmount] = useState<number>(0);
   const [lender, setLender] = useState('');
-  const [split, setSplit] = useState('');
+  const [split, setSplit] = useState<number>(0);
 
   useEffect(() => {
-    TransactionService.getOneTransaction(_id)
-      .then(dbTransaction => {
-        const { item, date, amount, lender, split } = dbTransaction;
-        setItem(item);
-        setDate(moment(date).format('YYYY-MM-DD'));
-        setAmount(amount.toFixed(2));
-        setLender(lender);
-        setSplit(split);
-      })
-      .catch(error => console.log('---> Error loading transaction', error)); // eslint-disable-line no-console
+    if (_id) {
+      // eslint-disable-next-line no-console
+      console.log('initalising inspect with id: ', _id);
+      TransactionService.getOneTransaction(_id)
+        .then((dbTransaction: Transaction) => {
+          // eslint-disable-next-line no-console
+          console.log('dbtransaction', dbTransaction);
+          const { item, date, amount, lender, split } = dbTransaction;
+          setItem(item);
+          setDate(date);
+          setAmount(parseInt(amount.toFixed(2)));
+          setLender(lender);
+          setSplit(split);
+        })
+        .catch(error => console.log('---> Error loading transaction', error)); // eslint-disable-line no-console
+    }
   }, [_id]);
 
-  const saveTransaction = transaction => {
-    TransactionService.editTransaction(_id, transaction)
-      .then(() => TransactionService.getTransactions(users._id))
-      .then(allTransactions => setTransactions(allTransactions))
-      .catch(error =>
-        // eslint-disable-next-line no-console
-        console.log(
-          '---> Error editing transaction and reloading local listing',
-          error,
-        ),
-      );
+  const saveTransaction = (transaction: Transaction) => {
+    if (_id) {
+      TransactionService.editTransaction(_id, transaction)
+        .then(() => TransactionService.getTransactions(users._id))
+        .then((allTransactions: Transaction[]) =>
+          setTransactions(allTransactions),
+        )
+        .catch(error =>
+          // eslint-disable-next-line no-console
+          console.log(
+            '---> Error editing transaction and reloading local listing',
+            error,
+          ),
+        );
+    }
   };
 
-  const submit = event => {
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const addedBy = users.leadEmail;
-    const editedTransaction = { item, amount, date, lender, split, addedBy };
+    const editedTransaction: Transaction = {
+      item,
+      amount,
+      date,
+      lender,
+      split,
+      addedBy,
+    };
     saveTransaction(editedTransaction);
     setIsLoading(true);
     navigate('/');
   };
 
-  const deleteFromDatabase = _id => {
-    TransactionService.deleteTransaction(_id)
+  const deleteFromDatabase = (_id?: string) => {
+    if (_id) {
+      TransactionService.deleteTransaction(_id)
       .then(() => TransactionService.getTransactions(users._id))
-      .then(allTransactions => setTransactions(allTransactions))
+      .then((allTransactions: Transaction[]) =>
+        setTransactions(allTransactions),
+      )
       .catch(error =>
         // eslint-disable-next-line no-console
         console.log(
@@ -69,9 +113,11 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
           error,
         ),
       );
+    }
+    
   };
 
-  const deleteMe = event => {
+  const deleteMe = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     deleteFromDatabase(_id);
     navigate('/');
@@ -89,7 +135,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
         </span>
       </h4>
       <form onSubmit={submit}>
-        <FormSection role='bill-item'>
+        <FormSection role="bill-item">
           <FormLabel htmlFor="bill-item">What was it for?</FormLabel>
           <FormInput
             type="text"
@@ -109,7 +155,9 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
             step="0.01"
             name="bill-amount"
             aria-label="bill-amount"
-            onChange={event => setAmount(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setAmount(+event.target.value)
+            }
             value={amount}
             required
           />
@@ -118,22 +166,28 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
           <FormLabel htmlFor="bill-date">When was it?</FormLabel>
           <FormInput
             type="date"
-            max={moment(new Date()).format('YYYY-MM-DD')}
+            // max={moment(new Date()).format('YYYY-MM-DD')}
             name="bill-date"
             aria-label="bill-date"
-            onChange={event => setDate(event.target.value)}
-            value={date}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setDate(new Date(event.target.value))
+            }
+            value={date.toString()}
             required
           />
         </FormSection>
-        <FormSection onChange={event => setLender(event.target.value)}>
+        <FormSection
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setLender(event.target.value)
+          }
+        >
           <FormRadio
             type="radio"
             name="bill-lender"
             value={users.leadEmail}
             aria-label="bill-lender-lead-radio"
             required
-            defaultChecked={lender === users.leadEmail ? 'true' : null}
+            defaultChecked={lender === users.leadEmail ? true : undefined}
           />
           <FormLabel htmlFor="bill-lender">I paid</FormLabel>
           <FormRadio
@@ -142,7 +196,7 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
             value={users.partnerEmail}
             aria-label="bill-lender-partner-radio"
             required
-            defaultChecked={lender === users.partnerEmail ? 'true' : null}
+            defaultChecked={lender === users.partnerEmail ? true : undefined}
           />
           <FormLabel htmlFor="bill-lender">{users.partner} paid</FormLabel>
         </FormSection>
@@ -158,7 +212,9 @@ const Inspect = ({ _id, users, currency, setTransactions, setIsLoading }) => {
             max="100"
             step="10"
             value={split}
-            onChange={event => setSplit(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setSplit(+event.target.value)
+            }
           />
         </FormSection>
         <FormSection>

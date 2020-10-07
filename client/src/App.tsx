@@ -36,7 +36,7 @@ function App() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const retrieveUserInfo = async accessToken => {
+  const retrieveUserInfo = async (accessToken: string) => {
     try {
       const userInfo = await UserService.loadUserDetails(accessToken);
       const { _id, email, name, partner, partnerEmail, currency } = userInfo;
@@ -90,6 +90,8 @@ function App() {
           isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
           setIsLoading={setIsLoading}
+          isLoading={isLoading}
+          _id={users._id}
         />
       )}
       <Footer isAuthenticated={isAuthenticated} />

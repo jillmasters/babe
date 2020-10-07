@@ -9,6 +9,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.6",
+    "@types/jest": "^26.0.14",
+    "@types/reach__router": "^1.3.6",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-lottie": "^1.2.5",
     "emotion": "^10.0.27",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "moment": "^2.29.0",
@@ -48,9 +52,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@testing-library/dom": "^7.24.3",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
     "babel-jest": "^26.3.0",
     "babel-polyfill": "^6.26.0",
     "eslint": "^7.9.0",
@@ -58,6 +65,7 @@
     "jest": "^26.4.2",
     "jest-canvas-mock": "^2.3.0",
     "jest-localstorage-mock": "^2.4.3",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^16.13.1",
+    "typescript": "^3.9.7"
   }
 }

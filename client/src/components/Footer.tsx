@@ -2,7 +2,11 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-export default function Footer({ isAuthenticated }) {
+interface FooterProps {
+  isAuthenticated: Boolean;
+}
+
+const Footer: React.FC<FooterProps> = ({ isAuthenticated }) => {
   return (
     <footer>
       {isAuthenticated ? (
@@ -20,4 +24,5 @@ export default function Footer({ isAuthenticated }) {
       )}
     </footer>
   );
-}
+};
+export default Footer;

@@ -49,9 +49,9 @@ test('Calculates transactions with B being the overall lender', () => {
       amount: 5,
       lender: 'b@test',
       split: 50,
-    }
+    },
   ];
-  
+
   expect(summariseTransactions(transactions, users)).toEqual({
     balance: -2.5,
     overallLender: 'b',
@@ -60,9 +60,10 @@ test('Calculates transactions with B being the overall lender', () => {
 });
 
 test('Returns default value for no transactions', () => {
-  expect(summariseTransactions(null, users)).toEqual({ //TODO: CHeck that this check in calculate.js actually makes sense
+  expect(summariseTransactions(null, users)).toEqual({
+    //TODO: CHeck that this check in calculate.js actually makes sense
     balance: 0,
-    overallLender: '',
+    overallLender: '-', //TODO
     totalOwed: 0,
   });
 });

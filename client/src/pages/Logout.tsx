@@ -17,7 +17,15 @@ const cya = {
   },
 };
 
-const Logout = ({ setIsAuthenticated, setIsLoading }) => {
+interface LogoutProps {
+  setIsAuthenticated: Function;
+  setIsLoading: Function;
+}
+
+const Logout: React.FC<LogoutProps> = ({
+  setIsAuthenticated,
+  setIsLoading,
+}) => {
   const removeToken = () => {
     UserService.logout('accessToken');
   };

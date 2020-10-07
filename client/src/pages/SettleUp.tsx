@@ -10,7 +10,17 @@ import {
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
 
-const SettleUp = ({
+import { Transaction, Users, Summary } from '../interfaces';
+// const moment = require('moment');
+
+interface SettleUpProps {
+  summary: Summary;
+  currency: string;
+  users: Users;
+  setTransactions: Function;
+  setIsLoading: Function;
+}
+const SettleUp: React.FC<SettleUpProps> = ({
   summary,
   currency,
   users,
@@ -19,10 +29,10 @@ const SettleUp = ({
 }) => {
   const [note, setNote] = useState('');
 
-  const saveTransaction = transaction => {
+  const saveTransaction = (transaction: Transaction) => {
     TransactionService.postTransaction(transaction)
       .then(newTransaction =>
-        setTransactions(oldTransactions => [
+        setTransactions((oldTransactions: Transaction[]) => [
           ...oldTransactions,
           newTransaction,
         ]),
@@ -32,7 +42,7 @@ const SettleUp = ({
       });
   };
 
-  const submit = event => {
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newTransaction = {
       item: `${users.lead} settled up: ${note}`,
