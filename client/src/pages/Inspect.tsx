@@ -30,7 +30,7 @@ const Inspect = (props: InspectProps2) => {
   const { _id, users, currency, setTransactions, setIsLoading } = props;
 
   const [item, setItem] = useState('');
-  const [date, setDate] = useState<Date | string>('');
+  const [date, setDate] = useState<Date>(new Date(Date.now()));
   const [amount, setAmount] = useState<number>(0);
   const [lender, setLender] = useState('');
   const [split, setSplit] = useState<number>(0);
@@ -158,7 +158,6 @@ const Inspect = (props: InspectProps2) => {
             aria-label="bill-date"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setDate(new Date(event.target.value));
-
             }}
             value={moment(date).format('YYYY-MM-DD')}
             required
