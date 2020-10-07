@@ -8,7 +8,7 @@ import { jsx, css } from '@emotion/core';
 import Lottie from 'react-lottie';
 import piggyBank from '../animations/piggy-bank.json';
 import confetti from '../animations/confetti.json';
-import {Summary, Users} from '../interfaces';
+import { Summary, Users } from '../interfaces';
 
 const pig = {
   loop: false,
@@ -28,10 +28,10 @@ const celebrate = {
   },
 };
 interface DashboardProps {
-  summary: Summary,
-  currency: string,
-  users: Users,
-  isAuthenticated: boolean,
+  summary: Summary;
+  currency: string;
+  users: Users;
+  isAuthenticated: boolean;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
@@ -118,5 +118,5 @@ const Dashboard: React.FC<DashboardProps> = ({
       )}
     </MainView>
   );
-}
+};
 export default Dashboard;
