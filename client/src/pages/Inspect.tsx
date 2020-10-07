@@ -15,23 +15,11 @@ import {
 
 import TransactionService from '../services/TransactionService';
 import { Transaction, Users } from '../interfaces';
-// const moment = require('moment');
 
 import { RouteComponentProps } from '@reach/router';
-
-interface InspectProps {
-  users: Users;
-  setTransactions: Function;
-  setIsLoading: Function;
-  _id: string;
-  currency: string;
-
-  path: string; //TODO Remove
-}
-
+const moment = require('moment');
 interface InspectProps2 extends RouteComponentProps {
   _id?: string;
-
   users: Users;
   setTransactions: Function;
   setIsLoading: Function;
@@ -42,7 +30,7 @@ const Inspect = (props: InspectProps2) => {
   const { _id, users, currency, setTransactions, setIsLoading } = props;
 
   const [item, setItem] = useState('');
-  const [date, setDate] = useState(new Date(Date.now()));
+  const [date, setDate] = useState<Date>(new Date(Date.now()));
   const [amount, setAmount] = useState<number>(0);
   const [lender, setLender] = useState('');
   const [split, setSplit] = useState<number>(0);
@@ -102,19 +90,18 @@ const Inspect = (props: InspectProps2) => {
   const deleteFromDatabase = (_id?: string) => {
     if (_id) {
       TransactionService.deleteTransaction(_id)
-      .then(() => TransactionService.getTransactions(users._id))
-      .then((allTransactions: Transaction[]) =>
-        setTransactions(allTransactions),
-      )
-      .catch(error =>
-        // eslint-disable-next-line no-console
-        console.log(
-          '---> Error deleting transaction and reloading local listing',
-          error,
-        ),
-      );
+        .then(() => TransactionService.getTransactions(users._id))
+        .then((allTransactions: Transaction[]) =>
+          setTransactions(allTransactions),
+        )
+        .catch(error =>
+          // eslint-disable-next-line no-console
+          console.log(
+            '---> Error deleting transaction and reloading local listing',
+            error,
+          ),
+        );
     }
-    
   };
 
   const deleteMe = (event: React.FormEvent<HTMLFormElement>) => {
@@ -169,10 +156,10 @@ const Inspect = (props: InspectProps2) => {
             // max={moment(new Date()).format('YYYY-MM-DD')}
             name="bill-date"
             aria-label="bill-date"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setDate(new Date(event.target.value))
-            }
-            value={date.toString()}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setDate(new Date(event.target.value));
+            }}
+            value={moment(date).format('YYYY-MM-DD')}
             required
           />
         </FormSection>

@@ -46,13 +46,13 @@ const users = {
 const currency = '£';
 
 describe('Inspect', () => {
-  beforeEach(() => {
-    jest
-      .spyOn(global.Date, 'now')
-      .mockImplementationOnce(() =>
-        new Date('2019-05-14T11:01:58.135Z').valueOf(),
-      );
-  });
+  // beforeEach(() => {
+  //   jest
+  //     .spyOn(global.Date, 'now')
+  //     .mockImplementationOnce(() =>
+  //       new Date('2019-05-14T11:01:58.135Z').valueOf(),
+  //     );
+  // });
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -113,9 +113,9 @@ describe('Inspect', () => {
     expect(billAmount).toBeInTheDocument();
     userEvent.type(billAmount, '21');
 
-    // const billDate = screen.getByLabelText('bill-date');
-    // expect(billDate).toBeInTheDocument();
-    // fireEvent.change(billDate, { target: { value: '2020-10-03' } });
+    const billDate = screen.getByLabelText('bill-date');
+    expect(billDate).toBeInTheDocument();
+    fireEvent.change(billDate, { target: { value: '2020-10-03' } });
 
     const userPaid = screen.getByLabelText('bill-lender-lead-radio');
     expect(userPaid).toBeInTheDocument();
@@ -135,7 +135,7 @@ describe('Inspect', () => {
       expect(editTransaction).toHaveBeenCalledWith('123', {
         item: 'Dinner',
         amount: 21,
-        date: new Date('2019-05-14T11:01:58.135Z'),
+        date: new Date('2020-10-03T00:00:00.000Z'),
         lender: '1234@test',
         split: 50,
         addedBy: '1234@test',
@@ -161,9 +161,9 @@ describe('Inspect', () => {
     expect(billAmount).toBeInTheDocument();
     userEvent.type(billAmount, '30');
 
-    // const billDate = screen.getByLabelText('bill-date');
-    // expect(billDate).toBeInTheDocument();
-    // fireEvent.change(billDate, { target: { value: new Date('2019-05-14T11:01:58.135Z').valueOf() } });
+    const billDate = screen.getByLabelText('bill-date');
+    expect(billDate).toBeInTheDocument();
+    fireEvent.change(billDate, { target: { value: '2020-10-03' } });
 
     const userPaid = screen.getByLabelText('bill-lender-lead-radio');
     expect(userPaid).toBeInTheDocument();
@@ -176,15 +176,15 @@ describe('Inspect', () => {
     const saveBtn = screen.getByText('Save my edits');
     expect(saveBtn).toBeInTheDocument();
 
+    userEvent.click(saveBtn);
     await waitFor(() => {
-      userEvent.click(saveBtn);
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(editTransaction).toHaveBeenCalledTimes(1);
 
       expect(editTransaction).toHaveBeenCalledWith('123', {
         item: 'Dinner',
         amount: 30,
-        date: new Date('2019-05-14T11:01:58.135Z'),
+        date: new Date('2020-10-03T00:00:00.000Z'),
         lender: '1234@test',
         split: 30,
         addedBy: '1234@test',
@@ -192,4 +192,3 @@ describe('Inspect', () => {
     });
   });
 });
-// mock an error??
