@@ -1,12 +1,14 @@
-
+/* eslint-disable no-unused-vars */
+/** @jsx jsx */
 /*eslint-disable-next-line no-unused-vars*/
 // import React from 'react';
 // import { Link } from '@reach/router';
 // import { jsx, css } from '@emotion/core';
 // import { colors } from '../theme';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import { Link } from '@reach/router';
-import { css } from '@emotion/core';
+import { jsx, css } from '@emotion/core';
 import { colors } from '../theme';
 
 const Header = () => {
