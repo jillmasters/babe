@@ -1,6 +1,6 @@
 class Auth {
   authenticated: boolean;
-  
+
   constructor() {
     this.authenticated = false;
   }

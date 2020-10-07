@@ -1,9 +1,10 @@
 /**
  * Calculate thes amount owed by reducing down transaction information
  */
-import {Users, Transaction} from './interfaces'
+import { Users, Transaction } from './interfaces';
 
-const summariseTransactions = (transactions: Transaction[], users: Users) => { // define output of function '' empty string to be string
+const summariseTransactions = (transactions: Transaction[], users: Users) => {
+  // define output of function '' empty string to be string
   if (transactions) {
     const balance: number = transactions.reduce((acc, transaction) => {
       if (transaction.lender === users.leadEmail)

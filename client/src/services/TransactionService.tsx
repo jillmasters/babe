@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import {Transaction} from '../interfaces'
+import { Transaction } from '../interfaces';
 
 const fetchRequest = (path: string, options?: any) => {
   return fetch(`${process.env.REACT_APP_API_CLIENT}${path}`, options)
