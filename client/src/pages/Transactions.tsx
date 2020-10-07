@@ -132,7 +132,6 @@ const Transactions: React.FC<TransactionsProps> = ({
           <FormRadio
             type="radio"
             name="bill-split"
-            // value="false" // TODO -- Why does this work as opposed to value={false}
             onChange={() => setIsCustomising(!isCustomising)}
             defaultChecked
             required
@@ -142,8 +141,6 @@ const Transactions: React.FC<TransactionsProps> = ({
           <FormRadio
             type="radio"
             name="bill-split"
-            // checked={true}
-            // value="true" // TODO -- Why does this work as opposed to value={true}
             onChange={() => setIsCustomising(!isCustomising)}
             aria-label="bill-split-uneven-radio"
           />

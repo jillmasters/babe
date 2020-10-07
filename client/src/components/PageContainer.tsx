@@ -249,5 +249,6 @@ const PageContainer: React.FC<PageContainerProps> = ({
 export default PageContainer;
 
 const RouterPage = (
+  // eslint-disable-next-line no-undef
   props: { pageComponent: JSX.Element } & RouteComponentProps,
 ) => props.pageComponent;

@@ -1,12 +1,10 @@
-import React from 'react';
-
 export interface Transaction {
   addedBy?: string;
   amount: number;
-  date: Date; // TODO
+  date: Date;
   item: string;
   lender: string;
-  split: any; // fix
+  split: number;
   __v?: number;
   _id?: string;
   balance?: number;

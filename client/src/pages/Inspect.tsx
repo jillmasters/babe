@@ -15,23 +15,11 @@ import {
 
 import TransactionService from '../services/TransactionService';
 import { Transaction, Users } from '../interfaces';
-// const moment = require('moment');
 
 import { RouteComponentProps } from '@reach/router';
 
-interface InspectProps {
-  users: Users;
-  setTransactions: Function;
-  setIsLoading: Function;
-  _id: string;
-  currency: string;
-
-  path: string; //TODO Remove
-}
-
 interface InspectProps2 extends RouteComponentProps {
   _id?: string;
-
   users: Users;
   setTransactions: Function;
   setIsLoading: Function;
@@ -102,19 +90,18 @@ const Inspect = (props: InspectProps2) => {
   const deleteFromDatabase = (_id?: string) => {
     if (_id) {
       TransactionService.deleteTransaction(_id)
-      .then(() => TransactionService.getTransactions(users._id))
-      .then((allTransactions: Transaction[]) =>
-        setTransactions(allTransactions),
-      )
-      .catch(error =>
-        // eslint-disable-next-line no-console
-        console.log(
-          '---> Error deleting transaction and reloading local listing',
-          error,
-        ),
-      );
+        .then(() => TransactionService.getTransactions(users._id))
+        .then((allTransactions: Transaction[]) =>
+          setTransactions(allTransactions),
+        )
+        .catch(error =>
+          // eslint-disable-next-line no-console
+          console.log(
+            '---> Error deleting transaction and reloading local listing',
+            error,
+          ),
+        );
     }
-    
   };
 
   const deleteMe = (event: React.FormEvent<HTMLFormElement>) => {
