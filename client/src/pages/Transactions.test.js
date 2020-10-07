@@ -17,7 +17,7 @@ const mockUsers = {
 
 afterEach(() => {
   jest.clearAllMocks();
-})
+});
 
 test('Submit form with even split ', async () => {
   render(
@@ -59,11 +59,10 @@ test('Submit form with even split ', async () => {
     .spyOn(global.Date, 'now')
     .mockImplementationOnce(() =>
       new Date('2019-05-14T11:01:58.135Z').valueOf(),
-      );
-      userEvent.click(submitButton);
-      expect(postTransaction).toHaveBeenCalledTimes(1);
+    );
+  userEvent.click(submitButton);
+  expect(postTransaction).toHaveBeenCalledTimes(1);
   await waitFor(() => {
-
     expect(postTransaction).toHaveBeenCalledWith({
       item: 'Breakfast',
       amount: 20,

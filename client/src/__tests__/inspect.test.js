@@ -32,12 +32,11 @@ const currency = '£';
 describe('Inspect', () => {
   beforeEach(() => {
     jest
-    .spyOn(global.Date, 'now')
-    .mockImplementationOnce(() =>
-      new Date('2019-05-14T11:01:58.135Z').valueOf(),
-    );
-  })
-
+      .spyOn(global.Date, 'now')
+      .mockImplementationOnce(() =>
+        new Date('2019-05-14T11:01:58.135Z').valueOf(),
+      );
+  });
 
   afterEach(() => {
     jest.clearAllMocks();

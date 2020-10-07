@@ -4,18 +4,17 @@ import React from 'react';
 import { jsx, css } from '@emotion/core';
 import { colors, MainView, MainViewStatic } from '../theme';
 import { Link, navigate } from '@reach/router';
-import {Users, Transaction} from '../interfaces'
+import { Users, Transaction } from '../interfaces';
 const moment = require('moment');
 
 interface HistoryProps {
-  currency: string,
-  transactions: Transaction[],
-  users: Users,
+  currency: string;
+  transactions: Transaction[];
+  users: Users;
 }
 
-
 const History: React.FC<HistoryProps> = ({ currency, transactions, users }) => {
-  function navigateToTransaction (transaction: Transaction) {
+  function navigateToTransaction(transaction: Transaction) {
     if (transaction.lender !== 'Babe') {
       navigate(`/transactions/${transaction._id}`);
     }
@@ -46,7 +45,9 @@ const History: React.FC<HistoryProps> = ({ currency, transactions, users }) => {
             <p data-testid="usersLead">{users.lead}</p>
           </div>
           {transactions
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+            .sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+            )
             .map((transaction: Transaction) => (
               <section
                 data-testid="transaction"
@@ -61,54 +62,54 @@ const History: React.FC<HistoryProps> = ({ currency, transactions, users }) => {
               >
                 <div
                   data-testid="clickToEdit"
-                  onClick={() => {navigateToTransaction(transaction)}}
+                  onClick={() => {
+                    navigateToTransaction(transaction);
+                  }}
                   css={css`
-                position: relative;
-                border: none;
-                border-radius: 20px;
-                margin: 10px;
-                padding: ${transaction.lender === 'Babe'
+                    position: relative;
+                    border: none;
+                    border-radius: 20px;
+                    margin: 10px;
+                    padding: ${transaction.lender === 'Babe'
                       ? '10px 20px'
-                      : '10px 50px 10px 20px'
-                    };
-                text-align: ${transaction.lender === 'Babe' ? 'center' : 'left'
-                    };
-                width: ${transaction.lender === 'Babe' ? 'calc(100% - 20px)' : '70%'
-                    };
-                color: ${transaction.lender === 'Babe'
+                      : '10px 50px 10px 20px'};
+                    text-align: ${transaction.lender === 'Babe'
+                      ? 'center'
+                      : 'left'};
+                    width: ${transaction.lender === 'Babe'
+                      ? 'calc(100% - 20px)'
+                      : '70%'};
+                    color: ${transaction.lender === 'Babe'
                       ? colors.mid
                       : transaction.lender === users.leadEmail
-                        ? colors.dark
-                        : colors.white
-                    };
-                background: ${transaction.lender === 'Babe'
+                      ? colors.dark
+                      : colors.white};
+                    background: ${transaction.lender === 'Babe'
                       ? colors.pale
                       : transaction.lender === users.leadEmail
-                        ? colors.white
-                        : colors.dark
-                    };
-                align-self: ${transaction.lender === users.leadEmail
+                      ? colors.white
+                      : colors.dark};
+                    align-self: ${transaction.lender === users.leadEmail
                       ? 'flex-end'
-                      : 'flex-start'
-                    };
+                      : 'flex-start'};
 
-                &::after {
-                  content: ${transaction.lender === 'Babe' ? null : '"🧐"'};
-                  font-size: 3.5vh;
-                  position: absolute;
-                  top: calc(45% - (3.5vh / 2));
-                  right: 6%;
-                  opacity: 0;
-                  transition: opacity 0.5s ease-out;
-              }
-
-              &:hover {
-                  &::after {
-                      transition: opacity 1s ease-in;
-                      opacity: 1;
+                    &::after {
+                      content: ${transaction.lender === 'Babe' ? null : '"🧐"'};
+                      font-size: 3.5vh;
+                      position: absolute;
+                      top: calc(45% - (3.5vh / 2));
+                      right: 6%;
+                      opacity: 0;
+                      transition: opacity 0.5s ease-out;
                     }
-                  }
-              `}
+
+                    &:hover {
+                      &::after {
+                        transition: opacity 1s ease-in;
+                        opacity: 1;
+                      }
+                    }
+                  `}
                 >
                   <time>
                     Added{' '}
@@ -128,13 +129,13 @@ const History: React.FC<HistoryProps> = ({ currency, transactions, users }) => {
             ))}
         </MainView>
       ) : (
-          <MainViewStatic>
-            <h4>No transactions... yet.</h4>
-            <Link to="/transactions">
-              <button>Split your first bill</button>
-            </Link>
-          </MainViewStatic>
-        )}
+        <MainViewStatic>
+          <h4>No transactions... yet.</h4>
+          <Link to="/transactions">
+            <button>Split your first bill</button>
+          </Link>
+        </MainViewStatic>
+      )}
     </React.Fragment>
   );
 };

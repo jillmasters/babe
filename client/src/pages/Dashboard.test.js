@@ -57,8 +57,8 @@ test('Show Call It Even button when user owes money', () => {
     />,
   );
 
-  expect(screen.getByText(/joe\s*gets\s*\$\s*2/)).toBeInTheDocument(); 
-  
+  expect(screen.getByText(/joe\s*gets\s*\$\s*2/)).toBeInTheDocument();
+
   // if total owed > 0, and user.partner != summary.overallLender then call-it-even
   expect(screen.getByText('Call It Even')).toBeInTheDocument();
 });

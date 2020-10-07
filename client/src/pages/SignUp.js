@@ -88,13 +88,25 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
           />
         </FormSection>
         <FormSection onChange={handleChange}>
-          <FormRadio type="radio" aria-label="currency-gbp" name="currency" value="£" required />
+          <FormRadio
+            type="radio"
+            aria-label="currency-gbp"
+            name="currency"
+            value="£"
+            required
+          />
           <RadioLabel htmlFor="currency">
             <span role="img" aria-label="pounds emoji">
               💷
             </span>
           </RadioLabel>
-          <FormRadio type="radio" aria-label="currency-usd" name="currency" value="$" required />
+          <FormRadio
+            type="radio"
+            aria-label="currency-usd"
+            name="currency"
+            value="$"
+            required
+          />
           <RadioLabel htmlFor="currency">
             <span role="img" aria-label="dollars emoji">
               💵
@@ -134,7 +146,9 @@ const SignUp = ({ setIsAuthenticated, setIsLoading }) => {
             required
           />
         </FormSection>
-        <FormButton role="button" type="submit">Let&apos;s get started</FormButton>
+        <FormButton role="button" type="submit">
+          Let&apos;s get started
+        </FormButton>
       </form>
     </MainView>
   );

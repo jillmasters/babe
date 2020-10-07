@@ -76,7 +76,6 @@ test('Updating Settings triggers updates', async () => {
 });
 
 test('Not updating setting doesnt trigger updates', async () => {
-
   render(
     <Settings
       users={mockUsers}

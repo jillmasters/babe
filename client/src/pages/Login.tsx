@@ -17,8 +17,8 @@ const initialState = {
 };
 
 interface LoginProps {
-  setIsAuthenticated: Function,
-  setIsLoading: Function,
+  setIsAuthenticated: Function;
+  setIsLoading: Function;
 }
 
 const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setIsLoading }) => {
@@ -89,6 +89,6 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setIsLoading }) => {
       </form>
     </MainViewStatic>
   );
-  };
+};
 
 export default Login;

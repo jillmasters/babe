@@ -11,14 +11,14 @@ import {
 
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
-import {Users, Transaction, Summary} from '../interfaces'
+import { Users, Transaction, Summary } from '../interfaces';
 
 interface CallItEvenProps {
-  summary: Summary,
-  currency: string,
-  users: Users,
-  setTransactions: Function,
-  setIsLoading: Function
+  summary: Summary;
+  currency: string;
+  users: Users;
+  setTransactions: Function;
+  setIsLoading: Function;
 }
 
 const CallItEven: React.FC<CallItEvenProps> = ({

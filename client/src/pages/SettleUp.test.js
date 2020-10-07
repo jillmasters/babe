@@ -65,11 +65,10 @@ test('User can settle up', async () => {
   });
 });
 
-
 //TODO: Add this test back in when error boundary is being handled better
 
 // test('Server error with settling up', () => {
-// // Look for other methods for ethrowing errors 
+// // Look for other methods for ethrowing errors
 // // try catch
 
 //   const error = new Error('Some error!');

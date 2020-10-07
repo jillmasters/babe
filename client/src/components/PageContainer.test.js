@@ -13,7 +13,7 @@ import PageContainer from './PageContainer';
 import Inspect from '../pages/Inspect';
 import Transactions from '../pages/Transactions';
 
-// 
+//
 import TransactionService from '../services/TransactionService';
 jest.mock('../services/TransactionService');
 
@@ -180,10 +180,13 @@ test('test Inspect component route', async () => {
   const {
     container,
     history: { navigate },
-  } = renderWithRouterWrapper(<Inspect path="/transactions/:_id" users={users} />, {
-    // and pass the parameter value on the route config
-    route: '/transactions/123'
-  });
+  } = renderWithRouterWrapper(
+    <Inspect path="/transactions/:_id" users={users} />,
+    {
+      // and pass the parameter value on the route config
+      route: '/transactions/123',
+    },
+  );
 
   expect(screen.getByTestId('inspect')).toBeInTheDocument();
 });
