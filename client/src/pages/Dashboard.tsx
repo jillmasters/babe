@@ -8,6 +8,7 @@ import { jsx, css } from '@emotion/core';
 import Lottie from 'react-lottie';
 import piggyBank from '../animations/piggy-bank.json';
 import confetti from '../animations/confetti.json';
+import { Summary, Users } from '../interfaces';
 
 const pig = {
   loop: false,
@@ -26,15 +27,21 @@ const celebrate = {
     preserveAspectRatio: 'xMidYMid slice',
   },
 };
+interface DashboardProps {
+  summary: Summary;
+  currency: string;
+  users: Users;
+  isAuthenticated: boolean;
+}
 
-export default function Dashboard({
+const Dashboard: React.FC<DashboardProps> = ({
   summary,
   users,
   currency,
   isAuthenticated,
-}) {
+}) => {
   return (
-    <MainView>
+    <MainView data-testid="dashboard">
       {isAuthenticated ? (
         <React.Fragment>
           <DashSummary>
@@ -111,4 +118,5 @@ export default function Dashboard({
       )}
     </MainView>
   );
-}
+};
+export default Dashboard;

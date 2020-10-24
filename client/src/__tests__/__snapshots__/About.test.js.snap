@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About renders correctly 1`] = `
+<section
+  className="css-1rze9zt"
+  data-testid="about"
+>
+  <h4>
+    <span
+      aria-label="confused person emoji"
+      role="img"
+    >
+      🤷
+    </span>
+    Why use Babe?
+    <span
+      aria-label="confused person emoji"
+      role="img"
+    >
+      🤷
+    </span>
+  </h4>
+  <div
+    className="css-h26aco"
+  >
+    <h2>
+      <span
+        id="babify"
+      >
+        Babe 
+      </span>
+      is a low-maintenance bill-splitter for two people.
+    </h2>
+    <br />
+    <div
+      aria-label="animation"
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "height": "200px",
+          "margin": "0 auto",
+          "outline": "none",
+          "overflow": "hidden",
+          "width": "200px",
+        }
+      }
+      tabIndex="0"
+      title=""
+    />
+    <br />
+    <h2>
+       It's for folks with shared lives and sole bank accounts.
+    </h2>
+    <br />
+    <h5>
+      Users get a simple balance, saying which person is owed money overall.
+    </h5>
+    <h5>
+      You can add new, customised bills, view your transaction history, call it even, or settle up.
+    </h5>
+    <h5>
+      There's no fuss, no finicky details, and no direct requests for repayment. So you can share your life without invoicing the people you love.
+    </h5>
+  </div>
+</section>
+`;

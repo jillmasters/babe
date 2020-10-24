@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+// FIXME: remove this disable later
+
 import React, { useState, useEffect } from 'react';
 
 // GET COMPONENTS
@@ -11,6 +14,7 @@ import { MainViewStatic } from './theme';
 import TransactionService from './services/TransactionService';
 import UserService from './services/UserService';
 import authentication from './authentication';
+import summariseTransactions from './calculate';
 
 function App() {
   // SET STATE
@@ -32,7 +36,7 @@ function App() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const retrieveUserInfo = async accessToken => {
+  const retrieveUserInfo = async (accessToken: string) => {
     try {
       const userInfo = await UserService.loadUserDetails(accessToken);
       const { _id, email, name, partner, partnerEmail, currency } = userInfo;
@@ -40,24 +44,6 @@ function App() {
       setCurrency(currency);
     } catch (error) {
       console.log('---> Unable to retrieve user data', error); // eslint-disable-line no-console
-    }
-  };
-
-  const calculateSummary = () => {
-    if (transactions) {
-      const balance = transactions.reduce((acc, transaction) => {
-        if (transaction.lender === users.leadEmail)
-          return acc + (transaction.amount * (100 - transaction.split)) / 100;
-        else if (transaction.lender === users.partnerEmail)
-          return acc - transaction.amount * (transaction.split / 100);
-        else {
-          const remaining = transaction.amount * transaction.split;
-          return acc - remaining;
-        }
-      }, 0);
-      const overallLender = balance > 0 ? users.lead : users.partner;
-      const totalOwed = Math.abs(Math.round(balance));
-      setSummary({ balance, totalOwed, overallLender });
     }
   };
 
@@ -70,7 +56,7 @@ function App() {
       TransactionService.getTransactions(users._id)
         .then(dbTransactions => setTransactions(dbTransactions))
         .catch(error => console.log('---> Error loading user history', error)); // eslint-disable-line no-console
-      calculateSummary();
+      setSummary(summariseTransactions(transactions, users));
     }
     setIsLoading(false);
   }, [
@@ -104,6 +90,8 @@ function App() {
           isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
           setIsLoading={setIsLoading}
+          isLoading={isLoading}
+          _id={users._id}
         />
       )}
       <Footer isAuthenticated={isAuthenticated} />

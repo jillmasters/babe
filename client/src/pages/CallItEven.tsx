@@ -11,8 +11,17 @@ import {
 
 import TransactionService from '../services/TransactionService';
 import { navigate } from '@reach/router';
+import { Users, Transaction, Summary } from '../interfaces';
 
-const CallItEven = ({
+interface CallItEvenProps {
+  summary: Summary;
+  currency: string;
+  users: Users;
+  setTransactions: Function;
+  setIsLoading: Function;
+}
+
+const CallItEven: React.FC<CallItEvenProps> = ({
   summary,
   currency,
   users,
@@ -21,10 +30,10 @@ const CallItEven = ({
 }) => {
   const [note, setNote] = useState('');
 
-  const saveTransaction = transaction => {
+  const saveTransaction = (transaction: Transaction) => {
     TransactionService.postTransaction(transaction)
       .then(newTransaction =>
-        setTransactions(oldTransactions => [
+        setTransactions((oldTransactions: Transaction[]) => [
           ...oldTransactions,
           newTransaction,
         ]),
@@ -34,12 +43,12 @@ const CallItEven = ({
       });
   };
 
-  const submit = event => {
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newTransaction = {
+    const newTransaction: Transaction = {
       item: `${users.lead} called it even: ${note}`,
       amount: summary.totalOwed,
-      date: new Date(),
+      date: new Date(Date.now()),
       lender: 'Babe',
       split: 1,
       addedBy: users.leadEmail,
@@ -49,9 +58,8 @@ const CallItEven = ({
     setIsLoading(true);
     navigate('/');
   };
-
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="callItEven">
       <h4>
         <span role="img" aria-label="fistbump right emoji">
           🤜
@@ -71,6 +79,7 @@ const CallItEven = ({
         <FormSection>
           <FormLabel htmlFor="wipe-description">Leave a note:</FormLabel>
           <FormInput
+            role="LeaveNote"
             type="text"
             name="wipe-description"
             placeholder="😘"

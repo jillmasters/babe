@@ -17,7 +17,15 @@ const cya = {
   },
 };
 
-const Logout = ({ setIsAuthenticated, setIsLoading }) => {
+interface LogoutProps {
+  setIsAuthenticated: Function;
+  setIsLoading: Function;
+}
+
+const Logout: React.FC<LogoutProps> = ({
+  setIsAuthenticated,
+  setIsLoading,
+}) => {
   const removeToken = () => {
     UserService.logout('accessToken');
   };
@@ -34,7 +42,7 @@ const Logout = ({ setIsAuthenticated, setIsLoading }) => {
   };
 
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="logout">
       <h4>
         <span role="img" aria-label="technologist emoji">
           🧑‍💻

@@ -16,10 +16,15 @@ const initialState = {
   password: '',
 };
 
-const Login = ({ setIsAuthenticated, setIsLoading }) => {
+interface LoginProps {
+  setIsAuthenticated: Function;
+  setIsLoading: Function;
+}
+
+const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setIsLoading }) => {
   const [state, setState] = useState(initialState);
 
-  const handleChange = event => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setState(prevState => ({
       ...prevState,
@@ -27,12 +32,12 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
     }));
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { email, password } = state;
     const user = { email, password };
-    const result = await UserService.login(user);
     try {
+      const result = await UserService.login(user);
       const { accessToken } = result;
       localStorage.setItem('accessToken', accessToken);
       setIsAuthenticated(true);
@@ -45,7 +50,7 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
   };
 
   return (
-    <MainViewStatic>
+    <MainViewStatic data-testid="login">
       <h4>
         <span role="img" aria-label="technologist emoji">
           🧑‍💻
@@ -61,6 +66,7 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="text"
             name="email"
+            aria-label="email"
             value={state.email}
             onChange={handleChange}
             required
@@ -71,6 +77,7 @@ const Login = ({ setIsAuthenticated, setIsLoading }) => {
           <FormInput
             type="password"
             name="password"
+            aria-label="password"
             value={state.password}
             onChange={handleChange}
             required
