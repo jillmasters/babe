@@ -2,18 +2,44 @@
 
 ![https://github.com/jillmasters/babe](https://img.shields.io/github/workflow/status/jillmasters/babe/Node.js%20CI)
 
-![Banner with Babe logo and two screenshots](./images/BabeReadme1.png)
+<p align="center">
+  <img src="./images/BabeReadme1.png">
+</p>
 
-## What does it do?
+Babe is a responsive web app for couples who want shared lives and separate bank accounts.
 
-Babe is a responsive web app for couples who want shared lives and separate bank accounts. Why would you use it?
+## Table of Contents
+
+- [Features?](#Features)
+
+- [Walkthrough](#Walkthrough)
+
+- [Getting started](#Getting-started)
+
+  - [Setup prerequisites](#Setup-prerequisites)
+
+  - [Run the app](#Run-the-app)
+
+- [Tech stack](#Tech-stack)
+
+  - [Front end](#Front-end)
+
+  - [Back end](#Back-end)
+
+- [Contributors](#Contributors)
+
+- [License](#License)
+
+## Features
 
 - It's a radically simplified version of Splitwise/Venmo designed for two people, with a simple interface, that lets you add and manage bills, 'call it even', or settle up a debt. Everything can be done with just a few clicks, with easy customisability.
 - Invoicing your partner feels so unromantic. So Babe abstracts away the finicky details, letting you keep track of your shared spending with less fuss about the details and no upfront requests for repayment.
 
-## Whate does it look like?
+## Walkthrough
 
-![Five Babe app screenshots](./images/BabeReadme2.png)
+<p align="center">
+  <img src="./images/BabeReadme2.png">
+</p>
 
 Babe was developed as a solo project for the coding bootcamp [Codeworks](https://codeworks.me/) by [Jill Masters](https://github.com/jillmasters).
 
@@ -23,19 +49,15 @@ You can watch the presentation of the project below:
 <a href="https://www.loom.com/share/74a62ee9311e46fcb2d2cb2e800ee0a6"><img src="https://cdn.loom.com/sessions/thumbnails/74a62ee9311e46fcb2d2cb2e800ee0a6-with-play.gif" alt="Babe Video Thumbnail"/></a>
 </p>
 
-## Want to work on it?
+## Getting started
 
 These instruction will help you setup a local development instance of the app.
 
-#### Clone the repo
+#### Setup prerequisites
 
 ```bash
 git clone https://github.com/jillmasters/babe
-```
-
-#### Install dependencies
-
-```bash
+cd babe
 npm i
 ```
 
@@ -50,13 +72,13 @@ cd ../client && npm start
 
 ## What it's built with?
 
-### Frontend
+### Front-end
 
 - [Typescript](https://www.typescriptlang.org/)
 - [Reactjs](https://reactjs.org)
 - [Emotion](https://emotion.sh/)
 
-### Backend
+### Back-end
 
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com)
@@ -64,16 +86,11 @@ cd ../client && npm start
 - [Mongoose](https://mongoosejs.com)
 - [JWT](https://jwt.io/)
 
-## Who built it?
+## Contributors
 
-### Creator
-
-- Jill Masters [GitHub](https://github.com/jillmasters) | [LinkedIn](https://www.linkedin.com/in/jillchuahmasters/)
-
-### Contributors
-
-- Hamish Chan - [Github](https://github.com/ilyadusoleil) - [LinkedIn](https://www.linkedin.com/in/hamish-chan/)
-- Chris Perry [GitHub](https://github.com/chrisperry-sd) | [LinkedIn](https://www.linkedin.com/in/chrisdperry-sd/)
+- Jill Masters — [GitHub](https://github.com/jillmasters) — [LinkedIn](https://www.linkedin.com/in/jillchuahmasters/)
+- Hamish Chan — [Github](https://github.com/ilyadusoleil) — [LinkedIn](https://www.linkedin.com/in/hamish-chan/)
+- Chris Perry — [GitHub](https://github.com/chrisperry-sd) — [LinkedIn](https://www.linkedin.com/in/chrisdperry-sd/)
 
 ## License
 
