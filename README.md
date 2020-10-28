@@ -3,28 +3,20 @@
 ![https://github.com/jillmasters/babe](https://img.shields.io/github/workflow/status/jillmasters/babe/Node.js%20CI)
 
 <p align="center">
-  <img src="./images/BabeReadme1.png">
+  <img src="./client/src/images/BabeReadme1.png">
 </p>
 
 Babe is a responsive web app for couples who want shared lives and separate bank accounts.
 
 ## Table of Contents
 
-- [Features?](#Features)
+- [Features](#Features)
 
 - [Walkthrough](#Walkthrough)
 
 - [Getting started](#Getting-started)
 
-  - [Setup prerequisites](#Setup-prerequisites)
-
-  - [Run the app](#Run-the-app)
-
 - [Tech stack](#Tech-stack)
-
-  - [Front end](#Front-end)
-
-  - [Back end](#Back-end)
 
 - [Contributors](#Contributors)
 
@@ -38,7 +30,7 @@ Babe is a responsive web app for couples who want shared lives and separate bank
 ## Walkthrough
 
 <p align="center">
-  <img src="./images/BabeReadme2.png">
+  <img src="./client/src/images/BabeReadme2.png">
 </p>
 
 Babe was developed as a solo project for the coding bootcamp [Codeworks](https://codeworks.me/) by [Jill Masters](https://github.com/jillmasters).
@@ -70,7 +62,7 @@ cd server && npm run dev
 cd ../client && npm start
 ```
 
-## What it's built with?
+## Tech stack
 
 ### Front-end
 
