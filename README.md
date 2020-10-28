@@ -24,8 +24,10 @@ Babe is a responsive web app for couples who want shared lives and separate bank
 
 ## Features
 
-- It's a radically simplified version of Splitwise/Venmo designed for two people, with a simple interface, that lets you add and manage bills, 'call it even', or settle up a debt. Everything can be done with just a few clicks, with easy customisability.
+Babe is a radically simplified version of Splitwise/Venmo designed for two people.
+
 - Invoicing your partner feels so unromantic. So Babe abstracts away the finicky details, letting you keep track of your shared spending with less fuss about the details and no upfront requests for repayment.
+- It has a simple interface that lets you add and manage bills, settle up debts, or 'call it even' with your partner. Everything can be done with just a few clicks, with easy customisability.
 
 ## Walkthrough
 
@@ -33,9 +35,9 @@ Babe is a responsive web app for couples who want shared lives and separate bank
   <img src="./client/src/images/BabeReadme2.png">
 </p>
 
-Babe was developed as a solo project for the coding bootcamp [Codeworks](https://codeworks.me/) by [Jill Masters](https://github.com/jillmasters).
+Babe was developed by [Jill Masters](https://github.com/jillmasters) as a solo project for the coding bootcamp [Codeworks](https://codeworks.me/).
 
-You can watch the presentation of the project below:
+You can watch the intial presentation of the project, after six days of development, below:
 
 <p align="center">
 <a href="https://www.loom.com/share/74a62ee9311e46fcb2d2cb2e800ee0a6"><img src="https://cdn.loom.com/sessions/thumbnails/74a62ee9311e46fcb2d2cb2e800ee0a6-with-play.gif" alt="Babe Video Thumbnail"/></a>
